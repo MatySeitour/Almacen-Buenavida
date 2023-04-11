@@ -1,0 +1,57 @@
+{ "categories": [
+	{
+		"id": 1,
+		"name": "Alimentos Naturales",
+		"sublevels": [
+			{
+				"id": 1,
+				"name": "Frutos Secos"
+			},
+			{
+				"id": 2,
+				"name": "Cereales & Granolas"
+			},
+			{
+				"id": 3,
+				"name": "Dulces & Mermeladas"
+			}
+		]
+	},
+	{
+		"id": 2,
+		"name": "Bebidas",
+		"sublevels": [
+			{
+				"id": 4,
+				"name": "Gaseosas"
+			},
+			{
+				"id": 5,
+				"name": "Jugos"
+			},
+			{
+				"id": 6,
+				"name": "Sin Azúcar"
+			}
+		]
+	},
+	{
+		"id": 3,
+		"name": "Cuidado Personal",
+		"sublevels": [
+			{
+				"id": 7,
+				"name": "Aceites Naturales"
+			},
+			{
+				"id": 8,
+				"name": "Cuidado Dental"
+			},
+			{
+				"id": 9,
+				"name": "Cuidado Corporal"
+			}
+		]
+	}
+]
+}
