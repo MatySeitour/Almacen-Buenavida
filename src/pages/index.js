@@ -1,18 +1,16 @@
+import Main from "@/components/Main"
 
-import Home from "@/components/Home";
-import Offers from "@/components/Offers";
-import CategoriesHome from "@/components/CategoriesHome";
-import ContactSection from "@/components/ContactSection";
-import FeaturedProduct from "@/components/FeaturedProduct";
+// import { useCart } from '@/context/CartContext'
+
+
 
 export default function home() {
+  // const { setFocus } = useCart();
+
   return (
-    <main className="w-screen h-screen bg-white">
-      <Home />
-      <Offers />
-      <FeaturedProduct />
-      <CategoriesHome />
-      <ContactSection />
+    // onClick={() => setFocus(false)}
+    <main className="min-w-screen min-h-screen h-auto w-auto bg-white">
+      <Main />
     </main>
   )
 }

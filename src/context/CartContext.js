@@ -15,26 +15,33 @@ export const useCart = () => {
 export function CartContextProvider({ children }) {
     const [cartItems, setCartItems] = useState([]);
     const [cartShow, setCartShow] = useState(false);
+    const [navMobileState, setNavMobileState] = useState(false);
+    const [focus, setFocus] = useState(false);
     const [totalCart, setTotalCart] = useState(() => {
         const priceCart = cartItems.map((item) => {
+            console.log(item)
             if (item.quantity === 1) {
                 return item.price
             }
             else {
-                console.log("entra")
                 return item.price * item.quantity
             }
         })
         return priceCart
     });
 
+    const productsItemNotification = cartItems.map((item) => {
+        let numbersItems = 0;
+        numbersItems = numbersItems + item.quantity;
+        return numbersItems
+    })
+
+    const totalItems = productsItemNotification.reduce((a, b) => a + b, 0);
 
     useEffect(() => {
         const productsCartInLocalStorage = localStorage.getItem("productsCart");
         const carts = JSON.parse(productsCartInLocalStorage);
-        console.log(carts);
-        if (carts.length > 0) {
-            console.log("entra")
+        if (carts != false) {
             setCartItems(carts);
         }
     }, [])
@@ -77,23 +84,34 @@ export function CartContextProvider({ children }) {
                         return { ...inCart, quantity: inCart.quantity - 1 };
                     }
                     else {
-                        console.log("entra en 5")
                         return productInCart
                     }
                 }))
         }
     }
 
+    const handleDeleteCart = (product) => {
+        setCartItems(
+            cartItems.filter(productInCart => productInCart.id !== product.id)
+        )
+    }
+
     useEffect(() => {
         setTotalCart(() => {
             const priceCart = cartItems.map((item) => {
-                if (item.quantity === 1) {
-                    return item.price
+                let discountPrice = 0;
+                let discountTotal = 0;
+                let offer2x1 = 0;
+                if (item.offer != "2x1" && item.offer != "") {
+                    discountPrice = parseInt(item.offer);
+                    discountPrice = (item.price * discountPrice) / 100;
+                    let discountTotal = (item.price - discountPrice) * item.quantity;
+                    return discountTotal;
                 }
-                else {
-                    console.log("entra")
+                else if (item.offer == "2x1") {
                     return item.price * item.quantity
                 }
+
             })
             return priceCart.reduce((a, b) => a + b, 0);
         })
@@ -101,7 +119,7 @@ export function CartContextProvider({ children }) {
     }, [cartItems])
 
     return (
-        <CartContext.Provider value={{ cartItems, handleAddCart, cartShow, setCartShow, handleRemoverCart, totalCart }}>
+        <CartContext.Provider value={{ cartItems, handleAddCart, cartShow, setCartShow, handleRemoverCart, totalCart, navMobileState, setNavMobileState, handleDeleteCart, totalItems, focus, setFocus }}>
             {children}
         </CartContext.Provider>
     )

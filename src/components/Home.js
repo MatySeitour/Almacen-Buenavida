@@ -1,15 +1,15 @@
+import 'react-multi-carousel/lib/styles.css';
 import Carousel from 'react-multi-carousel';
 import Logo from "@/components/Logo";
 import CartHome from './CartHome';
-import 'react-multi-carousel/lib/styles.css';
+import CardsInfo from './CardsInfo';
+import NavMobile from './NavMobile';
 import Image from 'next/image';
 import ItemCarousel from './ItemCarousel';
-import { faTruck, faCreditCard, faHouse } from '@fortawesome/free-solid-svg-icons';
-import CardsInfo from './CardsInfo';
 import { useCart } from '@/context/CartContext';
 
 export default function Home() {
-    const { cartShow } = useCart();
+    const { cartShow, navMobilState } = useCart();
 
 
     const responsive = {
@@ -60,27 +60,6 @@ export default function Home() {
         },
     ]
 
-    const cardsInfo = [
-        {
-            id: 1,
-            title: "Envíos Zona Oeste",
-            description: "Enviamos tus productos hasta tu casa ¡sin costo!.",
-            icon: faTruck,
-        },
-        {
-            id: 2,
-            title: "Efectivo o Tarjeta",
-            description: "Elegí el metodo de pago que más te convenga.",
-            icon: faCreditCard,
-        },
-        {
-            id: 3,
-            title: "Podés retirar tu pedido",
-            description: "En San Martín 1142 entre Pellegrini y Sarmiento. Merlo.",
-            icon: faHouse,
-        },
-    ]
-
     return (
         <section className="w-full h-auto pt-16 mb-40 bg-slate-100">
             <div className='background-home h-[400px]'>
@@ -110,17 +89,12 @@ export default function Home() {
                 </Carousel>
             </article>
             <ul className='pt-20'>
-                {cardsInfo.map((card) => (
-                    <CardsInfo
-                        key={card.id}
-                        cardTitle={card.title}
-                        cardDescription={card.description}
-                        cardIcon={card.icon}
-                    />
-                ))}
+                <CardsInfo />
             </ul>
 
-            {cartShow ? <CartHome /> : <></>}
+            <CartHome
+                cartShow={cartShow}
+            />
         </section>
     )
 }

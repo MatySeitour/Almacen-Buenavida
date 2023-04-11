@@ -38,7 +38,7 @@ export default function RelatedProducts() {
     ]
 
     return (
-        <div className="w-full h-auto min-h-screen bg-slate-400 pt-10">
+        <div className="w-full h-auto min-h-screen bg-slate-50 pt-10">
             <div className="p-4">
                 <h4 className="text-black text-xl font-bold mb-4">PRODUCTOS RELACIONADOS</h4>
                 <ul className='w-full h-full flex justify-evenly flex-wrap py-8'>

@@ -10,6 +10,7 @@ export default function Card({ productSrc, productName, productPrice, productSto
     const screen = useIntersection(element);
     let discountPrice = productOffer != "2x1" ? parseInt(productOffer) : 0;
     discountPrice = (productPrice * discountPrice) / 100;
+    discountPrice = productPrice - discountPrice;
 
     const { cartItems, handleAddCart } = useCart();
 
@@ -32,7 +33,7 @@ export default function Card({ productSrc, productName, productPrice, productSto
                         <div className="relative">
                             {productOffer !== "2x1" ? <span className="line-through absolute -top-4 left-[50%] translate-x-[-50%] text-green-500 text-base font-bold tracking-wide">{`$${productPrice}`}</span> : <></>}
                             <p className="text-green-500 text-xl font-bold tracking-wide">
-                                {`$${productPrice - discountPrice}`}
+                                {`$${discountPrice}`}
                             </p>
                         </div>
                         <div className="w-full h-auto flex justify-evenly mb-2">
@@ -42,6 +43,7 @@ export default function Card({ productSrc, productName, productPrice, productSto
                                         const newCartItem = {
                                             name: productName,
                                             price: productPrice,
+                                            offer: productOffer,
                                             id: productId,
                                             src: productSrc
                                         }

@@ -104,6 +104,26 @@ body{
   box-shadow: 1px 1px 8px 0px #000;
 }
 
+.container-nav div .input-search:focus > .container-nav{
+  height: 1000px
+}
+
+.hamburguer-top{
+  transform: rotate(45deg) translateY(-0px) translateX(7px);
+  transition: all .3s;
+}
+
+.hamburguer-mid{
+  display: none;
+  transition: all .3s;
+}
+
+.hamburguer-bottom{
+  transform: rotate(-45deg) translateY(-4px) translateX(12px);
+  transition: all .3s;
+
+}
+
 
 @tailwind base;
 @tailwind components;

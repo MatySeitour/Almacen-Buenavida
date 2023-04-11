@@ -1,9 +1,18 @@
 import Image from "next/image"
 import RelatedProducts from "@/components/RelatedProducts"
+import { useRouter } from "next/router"
+import CardsInfo from "@/components/CardsInfo";
+import { useCart } from "@/context/CartContext";
 
-export default function Products() {
+export default function Product() {
+    const router = useRouter();
+    const { id } = router.query;
+    const { setFocus } = useCart();
+    console.log(id)
+
+
     return (
-        <section className="w-full h-auto min-h-screen pt-16">
+        <section onClick={() => setFocus(false)} className="w-full h-auto min-h-screen pt-16">
             <div className="w-full h-full">
                 <figure className="w-full h-full">
                     <Image className="w-full h-full object-cover" alt="alfajores" width={200} height={200} src={"/alfajores.png"} />
@@ -33,20 +42,25 @@ export default function Products() {
                     </div>
                     <div className="w-full h-auto flex justify-start flex-col">
                         <h4 className="text-black text-xl font-bold mb-4">CATEGORIAS RELACIONADAS</h4>
-                        <div className="w-full h-auto flex flex-row flex-wrap">
-                            <p className="bg-green-500 p-2 mr-2 mb-2 text-white rounded-md">SIN TACC</p>
-                            <p className="bg-green-500 p-2 mr-2 mb-2 text-white rounded-md">SIN TACC</p>
-                            <p className="bg-green-500 p-2 mr-2 mb-2 text-white rounded-md">SIN TACC</p>
-                            <p className="bg-green-500 p-2 mr-2 mb-2 text-white rounded-md">SIN TACC</p>
-                            <p className="bg-green-500 p-2 mr-2 mb-2 text-white rounded-md">SIN TACC</p>
-                            <p className="bg-green-500 p-2 mr-2 mb-2 text-white rounded-md">SIN TACC</p>
-                            <p className="bg-green-500 p-2 mr-2 mb-2 text-white rounded-md">SIN TACC</p>
-                            <p className="bg-green-500 p-2 mr-2 mb-2 text-white rounded-md">SIN TACC</p>
-                            <p className="bg-green-500 p-2 mr-2 mb-2 text-white rounded-md">SIN TACC</p>
-                            <p className="bg-green-500 p-2 mr-2 mb-2 text-white rounded-md">SIN TACC</p>
+                        <div className="w-full h-auto flex flex-row flex-wrap gap-2 p-2">
+                            <p className="bg-green-500 p-2 text-white rounded-md">SIN TACC</p>
+                            <p className="bg-green-500 p-2 text-white rounded-md">SIN TACC</p>
+                            <p className="bg-green-500 p-2 text-white rounded-md">SIN TACC</p>
+                            <p className="bg-green-500 p-2 text-white rounded-md">SIN TACC</p>
+                            <p className="bg-green-500 p-2 text-white rounded-md">SIN TACC</p>
+                            <p className="bg-green-500 p-2 text-white rounded-md">SIN TACC</p>
+                            <p className="bg-green-500 p-2 text-white rounded-md">SIN TACC</p>
+                            <p className="bg-green-500 p-2 text-white rounded-md">SIN TACC</p>
+                            <p className="bg-green-500 p-2 text-white rounded-md">SIN TACC</p>
+                            <p className="bg-green-500 p-2 text-white rounded-md">SIN TACC</p>
                         </div>
                     </div>
                 </div>
+                <CardsInfo />
+                {/* <div className="w-full h-[auto] p-6 border-t border-b border-green-500 flex flex-col justify-center items-center">
+                    <FontAwesomeIcon className="mb-4 w-10 h-10 text-green-500" icon={faPersonChalkboard} />
+                    <p className="text-center text-green-500 text-xl font-semibold">podes retirar tu pedido en el local almacen buenavida en pelllegrini asdas9w3 entre la cnajdhs ey y soli, altura 1711 cerca de la plaza del tanque</p>
+                </div> */}
                 <RelatedProducts />
             </div>
         </section>

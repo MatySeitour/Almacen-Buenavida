@@ -46,7 +46,7 @@ export default function Offers() {
         {
             src: "/spirulana.png",
             id: 5,
-            name: "SIN AZÚCAR",
+            name: "Trigo",
             alt: "alfajores",
             price: 2000,
             stock: false,
@@ -55,7 +55,7 @@ export default function Offers() {
         {
             src: "/spirulana.png",
             id: 6,
-            name: "SIN AZÚCAR",
+            name: "Huevos",
             alt: "alfajores",
             price: 2000,
             stock: true,
@@ -64,7 +64,7 @@ export default function Offers() {
         {
             src: "/spirulana.png",
             id: 7,
-            name: "SIN AZÚCAR",
+            name: "Yerba",
             alt: "alfajores",
             price: 2000,
             stock: false,
@@ -73,7 +73,7 @@ export default function Offers() {
         {
             src: "/spirulana.png",
             id: 9,
-            name: "SIN AZÚCAR",
+            name: "Budín",
             alt: "alfajores",
             price: 2000,
             stock: true,
@@ -82,7 +82,7 @@ export default function Offers() {
         {
             src: "/spirulana.png",
             id: 10,
-            name: "SIN AZÚCAR",
+            name: "Coco",
             alt: "alfajores",
             price: 2000,
             stock: true,
