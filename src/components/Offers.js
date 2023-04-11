@@ -154,6 +154,7 @@ export default function Offers() {
                                         productStock={product.stock}
                                         productOffer={product.offer}
                                         productId={product.id}
+                                        cardId={product.id}
                                     />
                                 ))}
                             </ul>

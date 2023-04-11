@@ -283,7 +283,10 @@ export default function Nav() {
                             <ul className="w-full h-full overflow-y-scroll pb-2">
                                 {searchResults.map((item) => (
                                     <li className="w-full h-[80px] flex mb-4 border-b border-gray-300" key={item.id}>
-                                        <Link onClick={() => setFocus(false)} className="w-full h-[80px] flex mb-4 border-b border-gray-300" href={`/products/${item.id}`}>
+                                        <Link onClick={() => {
+                                            setFocus(false)
+                                        }}
+                                            className="w-full h-[80px] flex mb-4 border-b border-gray-300" href={`/products/${item.id}`}>
                                             <figure className="w-[70px] h-[70px]">
                                                 <Image src={item.src} width={70} height={70} alt={item.alt} />
                                             </figure>

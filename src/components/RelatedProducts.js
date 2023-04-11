@@ -1,4 +1,5 @@
 import RelatedProductsCard from "./RelatedProductsCard"
+import Link from "next/link"
 
 export default function RelatedProducts() {
     const products = [
@@ -49,10 +50,14 @@ export default function RelatedProducts() {
                             productName={product.name}
                             productStock={product.stock}
                             productPrice={product.price}
+                            productId={product.id}
                         />
 
                     ))}
                 </ul>
+                <Link className='w-full h-full flex justify-center items-center mb-40' href={"/categories"}>
+                    <button className='w-[300px] h-auto p-4 bg-green-500 text-white rounded font-semibold' type='text'>VER MÁS PRODUCTOS</button>
+                </Link>
             </div>
         </div>
     )

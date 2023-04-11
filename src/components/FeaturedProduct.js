@@ -89,6 +89,7 @@ export default function FeaturedProduct() {
                                     productName={product.name}
                                     productStock={product.stock}
                                     productPrice={product.price}
+                                    productId={product.id}
                                 />
 
                             ))}

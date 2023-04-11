@@ -9,7 +9,7 @@ export default function Main() {
     const { setFocus } = useCart();
 
     return (
-        <div onClick={() => setFocus(false)} className="min-w-screen min-h-screen h-auto w-auto bg-white">
+        <div onClick={() => setFocus(false)} className="min-w-screen min-h-screen h-auto w-auto">
             <Home />
             <Offers />
             <FeaturedProduct />

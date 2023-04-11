@@ -3,10 +3,11 @@ import Carousel from 'react-multi-carousel';
 import Logo from "@/components/Logo";
 import CartHome from './CartHome';
 import CardsInfo from './CardsInfo';
-import NavMobile from './NavMobile';
 import Image from 'next/image';
 import ItemCarousel from './ItemCarousel';
 import { useCart } from '@/context/CartContext';
+import { faTruck, faCreditCard, faHouse } from '@fortawesome/free-solid-svg-icons';
+
 
 export default function Home() {
     const { cartShow, navMobilState } = useCart();
@@ -31,7 +32,6 @@ export default function Home() {
             items: 1
         }
     };
-
 
     const elements = [
         {
@@ -60,8 +60,29 @@ export default function Home() {
         },
     ]
 
+    const cardsInfo = [
+        {
+            id: 1,
+            title: "Envíos Zona Oeste",
+            description: "Enviamos tus productos hasta tu casa ¡sin costo!.",
+            icon: faTruck,
+        },
+        {
+            id: 2,
+            title: "Efectivo o Tarjeta",
+            description: "Elegí el metodo de pago que más te convenga.",
+            icon: faCreditCard,
+        },
+        {
+            id: 3,
+            title: "Podés retirar tu pedido",
+            description: "En San Martín 1142 entre Pellegrini y Sarmiento. Merlo.",
+            icon: faHouse,
+        },
+    ]
+
     return (
-        <section className="w-full h-auto pt-16 mb-40 bg-slate-100">
+        <section className="w-full h-auto pt-16 bg-slate-100">
             <div className='background-home h-[400px]'>
                 <Logo />
             </div>
@@ -88,8 +109,16 @@ export default function Home() {
                     ))}
                 </Carousel>
             </article>
+
             <ul className='pt-20'>
-                <CardsInfo />
+                {cardsInfo.map((card) => (
+                    <CardsInfo
+                        key={card.id}
+                        cardTitle={card.title}
+                        cardDescription={card.description}
+                        cardIcon={card.icon}
+                    />
+                ))}
             </ul>
 
             <CartHome

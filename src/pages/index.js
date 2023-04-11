@@ -9,7 +9,7 @@ export default function home() {
 
   return (
     // onClick={() => setFocus(false)}
-    <main className="min-w-screen min-h-screen h-auto w-auto bg-white">
+    <main className="min-w-screen min-h-screen h-auto w-auto bg-gray-100">
       <Main />
     </main>
   )

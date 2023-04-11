@@ -3,13 +3,34 @@ import RelatedProducts from "@/components/RelatedProducts"
 import { useRouter } from "next/router"
 import CardsInfo from "@/components/CardsInfo";
 import { useCart } from "@/context/CartContext";
+import CartHome from "@/components/CartHome";
+import { faTruck, faCreditCard, faHouse } from '@fortawesome/free-solid-svg-icons';
 
 export default function Product() {
     const router = useRouter();
     const { id } = router.query;
-    const { setFocus } = useCart();
-    console.log(id)
+    const { setFocus, cartShow } = useCart();
 
+    const cardsInfo = [
+        {
+            id: 1,
+            title: "Envíos Zona Oeste",
+            description: "Enviamos tus productos hasta tu casa ¡sin costo!.",
+            icon: faTruck,
+        },
+        {
+            id: 2,
+            title: "Efectivo o Tarjeta",
+            description: "Elegí el metodo de pago que más te convenga.",
+            icon: faCreditCard,
+        },
+        {
+            id: 3,
+            title: "Podés retirar tu pedido",
+            description: "En San Martín 1142 entre Pellegrini y Sarmiento. Merlo.",
+            icon: faHouse,
+        },
+    ]
 
     return (
         <section onClick={() => setFocus(false)} className="w-full h-auto min-h-screen pt-16">
@@ -56,13 +77,21 @@ export default function Product() {
                         </div>
                     </div>
                 </div>
-                <CardsInfo />
-                {/* <div className="w-full h-[auto] p-6 border-t border-b border-green-500 flex flex-col justify-center items-center">
-                    <FontAwesomeIcon className="mb-4 w-10 h-10 text-green-500" icon={faPersonChalkboard} />
-                    <p className="text-center text-green-500 text-xl font-semibold">podes retirar tu pedido en el local almacen buenavida en pelllegrini asdas9w3 entre la cnajdhs ey y soli, altura 1711 cerca de la plaza del tanque</p>
-                </div> */}
+                <ul className='pt-20'>
+                    {cardsInfo.map((card) => (
+                        <CardsInfo
+                            key={card.id}
+                            cardTitle={card.title}
+                            cardDescription={card.description}
+                            cardIcon={card.icon}
+                        />
+                    ))}
+                </ul>
                 <RelatedProducts />
             </div>
+            <CartHome
+                cartShow={cartShow}
+            />
         </section>
     )
 }
