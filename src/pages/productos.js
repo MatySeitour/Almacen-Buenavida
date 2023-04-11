@@ -6,13 +6,12 @@ import { faCartShopping, faFilter, faArrowDownWideShort } from "@fortawesome/fre
 import CategoriesFilter from "@/components/CategoriesFilter";
 import { useState } from "react";
 
-export default function productos() {
+export default function Productos() {
     const products = getProducts.products;
     const categories = getCategories.categories;
 
     const [categoriesFilterState, setCategoriesFilterState] = useState(false);
 
-    console.log(categories);
 
     return (
         <section className="w-full h-auto min-h-screen pt-36 bg-slate-100">
