@@ -73,7 +73,7 @@ export default function FeaturedProduct() {
     ]
 
     return (
-        <section className="w-full h-auto min-h-screen bg-slate-100">
+        <section className="w-full h-auto min-h-screen bg-slate-100 pt-10 pb-6 mb-40">
             <div ref={element} className="w-full h-full">
                 {screen ?
                     <>
@@ -95,7 +95,7 @@ export default function FeaturedProduct() {
                             ))}
                         </ul>
 
-                        <Link className='w-full h-full flex justify-center items-center mb-40' href={"/categories"}>
+                        <Link className='w-full h-full flex justify-center items-center' href={"/categories"}>
                             <button className='w-[300px] h-auto p-4 bg-green-500 text-white rounded font-semibold' type='text'>VER MÁS PRODUCTOS</button>
                         </Link>
                     </>

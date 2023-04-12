@@ -10,7 +10,7 @@ export default function Offers() {
         {
             src: "/alfajores.png",
             id: 1,
-            name: "alfajores de arroz",
+            name: "alfajores de arroz sabor frutilla y vainilla",
             alt: "alfajores",
             price: 2000,
             stock: true,
@@ -19,7 +19,7 @@ export default function Offers() {
         {
             src: "/lulemuu.png",
             id: 2,
-            name: "lulemuu",
+            name: "Barras de cereal sabor limón",
             alt: "alfajores",
             price: 2000,
             stock: false,
@@ -129,7 +129,7 @@ export default function Offers() {
 
 
     return (
-        <section className="w-full h-auto bg-slate-100 mb-40">
+        <section className="w-full h-[500px] bg-white mb-40">
             <div ref={element} className="w-full h-full">
                 {
                     screen ?
@@ -144,7 +144,7 @@ export default function Offers() {
                                 <span className="hover:animate-jump6 inline-block font-bold">S</span>
                             </div>
 
-                            <ul className='h-[460px] w-full p-4 pr-0 flex justify-center items-center flex-col overflow-x-scroll flex-wrap'>
+                            <ul className='h-full w-full p-2 flex justify-center items-center flex-col overflow-x-scroll flex-wrap'>
                                 {products.map((product) => (
                                     <Card
                                         key={product.id}

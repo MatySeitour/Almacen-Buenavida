@@ -18,26 +18,33 @@ export default function Card({ productSrc, productName, productPrice, productSto
 
     return (
 
-        <div ref={element} className="relative w-[220px] h-full mr-8 rounded-md flex flex-col justify-around items-center">
+        <div ref={element} className="relative w-[250px] h-[450px] p-4 mr-8 rounded-md flex flex-col justify-around items-center">
             {
                 screen ?
-                    <div className="animate-subtitleAppear w-[220px] pb-4 h-full shadow-lg bg-white rounded-md flex flex-col justify-between items-center">
-                        {!productStock ? <p className="absolute p-2 bg-green-500 left-2 top-2 font-bold text-white rounded-md">SIN STOCK</p> : <></>}
+                    <div className="animate-subtitleAppear w-[220px] pb-4 h-full shadow-lg bg-white rounded-md flex flex-col justify-between items-center relative">
+                        {!productStock ? <p className="absolute p-2 bg-green-500 left-4 top-2 font-bold text-white rounded-md">SIN STOCK</p> : <></>}
                         <span className="absolute w-[50px] h-[50px] rounded-full bg-green-500 -top-4 -right-4 flex text-center justify-center">
                             <p className="flex justify-center items-center text-white font-bold">{productOffer == "2x1" ? "2x1" : `${productOffer}%`}</p>
                         </span>
-                        <Link href={`/products/${productId}`}>
-                            <figure>
-                                <Image className="object-cover rounded-md object-center w-full h-full" priority={true} width={200} height={200} alt={productName} src={productSrc} />
+
+                        <Link className="" href={`/products/${productId}`}>
+                            <figure className="rounded-t-lg">
+                                <Image className="object-cover rounded-t-lg object-center" priority={true} width={220} height={200} alt={productName} src={productSrc} />
                             </figure>
                         </Link>
-                        <Link href={`/products/${productId}`}><h4 className="text-green-500 text-xl font-bold">{productName}</h4></Link>
 
-                        <div className="relative">
-                            {productOffer !== "2x1" ? <span className="line-through absolute -top-4 left-[50%] translate-x-[-50%] text-green-500 text-base font-bold tracking-wide">{`$${productPrice}`}</span> : <></>}
-                            <p className="text-green-500 text-xl font-bold tracking-wide">
-                                {`$${discountPrice}`}
-                            </p>
+                        <div className="w-full h-[120px] min-h-[132px] max-h-[132px] flex flex-col justify-center items-center p-4">
+                            <Link className="mb-4" href={`/products/${productId}`}>
+                                <h4 className="text-green-500 text-base font-bold text-center h-[48px] w-full">{productName.length > 40 ? `${productName.slice(0, 40)}...` : productName}</h4>
+                            </Link>
+
+                            <div className="w-full h-auto flex justify-center items-center">
+                                {productOffer !== "2x1" ? <span className="line-through text-green-500 text-sm font-bold tracking-wide mr-2 translate-y-[0.5px]">{`$${productPrice}`}</span> : <></>}
+                                <p className="text-green-500 text-xl font-bold tracking-wide">
+                                    {`$${discountPrice}`}
+                                </p>
+                            </div>
+
                         </div>
                         <div className="w-full h-auto flex justify-evenly mb-2">
                             {productStock ?

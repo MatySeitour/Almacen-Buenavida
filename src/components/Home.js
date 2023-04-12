@@ -82,11 +82,11 @@ export default function Home() {
     ]
 
     return (
-        <section className="w-full h-auto pt-16 bg-slate-100">
+        <section className="w-full h-auto pt-16 bg-white">
             <div className='background-home h-[400px]'>
                 <Logo />
             </div>
-            <article className='w-full h-[auto] font-bold tracking-wide flex justify-center text-center py-10 px-4 relative overflow-hidden'>
+            <article className='animate-subtitleAppear w-full h-[auto] font-bold tracking-wide flex justify-center text-center py-10 px-4 relative overflow-hidden'>
                 <div className='h-full w-full border-t border-b border-green-500 flex items-center justify-center p-2'>
                     <p className='w-[250px] text-center text-xl text-green-500'>
                         PRODUCTOS CELÍACOS, VEGANOS, DIABETES ¡¡Y MÁS!!
@@ -110,7 +110,7 @@ export default function Home() {
                 </Carousel>
             </article>
 
-            <ul className='pt-20'>
+            <ul className='py-20 bg-green-100 mb-10'>
                 {cardsInfo.map((card) => (
                     <CardsInfo
                         key={card.id}

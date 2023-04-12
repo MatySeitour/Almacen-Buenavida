@@ -33,7 +33,7 @@ export default function Product() {
     ]
 
     return (
-        <section onClick={() => setFocus(false)} className="w-full h-auto min-h-screen pt-16">
+        <section onClick={() => setFocus(false)} className="w-full h-auto min-h-screen pt-[120px]">
             <div className="w-full h-full">
                 <figure className="w-full h-full">
                     <Image className="w-full h-full object-cover" alt="alfajores" width={200} height={200} src={"/alfajores.png"} />
