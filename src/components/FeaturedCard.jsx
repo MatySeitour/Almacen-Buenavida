@@ -17,10 +17,11 @@ export default function FeaturedCard({ productSrc, productName, productStock, pr
                         <Image className="object-cover rounded-md object-center w-full h-full" priority={true} width={140} height={140} alt={productName} src={productSrc} />
                     </figure>
                     <div className="w-full h-full flex justify-around items-center flex-col">
-                        <div className="w-full text-left pl-2 mb-2"><h4 className="text-green-500 text-xs font-bold">{productName}</h4></div>
+                        {/* <h4 className="text-green-700 text-lg font-bold text-center h-[48px] w-full">{productName.length > 40 ? `${productName.slice(0, 40)}...` : productName}</h4> */}
+                        <div className="w-full text-left pl-2 mb-2"><h4 className="text-green-700 text-xs font-bold">{productName.length > 40 ? `${productName.slice(0, 40)}...` : productName}</h4></div>
                         <div className="w-full text-left pl-2 mb-2"><p className="text-green-500 text-xs font-bold tracking-wide">{productPrice}</p></div>
                         <div className="w-full px-2 h-auto flex justify-start mb-2">
-                            <button className="bg-green-400 text-white w-full rounded-md tracking-wider font-bold" type="text"><FontAwesomeIcon icon={faCartShopping} /></button>
+                            <button className="bg-green-400 text-white w-full rounded-md tracking-wider p-1 font-bold flex justify-center items-center" type="text"><FontAwesomeIcon className="w-[20px] h-[20px]" icon={faCartShopping} /></button>
                         </div>
                     </div>
                 </Link>

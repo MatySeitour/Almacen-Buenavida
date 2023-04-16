@@ -47,6 +47,10 @@ module.exports = {
           '0%': { width: "0%" },
           '100%': { width: "100%" },
         },
+        iconFraseAnimation: {
+          '0%': { transform: "translateY(-200px)" },
+          '100%': { transform: "translateY(400px)" },
+        },
         jump: {
           '0%': { transform: "translateY(0px)" },
           '50%': { transform: "translateY(-10px)" },
@@ -69,6 +73,7 @@ module.exports = {
         'jump5': 'jump 1.3s ease-in-out',
         'jump6': 'jump 1.5s ease-in-out',
         'jump6': 'jump 1.5s ease-in-out',
+        'iconFraseAnimation': 'iconFraseAnimation 2.5s linear infinite',
       },
     },
   },

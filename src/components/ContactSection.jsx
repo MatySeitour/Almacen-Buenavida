@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function ContactSection() {
     return (
-        <footer className="w-full h-[auto] bg-green-500 p-4">
+        <footer className="w-full h-[auto] bg-green-700 p-4">
             <div className="w-full h-full flex justify-around items-center flex-col">
                 <div className="mb-10">
                     <h3 className="text-white text-2xl font-semibold text-center">¿Tenes alguna Consulta?</h3>

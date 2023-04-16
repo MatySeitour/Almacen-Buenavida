@@ -14,7 +14,7 @@ export default function CategoryCard({ categorySrc, categoryName }) {
                         <div className='absolute w-full h-full top-0 bg-[#000a] flex justify-around items-center flex-col'>
                             <h5 className='animate-subtitleAppear text-2xl text-white tracking-wide font-bold'>{categoryName}</h5>
                         </div>
-                        <Image className='w-full h-full object-cover' width={300} height={100} src={categorySrc} alt={categoryName} />
+                        <Image className='w-full h-full object-cover' priority={true} width={300} height={100} src={categorySrc} alt={categoryName} />
                     </figure>
 
                     :

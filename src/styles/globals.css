@@ -24,11 +24,24 @@ body{
   overflow-y: hidden;
 }
 
-.background-home{
-  background-image: url("../../public/background.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+.frase-container span{
+  animation: descending .5s linear;
+}
+.frase-container span:nth-child(2){
+  animation: descending .5s linear;
+
+}
+.frase-container span:nth-child(3){
+  animation: descending .5s linear;
+}
+
+@keyframes descending {
+  0%{
+    transform: scale(0);
+  }
+  100%{
+    transform: scale(1);
+  }
 }
 
 .title-container::before{
@@ -50,10 +63,6 @@ body{
 .item-trigo-2{
   transform: translate(20px, -80%) rotateY(180deg) scale(0.65);
   object-fit: cover;
-}
-
-.item-carousel__class{
-  margin-right: 0px
 }
 
 .underline-subtitle::before{

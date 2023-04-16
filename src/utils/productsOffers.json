@@ -1,0 +1,114 @@
+{
+    "products": [
+      {
+        "price": 100,
+        "gramos": 100,
+        "available": true,
+        "subLevelId": 1,
+        "categoryId": 1,
+        "name": "Nueces x 100g",
+        "src": "/nueces.png",
+        "id": 1,
+        "offers": "2x1",
+        "stock": true
+      },
+      {
+        "price": 120,
+        "gramos": 100,
+        "available": true,
+        "subLevelId": 1,
+        "categoryId": 1,
+        "name": "Almendras x 100g",
+        "src": "/almendras.png",
+        "id": 2,
+        "offers": "2x1",
+        "stock": false
+      },
+      {
+        "price": 150,
+        "gramos": 100,
+        "available": true,
+        "subLevelId": 1,
+        "categoryId": 1,
+        "name": "Pasas de uva x 100g",
+        "src": "/nueces.png",
+        "id": 3,
+        "offers": "2x1",
+        "stock": false
+      },
+      {
+        "price": 600,
+        "gramos": false,
+        "available": false,
+        "subLevelId": 7,
+        "categoryId": 2,
+        "name": "vrink sabor almendras",
+        "src": "/vrink_almendra.jpg",
+        "id": 4,
+        "offers": "14",
+        "stock": true
+      },
+      {
+        "price": 850,
+        "gramos": false,
+        "available": true,
+        "subLevelId": 7,
+        "categoryId": 2,
+        "name": "vrink sabor coco",
+        "src": "/vrink_coco.jpg",
+        "id": 5,
+        "offers": "18",
+        "stock": true
+      },
+      {
+        "price": 1000,
+        "gramos": false,
+        "available": true,
+        "subLevelId": 4,
+        "categoryId": 2,
+        "name": "Bravia sabor manzana",
+        "src": "/bravia.jpg",
+        "id": 6,
+        "offers": "20",
+        "stock": false
+
+      },
+      {
+        "price": 500,
+        "gramos": false,
+        "available": true,
+        "subLevelId": 10,
+        "categoryId": 2,
+        "name": "Spirulana",
+        "src": "/nueces.png",
+        "id": 7,
+        "offers": "2x1",
+        "stock": true
+
+      },
+      {
+        "price": 500,
+        "gramos": false,
+        "available": true,
+        "subLevelId": 10,
+        "categoryId": 2,
+        "name": "Colágeno",
+        "src": "/nueces.png",
+        "id": 8,
+        "offers": "2x1",
+        "stock": false
+      },
+      {
+        "price": 600,
+        "gramos": false,
+        "available": true,
+        "subLevelId": 4,
+        "categoryId": 2,
+        "name": "Bravia sabor naranja y mango",
+        "src": "/bravia_naranja.jpg",
+        "id": 9,
+        "offers": "12",
+        "description": ""
+      }
+    ]
+  }

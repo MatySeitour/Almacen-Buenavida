@@ -15,10 +15,10 @@ export default function CartItem({ itemName, itemSrc, itemQuantity, itemPrice, i
                 <div className="w-full h-auto flex flex-row">
                     <figure className="w-auto h-[100px] flex justify-start items-center mr-2 relative">
                         {itemOffer !== "2x1" ? <span></span> : <span className="w-6 h-6 flex justify-center items-center absolute -top-0 -right-1 text-xs p-1 bg-green-500 text-white font-medium rounded-full">{itemOffer}</span>}
-                        <Image className="object-cover" src={itemSrc} width={100} height={100} alt={itemName} />
+                        <Image className="object-cover" src={itemSrc} priority={true} width={100} height={100} alt={itemName} />
                     </figure>
                     <div className="w-full h-auto flex justify-between items-center mb-2">
-                        <h5 className="text-base max-w-[200px] text-green-500 font-medium">{itemName}sadasasdasddsa</h5>
+                        <h5 className="text-base max-w-[200px] text-green-500 font-medium">{itemName.length > 37 ? `${itemName.slice(0, 37)}...` : itemName}</h5>
                         <FontAwesomeIcon
                             onClick={() => {
                                 const cartItemDelete = {
@@ -28,7 +28,7 @@ export default function CartItem({ itemName, itemSrc, itemQuantity, itemPrice, i
                                     id: itemId,
                                 }
                                 handleDeleteCart(cartItemDelete)
-                            }} className="text-lg text-green-400" icon={faTrash} />
+                            }} className="w-[24px] h-[24px] text-green-400" icon={faTrash} />
                     </div>
                 </div>
                 <div className="w-[120px] flex flex-row rounded-md justify-between items-center">

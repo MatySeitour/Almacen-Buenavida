@@ -2,7 +2,7 @@
 	{
 		"id": 1,
 		"name": "Alimentos Naturales",
-		"sublevels": [
+		"subLevels": [
 			{
 				"id": 1,
 				"name": "Frutos Secos"
@@ -15,12 +15,13 @@
 				"id": 3,
 				"name": "Dulces & Mermeladas"
 			}
-		]
+		],
+		"src": "/background.png"
 	},
 	{
 		"id": 2,
 		"name": "Bebidas",
-		"sublevels": [
+		"subLevels": [
 			{
 				"id": 4,
 				"name": "Gaseosas"
@@ -32,26 +33,32 @@
 			{
 				"id": 6,
 				"name": "Sin Azúcar"
+			},
+			{
+				"id": 7,
+				"name": "Bebidas 100% vegetales"
 			}
-		]
+		],
+		"src": "/bebidas.jpg"
 	},
 	{
 		"id": 3,
 		"name": "Cuidado Personal",
-		"sublevels": [
+		"subLevels": [
 			{
-				"id": 7,
+				"id": 8,
 				"name": "Aceites Naturales"
 			},
 			{
-				"id": 8,
+				"id": 9,
 				"name": "Cuidado Dental"
 			},
 			{
-				"id": 9,
+				"id": 10,
 				"name": "Cuidado Corporal"
 			}
-		]
+		],
+		"src": "/spirulana.png"
 	}
 ]
 }

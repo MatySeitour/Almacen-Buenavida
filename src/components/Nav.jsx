@@ -249,34 +249,29 @@ export default function Nav() {
         searchFilter(search);
     }, [search])
 
-    useEffect(() => {
-        console.log(subNavState)
-    }, [subNavState])
-
-
 
     return (
         <header className="bg-green-500 shadow-lg w-full h-auto p-2 fixed z-[100]">
             <nav className="relative navbar p-0 bg-green-500 justify-between flex-col">
                 <div className="w-full flex justify-between">
                     <div className="w-14 h-14 flex justify-center items-center relative">
-                        <FontAwesomeIcon onClick={() => setNavMobileState(state => !state)} className={"text-white text-2xl w-full"} icon={faBars} />
+                        <FontAwesomeIcon onClick={() => setNavMobileState(state => !state)} className={"text-white w-[30px] h-[30px]"} icon={faBars} />
                     </div>
                     <Link href={"/"} className="w-14 h-14">
-                        <Image width={56} height={56} alt="logo" src={"/logo.jpg"} className="rounded-full" />
+                        <Image width={56} height={56} alt="logo" src={"/logo.jpg"} priority={true} className="rounded-full" />
                     </Link>
                     <div onClick={() => setCartShow(state => !state)} className="w-14 h-14 flex justify-center items-center relative">
                         <span className="absolute top-1 right-2 bg-green-800 text-white rounded-full text-xs w-[16px] h-[16px] flex justify-center items-center">
                             {totalItems}
                         </span>
-                        <FontAwesomeIcon icon={faCartShopping} className={"text-white text-2xl w-full"} />
+                        <FontAwesomeIcon icon={faCartShopping} className={"text-white w-[30px] h-[30px]"} />
                     </div>
                 </div>
 
                 <div className="w-[90%] h-auto flex py-2 flex-col items-center justify-center relative container-nav">
                     <div className={searchResults != false ? "h-full w-full p-2 rounded-tr-md rounded-md bg-white flex items-center justify-center" : "h-full w-full p-2 rounded-md bg-white flex items-center justify-center"}>
                         <input onClick={() => setFocus(true)} onChange={handleChange} value={search} placeholder="¿Qué estás buscando?" type="text" className="input-search placeholder:text-green-500 pl-1 w-full h-full inline-block bg-white outline-none text-green-500 text-lg" />
-                        <FontAwesomeIcon icon={faSearch} className={" text-green-500 text-2xl"} />
+                        <FontAwesomeIcon icon={faSearch} className={" text-green-500 w-[30px] h-[30px]"} />
                     </div>
                     {searchResults != false && focus ?
                         <div className="w-[100%] p-2 absolute bg-white top-[42px] h-[500px] flex items-center search-container rounded-b overflow-y-scroll">
@@ -319,14 +314,13 @@ export default function Nav() {
 
                 <div className={navMobileState ? "fixed w-full h-full top-0 left-0 right-0 z-[200] bg-[#000a]" : ""}>
                     <div className={navMobileState ? "pb-4 fixed w-[80%] h-full flex flex-col justify-between translate-x-0 transition-all bg-white top-0 left-0 z-[10000] overflow-y-scroll" : "fixed w-[80%] h-full -translate-x-[100%] transition-all bg-white top-0 left-0 z-[10000] overflow-y-scroll"}>
-                        <FontAwesomeIcon icon={faX} onClick={() => setNavMobileState(state => !state)} className="text-2xl right-3 top-3 text-green-500 absolute z-[2000]" />
+                        <FontAwesomeIcon icon={faX} onClick={() => setNavMobileState(state => !state)} className="w-[24px] h-[24px] right-3 top-3 text-green-500 absolute z-[2000]" />
                         <div className="w-full h-auto relative pt-14 mb-4">
                             <ul className="w-full h-full flex flex-col">
                                 {navItems.map((item) => (
                                     <li className={item.subNav && subNavState === item.id ? "pt-3 text-green-500 border-b border-green-500 flex flex-col w-full justify-between items-start relative" : "py-3 text-green-500 border-b border-green-500 flex flex-col w-full justify-between items-start relative"} key={item.id}>
                                         <p
                                             onClick={() => setSubNavState((prev) => {
-                                                console.log(prev)
                                                 if (prev === item.id) {
                                                     return 0;
                                                 }
@@ -358,7 +352,7 @@ export default function Nav() {
                                         </div>
                                         {item.subNav ?
                                             <>
-                                                <FontAwesomeIcon className={item.subNav && subNavState === item.id ? "transition-all absolute right-2 top-50% translate-y-[50%] rotate-[270deg]" : "transition-all absolute right-2 top-50% translate-y-[50%] rotate-[90deg]"} icon={faAngleLeft} />
+                                                <FontAwesomeIcon className={item.subNav && subNavState === item.id ? "transition-all absolute right-2 top-50% translate-y-[50%] w-[20px] h-[20px] rotate-[270deg]" : "transition-all absolute right-2 top-50% translate-y-[50%] w-[20px] h-[20px] rotate-[90deg]"} icon={faAngleLeft} />
                                             </>
 
                                             :
@@ -372,8 +366,8 @@ export default function Nav() {
                             </ul>
                         </div>
                         <div className="w-full h-auto flex justify-end items-center">
-                            <FontAwesomeIcon className="p-2 w-8 h-8 text-2xl text-green-500" icon={faWhatsapp} />
-                            <FontAwesomeIcon className="p-2 w-8 h-8 text-2xl text-green-500" icon={faInstagram} />
+                            <FontAwesomeIcon className="w-[30px] h-[30px] text-green-500" icon={faWhatsapp} />
+                            <FontAwesomeIcon className="w-[30px] h-[30px] mr-2 ml-2 text-green-500" icon={faInstagram} />
                         </div>
                     </div>
                 </div>

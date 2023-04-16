@@ -11,7 +11,7 @@ export default function FeaturedProduct() {
         {
             src: "/alfajores.png",
             id: 1,
-            name: "alfajores de arroz",
+            name: "alfajores de arroz sabor frutilla y manzana ideal para",
             alt: "alfajores",
             price: "$2000.00",
             stock: true,
@@ -38,6 +38,7 @@ export default function FeaturedProduct() {
             id: 5,
             name: "SIN AZÚCAR",
             alt: "alfajores",
+            price: "$2000.00",
             stock: true,
         },
         {
@@ -45,6 +46,7 @@ export default function FeaturedProduct() {
             id: 6,
             name: "SIN AZÚCAR",
             alt: "alfajores",
+            price: "$2000.00",
             stock: false,
 
         },
@@ -53,6 +55,7 @@ export default function FeaturedProduct() {
             id: 7,
             name: "SIN AZÚCAR",
             alt: "alfajores",
+            price: "$2000.00",
             stock: true,
         },
         {
@@ -60,6 +63,7 @@ export default function FeaturedProduct() {
             id: 8,
             name: "SIN AZÚCAR",
             alt: "alfajores",
+            price: "$2000.00",
             stock: false,
         },
         {
@@ -67,6 +71,7 @@ export default function FeaturedProduct() {
             id: 9,
             name: "SIN AZÚCAR",
             alt: "alfajores",
+            price: "$2000.00",
             stock: false,
         },
 
