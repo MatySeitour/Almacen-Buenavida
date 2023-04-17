@@ -6,12 +6,12 @@
         "available": true,
         "subLevelId": 1,
         "categoryId": 1,
-        "name": "Nueces x 100g",
+        "name": "Nueces Mariposa Blanca x 100g",
         "src": "/nueces.png",
         "id": 1,
         "offer": "2x1",
         "stock": true,
-        "categoriesRelated": [4, 2],
+        "categoriesRelated": [4, 2, 6, 7],
         "description": ""
       },
       {
@@ -25,7 +25,7 @@
         "id": 2,
         "offer": "2x1",
         "stock": false,
-        "categoriesRelated": [4, 2],
+        "categoriesRelated": [4, 2, 6, 7],
         "description": ""
       },
       {
@@ -39,7 +39,7 @@
         "id": 3,
         "offer": "2x1",
         "stock": false,
-        "categoriesRelated": [4, 2],
+        "categoriesRelated": [4, 2, 6, 7],
         "description": ""
       },
       {
@@ -47,6 +47,7 @@
         "gramos": false,
         "available": false,
         "subLevelId": 6,
+        "subCategoriesId": [],
         "categoryId": 2,
         "name": "Vrink Almendras Original sin azúcar 1L",
         "src": "/vrink_almendra.jpg",

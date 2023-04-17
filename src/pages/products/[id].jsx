@@ -35,7 +35,7 @@ export default function Product({id}) {
         return res;
     })
     const categoriesLogo = categoriesRelated.filter((category) => {
-        if(category.src != null){
+        if(category.name == "Veggies" || category.name == "Sin TACC"){
             return category
         }
     });
