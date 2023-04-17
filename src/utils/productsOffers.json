@@ -9,8 +9,10 @@
         "name": "Nueces x 100g",
         "src": "/nueces.png",
         "id": 1,
-        "offers": "2x1",
-        "stock": true
+        "offer": "2x1",
+        "stock": true,
+        "categoriesRelated": [4, 2],
+        "description": ""
       },
       {
         "price": 120,
@@ -21,8 +23,10 @@
         "name": "Almendras x 100g",
         "src": "/almendras.png",
         "id": 2,
-        "offers": "2x1",
-        "stock": false
+        "offer": "2x1",
+        "stock": false,
+        "categoriesRelated": [4, 2],
+        "description": ""
       },
       {
         "price": 150,
@@ -33,20 +37,24 @@
         "name": "Pasas de uva x 100g",
         "src": "/nueces.png",
         "id": 3,
-        "offers": "2x1",
-        "stock": false
+        "offer": "2x1",
+        "stock": false,
+        "categoriesRelated": [4, 2],
+        "description": ""
       },
       {
         "price": 600,
         "gramos": false,
         "available": false,
-        "subLevelId": 7,
+        "subLevelId": 6,
         "categoryId": 2,
-        "name": "vrink sabor almendras",
+        "name": "Vrink Almendras Original sin azúcar 1L",
         "src": "/vrink_almendra.jpg",
         "id": 4,
-        "offers": "14",
-        "stock": true
+        "offer": "14",
+        "stock": true,
+        "categoriesRelated": [4, 2, 5],
+        "description": "Vrink Almendras sabor original es como la leche pero de almendras, tiene sólo 62 calorías por porción y al ser de origen vegetal no tiene lactosa ni colesterol. Ideal para quienes eligen alimentarse mejor y con más sabor. Podés usar esta variedad de Vrink para cocinar ya que funciona como sustituto de la leche de vaca en todas tus recetas, para cortar el café o con cereales y tener un desayuno mucho más liviano; o para preparar tus batidos, es 100% natural así que con frutas hacés una mezcla perfectamente saludable. ¡Probala!"
       },
       {
         "price": 850,
@@ -57,8 +65,10 @@
         "name": "vrink sabor coco",
         "src": "/vrink_coco.jpg",
         "id": 5,
-        "offers": "18",
-        "stock": true
+        "offer": "18",
+        "stock": true,
+        "categoriesRelated": [4, 2, 5],
+        "description": ""
       },
       {
         "price": 1000,
@@ -69,9 +79,10 @@
         "name": "Bravia sabor manzana",
         "src": "/bravia.jpg",
         "id": 6,
-        "offers": "20",
-        "stock": false
-
+        "offer": "20",
+        "stock": false,
+        "categoriesRelated": [4, 2, 5],
+        "description": ""
       },
       {
         "price": 500,
@@ -82,9 +93,10 @@
         "name": "Spirulana",
         "src": "/nueces.png",
         "id": 7,
-        "offers": "2x1",
-        "stock": true
-
+        "offer": "2x1",
+        "stock": true,
+        "categoriesRelated": [4, 2, 5],
+        "description": ""
       },
       {
         "price": 500,
@@ -95,8 +107,10 @@
         "name": "Colágeno",
         "src": "/nueces.png",
         "id": 8,
-        "offers": "2x1",
-        "stock": false
+        "offer": "2x1",
+        "stock": false,
+        "categoriesRelated": [4, 2, 5],
+        "description": ""
       },
       {
         "price": 600,
@@ -107,7 +121,8 @@
         "name": "Bravia sabor naranja y mango",
         "src": "/bravia_naranja.jpg",
         "id": 9,
-        "offers": "12",
+        "offer": "12",
+        "categoriesRelated": [4, 2, 5],
         "description": ""
       }
     ]

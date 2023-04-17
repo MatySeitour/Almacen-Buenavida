@@ -1,7 +1,7 @@
 { "categories": [
 	{
 		"id": 1,
-		"name": "Alimentos Naturales",
+		"name": "Almacén",
 		"subLevels": [
 			{
 				"id": 1,
@@ -20,26 +20,26 @@
 	},
 	{
 		"id": 2,
-		"name": "Bebidas",
+		"name": "Sin TACC",
 		"subLevels": [
 			{
 				"id": 4,
-				"name": "Gaseosas"
+				"name": "Alfajores"
 			},
 			{
 				"id": 5,
-				"name": "Jugos"
+				"name": "Barras de cereal"
 			},
 			{
 				"id": 6,
-				"name": "Sin Azúcar"
+				"name": "Bebidas"
 			},
 			{
 				"id": 7,
-				"name": "Bebidas 100% vegetales"
+				"name": "Dulces y Postres"
 			}
 		],
-		"src": "/bebidas.jpg"
+		"src": "/sin-tacc.png"
 	},
 	{
 		"id": 3,
@@ -59,6 +59,36 @@
 			}
 		],
 		"src": "/spirulana.png"
+	},
+	{
+		"id": 4,
+		"name": "Veggies",
+		"subLevels": [
+			{
+				"id": 11,
+				"name": "Quesos veganos"
+			},
+			{
+				"id": 12,
+				"name": "Bebidas veggies"
+			}
+		],
+		"src": "/vegan.png"
+	},
+	{
+		"id": 5,
+		"name": "Sin Azúcar",
+		"subLevels": [
+			{
+				"id": 13,
+				"name": "Galletas sin azúcar"
+			},
+			{
+				"id": 14,
+				"name": "Bebidas sin azúcar"
+			}
+		],
+		"src": null
 	}
 ]
 }
