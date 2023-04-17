@@ -56,7 +56,8 @@ export default function Card({ productSrc, productName, productPrice, productSto
                                             price: productPrice,
                                             offer: productOffer,
                                             id: productId,
-                                            src: productSrc
+                                            src: productSrc,
+                                            quantity: 1
                                         }
                                         handleAddCart(newCartItem)
                                     }}

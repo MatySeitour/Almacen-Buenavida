@@ -37,7 +37,7 @@ export default function CartItem({ itemName, itemSrc, itemQuantity, itemPrice, i
                             const newCartItem = {
                                 name: itemName,
                                 price: itemPrice,
-                                quantity: itemQuantity,
+                                quantity: 1,
                                 id: itemId,
                             }
                             handleRemoverCart(newCartItem)
@@ -49,7 +49,7 @@ export default function CartItem({ itemName, itemSrc, itemQuantity, itemPrice, i
                             const newCartItem = {
                                 name: itemName,
                                 price: itemPrice,
-                                quantity: itemQuantity,
+                                quantity: 1,
                                 id: itemId,
                             }
                             handleAddCart(newCartItem)

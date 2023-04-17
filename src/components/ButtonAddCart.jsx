@@ -10,7 +10,8 @@ export default function ButtonAddCart({productName, productId, productOffer, pro
                 price: productPrice,
                 offer: productOffer,
                 id: productId,
-                src: productSrc
+                src: productSrc,
+                quantity: 1,
             }
             handleAddCart(newCartItem)
         }}

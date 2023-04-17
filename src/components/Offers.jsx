@@ -33,7 +33,7 @@ export default function Offers() {
                                         productName={product.name}
                                         productPrice={product.price}
                                         productStock={product.stock}
-                                        productOffer={product.offers}
+                                        productOffer={product.offer}
                                         productId={product.id}
                                         cardId={product.id}
                                     />
