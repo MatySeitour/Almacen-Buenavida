@@ -10,9 +10,9 @@ import ButtonAddCart from "./ButtonAddCart";
 export default function Card({ productSrc, productName, productPrice, productStock, productOffer, productId }) {
     const element = useRef(null);
     const screen = useIntersection(element);
-    let discountPrice = productOffer != "2x1" ? parseInt(productOffer) : 0;
-    discountPrice = (productPrice * discountPrice) / 100;
-    discountPrice = productPrice - discountPrice;
+    let discountPriceOffer = productOffer != "2x1" ? parseInt(productOffer) : 0;
+    discountPriceOffer = (productPrice * discountPriceOffer) / 100;
+    discountPriceOffer = productPrice - discountPriceOffer;
 
     const { handleAddCart } = useCart();
 
@@ -41,7 +41,7 @@ export default function Card({ productSrc, productName, productPrice, productSto
 
                             <div className="w-full h-auto flex justify-center items-center mb-2">
                                 <p className="text-green-700 text-xl font-bold tracking-wide mr-2">
-                                    {`$${discountPrice}`}
+                                    {`$${discountPriceOffer}`}
                                 </p>
                                 {productOffer !== "2x1" ? <span className="line-through text-green-700 text-sm font-normal tracking-wide translate-y-[0.5px]">{`$${productPrice}`}</span> : <></>}
                             </div>
