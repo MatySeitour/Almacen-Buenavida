@@ -68,12 +68,13 @@ body{
 .underline-subtitle::before{
   content: "";
   position: absolute;
-  width: 100%;
+  width: 105%;
   height: 4px;
   bottom: 0;
   transform: translateY(4px);
   border-bottom: 3px solid rgb(34 197 94)
 }
+
 
 .underline-subtitle:hover.underline-subtitle span:first-child{
   animation: jump .3s ease-in;
