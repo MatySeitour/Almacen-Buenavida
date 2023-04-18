@@ -40,10 +40,11 @@ export default function Product({id}) {
         }
     });
 
-    console.log(categoriesLogo);
+    const productsRelated = products.filter(productCategory => productCategory.categoryId == product[0].categoryId && productCategory.id != product[0].id);
+    console.log(productsRelated);
 
-    const discountPrice = product[0].offer != "2x1" ? parseInt(product[0].offer) : null;
-    const discountPriceTotal =  product[0].price - (discountPrice * product[0].price / 100)
+    const discountPriceProduct = product[0].offer != "2x1" ? parseInt(product[0].offer) : null;
+    const discountPriceTotalProduct =  product[0].price - (discountPriceProduct * product[0].price / 100)
 
 
     const cardsInfo = [
@@ -93,7 +94,8 @@ export default function Product({id}) {
                         <h4 className="text-green-800 text-3xl font-semibold">{product[0].name}</h4>
                     </div>
                     <div className="w-full text-green-700 text-3xl font-semibold text-left mb-10">
-                        {product[0].offer == "" ? "" : product[0].offer != "2x1" ? <p className="inline-block text-left mr-2">{`$${discountPriceTotal}`}</p> : <p className="text-base mb-2">{`!Oferta ${product[0].offer} en este producto!`}</p>}
+                        {product[0].offer != "" && product[0].offer != "2x1" ? <p className="text-base mb-2 text-green-400">{`!Oferta ${product[0].offer}% en este producto!`}</p> : ""}
+                        {product[0].offer == "" ? "" : product[0].offer != "2x1" ? <p className="inline-block text-left mr-2">{`$${discountPriceTotalProduct}`}</p> : <p className="text-base mb-2 text-green-400">{`!Oferta ${product[0].offer} en este producto!`}</p>}
                         <p className={product[0].offer != "2x1" ? "inline-block text-left text-lg -translate-y-2 line-through text-green-600" : "text-green-700"}>{`$${product[0].price}`}</p>
                     </div>
 
@@ -144,7 +146,9 @@ export default function Product({id}) {
                     </div>
 
                     <div className="w-full h-auto flex justify-start flex-col">
-                    <h4 className="text-green-800 text-xl font-bold mb-4">CATEGORIAS RELACIONADAS</h4>
+                        <div>
+                            <h4 className="text-green-800 text-xl font-bold mb-4 underline-subtitle relative inline-block">CATEGORIAS RELACIONADAS</h4>
+                        </div>
                         <ul className="w-full h-auto flex flex-row flex-wrap gap-2 p-2">
                             {categoriesRelated.map((category) => (
                                 <li key={category.id} className="bg-green-500 p-2 text-white rounded-md">{category.name}</li>
@@ -153,6 +157,11 @@ export default function Product({id}) {
                     </div>
 
                 </div >
+
+                <RelatedProducts 
+                    productsRelated={productsRelated}
+                />
+
                 <ul className='py-20 bg-green-200'>
                     {cardsInfo.map((card) => (
                         <CardsInfo
@@ -163,7 +172,7 @@ export default function Product({id}) {
                         />
                     ))}
                 </ul>
-                <RelatedProducts />
+
             </div>
             <CartHome
                 cartShow={cartShow}
