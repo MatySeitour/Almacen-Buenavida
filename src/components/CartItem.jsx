@@ -6,8 +6,8 @@ import { useEffect, useState } from "react";
 
 export default function CartItem({ itemName, itemSrc, itemQuantity, itemPrice, itemId, itemOffer }) {
     const { handleRemoverCart, handleAddCart, cartItems, handleDeleteCart } = useCart();
-    const discountProduct = ((parseInt(itemOffer) * itemPrice) / 100) * itemQuantity;
-    const discountTotal = (itemPrice * itemQuantity) - discountProduct;
+    const discountProductCart = ((parseInt(itemOffer) * itemPrice) / 100) * itemQuantity;
+    const discountTotalCart = (itemPrice * itemQuantity) - discountProductCart;
 
     return (
         <li className="w-full h-[auto] min-h-[100px] flex flex-col justify-between p-2 mb-4 border-b border-gray-200">
@@ -61,8 +61,8 @@ export default function CartItem({ itemName, itemSrc, itemQuantity, itemPrice, i
                 <div>
                     <p className="text-black font-medium flex w-full justify-between items-center">Subtotal: <b>{`$${itemPrice * itemQuantity}`}</b></p>
                     <p className="text-black font-medium flex w-full justify-between items-center">{itemOffer == "2x1" ? "" : "Oferta:"}<b>{itemOffer != "2x1" ? `-%${itemOffer}` : <></>}</b></p>
-                    <p className="text-black font-medium flex w-full justify-between items-center">{itemOffer == "2x1" ? "" : "Descuento:"} <b>{itemOffer != "2x1" ? `- $${discountProduct}` : <></>}</b></p>
-                    <p className="text-black font-medium flex w-full justify-between items-center">Total: <b>{itemOffer != "2x1" ? `$${discountTotal}` : `$${itemQuantity * itemPrice}`}</b></p>
+                    <p className="text-black font-medium flex w-full justify-between items-center">{itemOffer == "2x1" ? "" : "Descuento:"} <b>{itemOffer != "2x1" ? `- $${discountProductCart}` : <></>}</b></p>
+                    <p className="text-black font-medium flex w-full justify-between items-center">Total: <b>{itemOffer != "2x1" ? `$${discountTotalCart}` : `$${itemQuantity * itemPrice}`}</b></p>
                 </div>
             </div>
         </li>
