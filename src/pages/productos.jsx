@@ -1,12 +1,15 @@
+import Image from "next/image";
 import getProducts from "../utils/products.json"
 import getCategories from "../utils/categories.json"
-import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping, faFilter, faArrowDownWideShort } from "@fortawesome/free-solid-svg-icons";
+import CartHome from "@/components/CartHome";
 import CategoriesFilter from "@/components/CategoriesFilter";
 import { useState } from "react";
+import { useCart } from "@/context/CartContext";
 
 export default function Productos() {
+    const {cartShow} = useCart();
     const products = getProducts.products;
     const categories = getCategories.categories;
 
@@ -60,6 +63,10 @@ export default function Productos() {
             <CategoriesFilter
                 categoriesFilterState={categoriesFilterState}
                 setCategoriesFilterState={setCategoriesFilterState}
+            />
+
+            <CartHome
+                cartShow={cartShow}
             />
         </section>
     )
