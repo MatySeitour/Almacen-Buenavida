@@ -28,14 +28,14 @@ export default function Productos() {
             </div>
 
             <div className="w-full h-auto flex flex-row justify-between p-2">
-                <button onClick={() => setCategoriesFilterState(true)} className="w-[45%] h-auto flex justify-center items-center p-3 rounded-lg border-2 border-green-500">
+                <button onClick={() => setCategoriesFilterState(true)} className="w-[45%] bg-white h-auto flex justify-center items-center p-3 rounded-lg border-2 border-green-500">
                     <FontAwesomeIcon className="text-green-500 w-[24px] h-[24px]" icon={faArrowDownWideShort} />
                     <p className="ml-3 tracking-wide text-green-500">CATEGORIAS</p>
                 </button>
-                <div className="w-[45%] h-auto flex justify-center items-center p-3 rounded-lg border-2 border-green-500">
+                <button type="text" className="w-[45%] h-auto flex bg-white justify-center items-center p-3 rounded-lg border-2 border-green-500">
                     <FontAwesomeIcon className="text-green-500 w-[24px] h-[24px]" icon={faFilter} />
-                    <p className="ml-3 tracking-wide text-green-500">FILTRAR</p>
-                </div>
+                    <p className="ml-3 tracking-wide text-green-500">ORDENAR</p>
+                </button>
             </div>
 
             <ul className="w-full h-full flex justify-evenly flex-wrap py-8">
