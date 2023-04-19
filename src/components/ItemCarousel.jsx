@@ -12,7 +12,7 @@ export default function ItemCarousel({ imageSrc, imageId, imageName, imageAlt })
             {
                 screen &&
                 <>
-                    <Image priority={true} className='w-full h-full' src={imageSrc} width={400} height={400} onLoad={() => setLoaded(true)} alt={imageAlt} />
+                    <Image priority={true} className='object-cover' src={imageSrc} width={400} height={400} onLoad={() => setLoaded(true)} alt={imageAlt} />
                     <div className={loaded ? 'animate-wiggle absolute top-[65%] flex flex-col justify-center items-center' : 'max-w-[300px] w-[200px] absolute top-[65%] flex flex-col justify-center items-center'}>
                         <p className='font-bold w-full tracking-wider text-center text-3xl text-white mb-4'>{imageName}</p>
                         <div className='w-auto flex justify-center'>
