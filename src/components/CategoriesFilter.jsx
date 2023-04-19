@@ -1,10 +1,15 @@
+import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faX } from "@fortawesome/free-solid-svg-icons"
+import CategorySubLevel from "./CategorySubLevel";
+import { faX, faAngleLeft } from "@fortawesome/free-solid-svg-icons"
+import { useState } from "react";
 import getCategories from "../utils/categories.json"
 
 export default function CategoriesFilter({ categoriesFilterState, setCategoriesFilterState }) {
     const categories = getCategories.categories;
-    console.log(categories);
+    const [subCategoriesState, setSubCategoriesState] = useState(0);
+
+    console.log(subCategoriesState);
 
     return (
         <div className={categoriesFilterState ? "fixed w-full h-full top-0 left-0 right-0 z-[200] bg-[#000a]" : ""}>
@@ -16,8 +21,29 @@ export default function CategoriesFilter({ categoriesFilterState, setCategoriesF
                 
                 <ul className="w-full h-auto p-2 mt-4">
                     {categories.map((category) => (
-                        <li className="w-full h-[30px] mb-4" key={category.id}>
-                            <p className="text-green-500">{category.name}</p>
+                        <li className="w-full h-[50px] mb-4 relative flex flex-row justify-between items-center" key={category.id}>
+                            <Link href={`/productos/${category.slug}`} className="text-green-500 w-auto text-lg font-medium">{category.name}</Link>
+                            <FontAwesomeIcon 
+                                onClick={() => setSubCategoriesState((prev) => {
+                                    if (prev === category.id) {
+                                        return 0;
+                                    }
+                                    else {
+                                        return category.id
+                                    }
+                                })} 
+                                className={category.subLevels ? "transition-all  w-[20px] h-[20px] rotate-[180deg] text-green-500" : "hidden"} icon={faAngleLeft} />
+
+                                {category.subLevels && subCategoriesState === category.id ? 
+                                    <>
+                                        <CategorySubLevel />
+                                    </>
+
+                                    :
+
+                                    <></>
+                                }
+                        
                         </li>
                     ))}
                 </ul>
