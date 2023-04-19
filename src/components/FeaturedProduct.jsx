@@ -78,7 +78,7 @@ export default function FeaturedProduct() {
     ]
 
     return (
-        <section className="w-full h-auto min-h-screen bg-slate-100 pt-10 pb-6 mb-40">
+        <section className="w-full h-auto min-h-screen bg-slate-100 pt-10 pb-6 mb-10">
             <div ref={element} className="w-full h-full">
                 {screen ?
                     <>
