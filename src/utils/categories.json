@@ -16,7 +16,8 @@
 				"name": "Dulces & Mermeladas"
 			}
 		],
-		"src": "/background.png"
+		"src": "/sin-tacc.png",
+		"slug": "almacen"
 	},
 	{
 		"id": 2,
@@ -39,7 +40,8 @@
 				"name": "Dulces y Postres"
 			}
 		],
-		"src": "/sin-tacc.png"
+		"src": "/sin-tacc.png",
+		"slug": "sin-tacc"
 	},
 	{
 		"id": 3,
@@ -58,7 +60,8 @@
 				"name": "Cuidado Corporal"
 			}
 		],
-		"src": "/spirulana.png"
+		"src": "/spirulana.png",
+		"slug": "cuidado-personal"
 	},
 	{
 		"id": 4,
@@ -73,7 +76,8 @@
 				"name": "Bebidas veggies"
 			}
 		],
-		"src": "/vegan.png"
+		"src": "/vegan.png",
+		"slug": "vegan"
 	},
 	{
 		"id": 5,
@@ -88,13 +92,15 @@
 				"name": "Bebidas sin azúcar"
 			}
 		],
-		"src": "/sin-tacc.png"
+		"src": "/sin-tacc.png",
+		"slug": "sin-azucar"
 	},
 	{
 		"id": 6,
 		"name": "Frutos Secos",
 		"subLevels": null,
-		"src": "/sin-tacc.png"
+		"src": "/sin-tacc.png",
+		"slug": "frutos-secos"
 	},
 	{
 		"id": 7,
@@ -109,7 +115,8 @@
 				"name": "Galletas"
 			}
 		],
-		"src": "/sin-tacc.png"
+		"src": "/sin-tacc.png",
+		"slug": "celiacos"
 	}
 ]
 }
