@@ -110,8 +110,8 @@ body{
   }
 }
 
-.card-shadow{
-  box-shadow: 1px 1px 8px 0px #000;
+.shadow-card{
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
 }
 
 .container-nav div .input-search:focus > .container-nav{
