@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import getProducts from "../utils/products.json"
 import useIntersection from "@/CustomHooks/useIntersection";
 import FeaturedCard from "./FeaturedCard"
 import Link from "next/link";
@@ -6,76 +7,8 @@ import Link from "next/link";
 export default function FeaturedProduct() {
     const element = useRef(null);
     const screen = useIntersection(element);
+    const products = getProducts.products;
 
-    const products = [
-        {
-            src: "/alfajores.png",
-            id: 1,
-            name: "alfajores de arroz sabor frutilla y manzana ideal para",
-            alt: "alfajores",
-            price: "$2000.00",
-            stock: true,
-        },
-        {
-            src: "/lulemuu.png",
-            id: 2,
-            name: "lulemuu",
-            alt: "alfajores",
-            price: "$2000.00",
-            stock: false,
-
-        },
-        {
-            src: "/spirulana.png",
-            id: 3,
-            name: "spirulana",
-            alt: "alfajores",
-            price: "$2000.00",
-            stock: true,
-        },
-        {
-            src: "/spirulana.png",
-            id: 5,
-            name: "SIN AZÚCAR",
-            alt: "alfajores",
-            price: "$2000.00",
-            stock: true,
-        },
-        {
-            src: "/spirulana.png",
-            id: 6,
-            name: "SIN AZÚCAR",
-            alt: "alfajores",
-            price: "$2000.00",
-            stock: false,
-
-        },
-        {
-            src: "/spirulana.png",
-            id: 7,
-            name: "SIN AZÚCAR",
-            alt: "alfajores",
-            price: "$2000.00",
-            stock: true,
-        },
-        {
-            src: "/spirulana.png",
-            id: 8,
-            name: "SIN AZÚCAR",
-            alt: "alfajores",
-            price: "$2000.00",
-            stock: false,
-        },
-        {
-            src: "/spirulana.png",
-            id: 9,
-            name: "SIN AZÚCAR",
-            alt: "alfajores",
-            price: "$2000.00",
-            stock: false,
-        },
-
-    ]
 
     return (
         <section className="w-full h-auto min-h-screen bg-slate-100 pt-10 pb-6 mb-10">
