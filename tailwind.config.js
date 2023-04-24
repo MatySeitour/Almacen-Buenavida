@@ -56,6 +56,14 @@ module.exports = {
           '50%': { transform: "translateY(-10px)" },
           '100%': { transform: "translateY(0px)" },
         },
+        cart: {
+          '0%': { transform: "rotate(0deg)" },
+          '10%': { transform: "rotate(10deg)" },
+          '30%': { transform: "rotate(-10deg)" },
+          '45%': { transform: "rotate(5deg)" },
+          '55%': { transform: "rotate(-5deg)" },
+          '60%': { transform: "rotate(0deg)" },
+        },
 
       },
       animation: {
@@ -74,6 +82,7 @@ module.exports = {
         'jump6': 'jump 1.5s ease-in-out',
         'jump6': 'jump 1.5s ease-in-out',
         'iconFraseAnimation': 'iconFraseAnimation 2.5s linear infinite',
+        'cart': 'cart .5s linear',
       },
     },
   },
