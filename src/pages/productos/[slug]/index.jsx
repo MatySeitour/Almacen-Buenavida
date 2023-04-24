@@ -10,7 +10,7 @@ import { useState } from "react";
 import { useCart } from "@/context/CartContext";
 import Layout from "@/components/Layout";
 import { useCategory } from "@/context/CategoriesContext";
-import CategorySubLevel from "@/components/CategorySubLevel";
+import OrderProducts from "@/components/OrderProducts";
 
 export async function getServerSideProps(context){
     const {params} = context;
@@ -24,9 +24,11 @@ export async function getServerSideProps(context){
 
 export default function Slug({slug}){
     const {cartShow} = useCart();
+
     const {setSubCategoriesState, subCategoriesState} = useCategory();
 
     const [subLevelsState, setSubLevelsState] = useState(0);
+    const [orderFilterState, setOrderFilterState] = useState(false);
 
     
     const categories = getCategories.categories;
@@ -60,12 +62,6 @@ export default function Slug({slug}){
         });
     })();
 
-
-
-
-
-
-
     const handleSubLevelSelect = (id) => {
         if(id === subLevelsState){
             setSubLevelsState(0);
@@ -90,15 +86,18 @@ export default function Slug({slug}){
                     </div>
                 </div>
 
-                <div className="w-full h-auto flex flex-row justify-between p-2 mb-10">
+                <div className="w-full h-auto flex flex-row justify-between p-2 mb-10 relative">
                     <button onClick={() => setCategoriesFilterState(true)} className="w-[45%] shadow-default bg-green-500 h-auto flex justify-center items-center p-3 rounded-lg">
                         <FontAwesomeIcon className="text-white w-[24px] h-[24px]" icon={faArrowDownWideShort} />
                         <p className="ml-3 tracking-wide text-white font-medium">CATEGORIAS</p>
                     </button>
-                    <button type="text" className="w-[45%] shadow-default h-auto flex bg-green-500 justify-center items-center p-3 rounded-lg">
+                    <div onClick={() => setOrderFilterState(state => !state)} type="text" className="w-[45%] shadow-default h-auto flex bg-green-500 justify-center items-center p-3 rounded-lg relative">
                         <FontAwesomeIcon className="text-white w-[24px] h-[24px]" icon={faFilter} />
                         <p className="ml-3 tracking-wide text-white font-medium">ORDENAR</p>
-                    </button>
+                        <OrderProducts 
+                            orderFilterState={orderFilterState}
+                        />
+                    </div>
                 </div>
 
                 <div className="w-full h-auto relative flex flex-col justify-center items-center mb-10">
@@ -107,7 +106,7 @@ export default function Slug({slug}){
                     </div>
                     <ul className={"w-[90%] h-[auto] bg-white shadow-md rounded-md transition-all p-4 flex flex-row justify-start items-center flex-wrap gap-3"}>
                         {categorySelected[0].subLevels.map((subLevel) => (
-                            <li onClick={() => handleSubLevelSelect(subLevel.id)} key={subLevel.id} className={subLevelsState !== subLevel.id ? "bg-gray-400 p-2 text-white rounded-md transition-all" : "bg-green-500 p-2 text-white rounded-md transition-all"}>{subLevel.name}</li>
+                            <li onClick={() => handleSubLevelSelect(subLevel.id)} key={subLevel.id} className={subLevelsState !== subLevel.id ? "bg-gray-400 p-3 text-white rounded-md transition-all shadow-default font-semibold tracking-wide" : "animate-clickAnimation bg-green-500 p-3 text-white rounded-md transition-all shadow-default font-semibold tracking-wide"}>{subLevel.name}</li>
                         ))}
                     </ul>
                 </div>
