@@ -4,12 +4,12 @@ import Link from "next/link"
 export default function RelatedProducts({productsRelated}) {
 
     return (
-        <div className="w-full h-auto min-h-screen bg-slate-50 pt-10 border-t border-green-200">
-            <div className="p-4 h-auto">
+        <div className="w-full h-auto min-h-[400px] bg-slate-50 pt-10 border-t border-green-200">
+            <div className="h-auto">
                 <div>
-                    <h4 className="text-green-800 text-xl font-bold mb-4 underline-subtitle relative inline-block">PRODUCTOS RELACIONADAS</h4>
+                    <h4 className="pl-4 text-green-800 text-xl font-bold mb-4 underline-subtitle relative inline-block">PRODUCTOS RELACIONADAS</h4>
                 </div>
-                <ul className='w-full h-full flex justify-between flex-wrap py-8'>
+                <ul className='w-full h-full flex justify-evenly flex-wrap py-8'>
                     {productsRelated.map((product) => (
                         <RelatedProductsCard
                             key={product.id}
