@@ -10,8 +10,9 @@ import { useState } from "react";
 import { useCart } from "@/context/CartContext";
 import Layout from "@/components/Layout";
 
-export default function productos() {
+export default function Productos() {
     const {cartShow} = useCart();
+
     const products = getProducts.products;
     const categories = getCategories.categories;
 

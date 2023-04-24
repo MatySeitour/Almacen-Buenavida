@@ -22,7 +22,7 @@ export async function getServerSideProps(context){
     }
 }
 
-export default function slug({slug}){
+export default function Slug({slug}){
     const {cartShow} = useCart();
     const {setSubCategoriesState, subCategoriesState} = useCategory();
 
