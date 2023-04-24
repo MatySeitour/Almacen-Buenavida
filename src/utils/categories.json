@@ -5,15 +5,18 @@
 		"subLevels": [
 			{
 				"id": 1,
-				"name": "Frutos Secos"
+				"name": "Frutos Secos",
+				"slug": "frutos-secos"
 			},
 			{
 				"id": 2,
-				"name": "Cereales & Granolas"
+				"name": "Cereales & Granolas",
+				"slug": "cereales-y-granolas"
 			},
 			{
 				"id": 3,
-				"name": "Dulces & Mermeladas"
+				"name": "Dulces & Mermeladas",
+				"slug": "dulces-y-mermeladas"
 			}
 		],
 		"src": "/sin-tacc.png",
@@ -25,19 +28,23 @@
 		"subLevels": [
 			{
 				"id": 4,
-				"name": "Alfajores"
+				"name": "Alfajores",
+				"slug": "alfajores"
 			},
 			{
 				"id": 5,
-				"name": "Cereales"
+				"name": "Cereales",
+				"slug": "cereales"
 			},
 			{
 				"id": 6,
-				"name": "Bebidas"
+				"name": "Bebidas",
+				"slug": "bebidas"
 			},
 			{
 				"id": 7,
-				"name": "Dulces y Postres"
+				"name": "Dulces y Postres",
+				"slug": "dulces-y-postres"
 			}
 		],
 		"src": "/sin-tacc.png",
@@ -49,15 +56,18 @@
 		"subLevels": [
 			{
 				"id": 8,
-				"name": "Aceites Naturales"
+				"name": "Aceites Naturales",
+				"slug": "aceites-naturales"
 			},
 			{
 				"id": 9,
-				"name": "Cuidado Dental"
+				"name": "Cuidado Dental",
+				"slug": "cuidado-dental"
 			},
 			{
 				"id": 10,
-				"name": "Cuidado Corporal"
+				"name": "Cuidado Corporal",
+				"slug": "cuidado-corporal"
 			}
 		],
 		"src": "/spirulana.png",
@@ -69,11 +79,13 @@
 		"subLevels": [
 			{
 				"id": 11,
-				"name": "Quesos veganos"
+				"name": "Quesos",
+				"slug": "quesos"
 			},
 			{
 				"id": 12,
-				"name": "Bebidas veggies"
+				"name": "Bebidas",
+				"slug": "bebidas"
 			}
 		],
 		"src": "/vegan.png",
@@ -85,11 +97,13 @@
 		"subLevels": [
 			{
 				"id": 13,
-				"name": "Galletas sin azúcar"
+				"name": "Galletas",
+				"slug": "galletas"
 			},
 			{
 				"id": 14,
-				"name": "Bebidas sin azúcar"
+				"name": "Bebidas",
+				"slug": "bebidas"
 			}
 		],
 		"src": "/sin-tacc.png",
@@ -108,11 +122,13 @@
 		"subLevels": [
 			{
 				"id": 15,
-				"name": "Bebidas"
+				"name": "Bebidas",
+				"slug": "bebidas"
 			},
 			{
 				"id": 16,
-				"name": "Galletas"
+				"name": "Galletas",
+				"slug": "galletas"
 			}
 		],
 		"src": "/sin-tacc.png",
