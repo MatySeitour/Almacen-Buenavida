@@ -64,6 +64,11 @@ module.exports = {
           '55%': { transform: "rotate(-5deg)" },
           '60%': { transform: "rotate(0deg)" },
         },
+        clickAnimation: {
+          '0%': { transform: "scale(1)" },
+          '50%': { transform: "scale(1.1)" },
+          '100%': { transform: "rotate(1)" },
+        }
 
       },
       animation: {
@@ -83,6 +88,7 @@ module.exports = {
         'jump6': 'jump 1.5s ease-in-out',
         'iconFraseAnimation': 'iconFraseAnimation 2.5s linear infinite',
         'cart': 'cart .5s linear',
+        'clickAnimation': 'clickAnimation .2s linear',
       },
     },
   },
