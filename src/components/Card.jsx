@@ -22,7 +22,7 @@ export default function Card({ productSrc, productName, productPrice, productSto
         <li ref={element} className="relative w-[250px] h-[400px] p-4 mr-8 rounded-lg flex flex-col justify-around items-center">
             {
                 screen ?
-                    <div className="animate-subtitleAppear w-full pb-4 h-full shadow-card bg-white rounded-lg flex flex-col justify-between items-center relative">
+                    <div className="animate-subtitleAppear w-full pb-4 h-full shadow-default bg-white rounded-lg flex flex-col justify-between items-center relative">
                         {!productStock ? <p className="absolute p-2 bg-green-500 left-3 top-2 font-bold text-white rounded-md z-[20]">SIN STOCK</p> : <></>}
                         <span className="absolute w-[50px] h-[50px] rounded-full bg-green-500 -top-4 -right-4 flex text-center justify-center z-[20]">
                             <p className="flex justify-center items-center text-white font-bold">{productOffer == "2x1" ? "2x1" : `-${productOffer}%`}</p>
@@ -61,14 +61,14 @@ export default function Card({ productSrc, productName, productPrice, productSto
                                         }
                                         handleAddCart(newCartItem)
                                     }}
-                                        className="bg-green-400 text-white text-xl w-[60%] flex justify-center p-2 rounded-full tracking-wider font-bold" type="text"><FontAwesomeIcon className="w-[20px] h-[20px]" icon={faCartShopping} /></button>
-                                        <button className="bg-white border border-green-500 text-green-500 text-xs w-[30%] flex justify-center items-center p-1 rounded-full tracking-wider font-bold" type="text">VER</button>
+                                        className="bg-green-400 text-white text-xl w-[60%] flex justify-center p-2 rounded-md tracking-wider font-bold" type="text"><FontAwesomeIcon className="w-[20px] h-[20px]" icon={faCartShopping} /></button>
+                                        <button className="bg-white border border-green-500 text-green-500 text-xs w-[30%] flex justify-center items-center p-1 rounded-md tracking-wider font-bold" type="text">VER</button>
                                 </>
 
                                 :
 
                                 <>
-                                    <button className="bg-white text-green-500 text-xs border border-green-500 w-[90%] p-2 rounded-full tracking-wider font-bold" type="text">VER</button>
+                                    <button className="bg-white text-green-500 text-xs border border-green-500 w-[90%] p-2 rounded-md tracking-wider font-bold" type="text">VER</button>
                                 </>
                             }
                         </div>

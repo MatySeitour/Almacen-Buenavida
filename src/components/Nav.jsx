@@ -9,7 +9,7 @@ import { useState, useEffect } from "react"
 import { useCart } from "@/context/CartContext";
 
 export default function Nav() {
-    const { cartItems, cartShow, setCartShow, navMobileState, setNavMobileState, totalItems, focus, setFocus } = useCart();
+    const { cartShow, setCartShow, navMobileState, setNavMobileState, totalItems, focus, setFocus, animateCartState } = useCart();
     const [searchResults, setSearchResults] = useState([]);
     const [search, setSearch] = useState("");
     const [subNavState, setSubNavState] = useState(0);
@@ -49,6 +49,7 @@ export default function Nav() {
     }, [search])
 
 
+
     return (
         <header className="bg-green-500 shadow-lg w-full h-auto p-2 fixed z-[100]">
             <nav className="relative navbar p-0 bg-green-500 justify-between flex-col">
@@ -59,11 +60,11 @@ export default function Nav() {
                     <Link href={"/"} className="w-14 h-14">
                         <Image width={56} height={56} alt="logo" src={"/logo.png"} priority={true} className="rounded-full" />
                     </Link>
-                    <div onClick={() => setCartShow(state => !state)} className="w-14 h-14 flex justify-center items-center relative">
-                        <span className="absolute top-1 right-2 bg-green-800 text-white rounded-full text-xs w-[16px] h-[16px] flex justify-center items-center">
+                    <div onClick={() => setCartShow(state => !state)} className={`${animateCartState && `animate-cart w-14 h-14 flex justify-center items-center relative`}  w-14 h-14 flex justify-center items-center relative`}>
+                        <span className="absolute top-1 right-2 bg-green-800 text-white rounded-full text-xs w-[16px] h-[16px] flex justify-center items-center z-[10]">
                             {totalItems}
                         </span>
-                        <FontAwesomeIcon icon={faCartShopping} className={"text-white w-[30px] h-[30px]"} />
+                        <FontAwesomeIcon icon={faCartShopping} className={`text-white w-[30px] h-[30px]`} />
                     </div>
                 </div>
 
@@ -73,7 +74,7 @@ export default function Nav() {
                         <FontAwesomeIcon icon={faSearch} className={" text-green-500 w-[30px] h-[30px]"} />
                     </div>
                     {searchResults != false && focus ?
-                        <div className="w-[100%] p-2 absolute bg-white top-[54px] flex items-center search-container rounded-b overflow-y-scroll">
+                        <div className="w-[100%] p-2 absolute top-[54px] flex bg-white items-center search-container rounded-b overflow-y-scroll">
                             <ul className="w-full min-h-[140px] h-auto max-h-[400px] overflow-y-auto">
                                 {searchResults.map((item) => (
                                     <li className="w-full h-[80px] flex mb-4 border-b border-gray-300" key={item.id}>
@@ -112,7 +113,7 @@ export default function Nav() {
                 </div>
 
                 <div className={navMobileState ? "fixed w-full h-full top-0 left-0 right-0 z-[200] bg-[#000a]" : ""}>
-                    <div className={navMobileState ? "pb-4 fixed w-[80%] h-full flex flex-col justify-between translate-x-0 transition-all bg-green-800 top-0 left-0 z-[10000] overflow-y-scroll" : "fixed w-[80%] h-full -translate-x-[100%] transition-all bg-white top-0 left-0 z-[10000] overflow-y-scroll"}>
+                    <div className={navMobileState ? "pb-4 fixed w-[80%] h-full flex flex-col justify-between translate-x-0 transition-all bg-white top-0 left-0 z-[10000] overflow-y-scroll" : "fixed w-[80%] h-full -translate-x-[100%] transition-all top-0 left-0 z-[10000] overflow-y-scroll"}>
                         <FontAwesomeIcon icon={faX} onClick={() => setNavMobileState(state => !state)} className="w-[24px] h-[24px] right-3 top-3 text-green-500 absolute z-[2000]" />
                         <div className="w-full h-auto relative pt-14 mb-4">
                             <ul className="w-full h-full flex flex-col">

@@ -18,17 +18,21 @@ export default function CartItem({ itemName, itemSrc, itemQuantity, itemPrice, i
                         <Image className="object-cover" src={itemSrc} priority={true} width={100} height={100} alt={itemName} />
                     </figure>
                     <div className="w-full h-auto flex justify-between items-center mb-2">
-                        <h5 className="text-base max-w-[200px] text-green-500 font-medium">{itemName.length > 37 ? `${itemName.slice(0, 37)}...` : itemName}</h5>
-                        <FontAwesomeIcon
-                            onClick={() => {
-                                const cartItemDelete = {
-                                    name: itemName,
-                                    price: itemPrice,
-                                    quantity: itemQuantity,
-                                    id: itemId,
-                                }
-                                handleDeleteCart(cartItemDelete)
-                            }} className="w-[24px] h-[24px] text-green-400" icon={faTrash} />
+                        <h5 className="text-base max-w-[180px] text-green-500 font-medium">{itemName.length > 37 ? `${itemName.slice(0, 37)}...` : itemName}</h5>
+                        <div className="w-auto h-full">
+                            <FontAwesomeIcon
+                                onClick={() => {
+                                    const cartItemDelete = {
+                                        name: itemName,
+                                        price: itemPrice,
+                                        quantity: itemQuantity,
+                                        id: itemId,
+                                    }
+                                    handleDeleteCart(cartItemDelete)
+                                }} 
+                                className="w-[24px] h-[24px] text-green-400" icon={faTrash} 
+                            />
+                        </div>
                     </div>
                 </div>
                 <div className="w-[120px] flex flex-row rounded-md justify-between items-center">

@@ -17,9 +17,10 @@ export function CartContextProvider({ children }) {
     const [cartShow, setCartShow] = useState(false);
     const [navMobileState, setNavMobileState] = useState(false);
     const [focus, setFocus] = useState(false);
+    const [animateCartState, setAnimateCartState] = useState(false);
+
     const [totalCart, setTotalCart] = useState(() => {
         const priceCart = cartItems.map((item) => {
-            console.log(item)
             if (item.quantity === 1) {
                 return item.price
             }
@@ -48,12 +49,12 @@ export function CartContextProvider({ children }) {
 
     useEffect(() => {
         localStorage.setItem("productsCart", JSON.stringify(cartItems))
-        console.log(cartItems);
     }, [cartItems])
 
+
     const handleAddCart = (product) => {
+        setAnimateCartState(true);
         const inCart = cartItems.find((productInCart) => productInCart.id === product.id);
-        console.log(product);
         if (inCart) {
             setCartItems(
                 cartItems.map((productInCart) => {
@@ -65,9 +66,15 @@ export function CartContextProvider({ children }) {
                     }
                 })
             )
+            setTimeout(() => {
+                setAnimateCartState(false);
+            }, 300)
         }
         else {
             setCartItems([...cartItems, { ...product, quantity: product.quantity }])
+            setTimeout(() => {
+                setAnimateCartState(false);
+            }, 300)
         }
     }
 
@@ -122,7 +129,7 @@ export function CartContextProvider({ children }) {
     }, [cartItems])
 
     return (
-        <CartContext.Provider value={{ cartItems, handleAddCart, cartShow, setCartShow, handleRemoverCart, totalCart, navMobileState, setNavMobileState, handleDeleteCart, totalItems, focus, setFocus }}>
+        <CartContext.Provider value={{ cartItems, handleAddCart, cartShow, setCartShow, handleRemoverCart, totalCart, navMobileState, setNavMobileState, handleDeleteCart, totalItems, focus, setFocus, animateCartState }}>
             {children}
         </CartContext.Provider>
     )

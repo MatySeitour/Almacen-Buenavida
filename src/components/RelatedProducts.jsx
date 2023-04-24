@@ -24,7 +24,7 @@ export default function RelatedProducts({productsRelated}) {
                     ))}
                 </ul>
                 <Link className='w-full h-full flex justify-center items-center mb-10' href={"/productos"}>
-                    <button className='w-[300px] h-auto p-4 bg-green-500 text-white rounded font-semibold' type='text'>VER MÁS PRODUCTOS</button>
+                    <button className='w-[300px] h-auto p-4 bg-green-500 text-white rounded font-semibold shadow-default' type='text'>VER MÁS PRODUCTOS</button>
                 </Link>
             </div>
         </div>

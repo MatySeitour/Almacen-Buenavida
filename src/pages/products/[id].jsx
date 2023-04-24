@@ -24,6 +24,10 @@ export default function Product({id}) {
     const { setFocus, cartShow, handleAddCart } = useCart();
     const [quantityButton, setQuantityButton] = useState(1);
 
+    useEffect(() => {
+        setQuantityButton(1);
+    }, [id])
+
     const products = getProductsOffers.products;
     const product = products.filter(productId => productId.id == id);
 
@@ -42,7 +46,6 @@ export default function Product({id}) {
     });
 
     const productsRelated = products.filter(productCategory => productCategory.categoryId == product[0].categoryId && productCategory.id != product[0].id);
-    console.log(productsRelated);
 
     const discountPriceProduct = product[0].offer != "2x1" ? parseInt(product[0].offer) : null;
     const discountPriceTotalProduct =  product[0].price - (discountPriceProduct * product[0].price / 100)
@@ -73,14 +76,14 @@ export default function Product({id}) {
         <Layout>
             <section onClick={() => setFocus(false)} className="w-full h-auto min-h-screen pt-[134px]">
                 <div className="w-full h-full">
-                    <figure className="w-full h-full relative">
-                    <span className="absolute bg-green-500 top-4 left-4 w-[70px] h-[70px] rounded-full flex justify-center items-center text-xl text-white font-medium"><p className="text-center">{product[0].offer != "2x1" ? `${product[0].offer}% OFF` : `${product[0].offer}`}</p></span>
+                    <figure className="w-full h-[400px] relative">
+                        <span className="absolute bg-green-500 top-4 left-4 w-[70px] h-[70px] rounded-full flex justify-center items-center text-xl text-white font-medium"><p className="text-center">{product[0].offer != "2x1" ? `${product[0].offer}% OFF` : `${product[0].offer}`}</p></span>
                         <ul className="absolute right-2 top-2">
                             {categoriesLogo.map((category) => (
                                 <Image className="w-auto h-auto" key={category.id} height={40} width={40} alt={category.name} src={category.src} /> 
                             ))}
                         </ul>
-                        <Image className="w-full h-full object-cover" alt={product[0].name} width={200} height={200} priority={true} src={product[0].src} />
+                        <Image className="w-full h-full object-cover" alt={product[0].name} width={350} height={300} priority={true} src={product[0].src} />
                     </figure>
                     <div className="h-full min-h-[500px] w-full p-4 flex flex-col items-center border-t border-green-200">
                         <ul className="w-[auto] h-[auto] p-2 text-center mb-4">
@@ -136,14 +139,14 @@ export default function Product({id}) {
                                         handleAddCart(newCartItem);
                                     }
                                 }
-                                className="p-2 bg-green-500 text-white rounded-md" type="text">AÑADIR AL CARRO</button>
+                                className="p-2 bg-green-500 text-white rounded-md shadow-default" type="text">AÑADIR AL CARRO</button>
                             </div>
                         </div>
 
                         <div className="w-full h-auto flex justify-start flex-col mb-10">
                             <h4 className="text-green-800 text-xl font-bold mb-4">{product[0].name}</h4>
                             <div className="w-full h-auto flex p-2">
-                                <p className="text-green-500">{product[0].description}</p>
+                                <p className="text-black">{product[0].description}</p>
                             </div>
                         </div>
 
@@ -153,7 +156,7 @@ export default function Product({id}) {
                             </div>
                             <ul className="w-full h-auto flex flex-row flex-wrap gap-2 p-2">
                                 {categoriesRelated.map((category) => (
-                                    <li key={category.id} className="bg-green-500 p-2 text-white rounded-md">{category.name}</li>
+                                    <li key={category.id} className="bg-green-600 p-2 text-white rounded-md">{category.name}</li>
                                 ))}
                             </ul>
                         </div>

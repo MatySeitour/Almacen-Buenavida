@@ -65,7 +65,7 @@ export default function CategoriesHome() {
                         </ul>
 
                         <Link className='w-full h-full flex justify-center items-center mb-40' href={"/categories"}>
-                            <button className='w-[300px] h-auto p-4 bg-green-500 text-white rounded font-semibold' type='text'>VER TODAS LAS CATEGORIAS</button>
+                            <button className='w-[300px] h-auto p-4 bg-green-500 text-white rounded font-semibold shadow-default' type='text'>VER TODAS LAS CATEGORIAS</button>
                         </Link>
                     </>
                     :

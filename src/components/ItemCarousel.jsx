@@ -14,10 +14,7 @@ export default function ItemCarousel({ imageSrc, imageId, imageName, imageAlt })
                 <>
                     <Image priority={true} className='object-cover' src={imageSrc} width={400} height={400} onLoad={() => setLoaded(true)} alt={imageAlt} />
                     <div className={loaded ? 'animate-wiggle absolute top-[65%] flex flex-col justify-center items-center' : 'max-w-[300px] w-[200px] absolute top-[65%] flex flex-col justify-center items-center'}>
-                        <p className='font-bold w-full tracking-wider text-center text-3xl text-white mb-4'>{imageName}</p>
-                        <div className='w-auto flex justify-center'>
-                            <button className='w-[120px] text-center text-green-500 bg-white border-2 border-green-500 p-2 rounded-full'>VER</button>
-                        </div>
+                        <p className='font-bold w-full tracking-wider text-center text-3xl text-white mb-4'>{imageName.toUpperCase()}</p>
                     </div>
                 </>
             }
