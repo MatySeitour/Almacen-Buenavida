@@ -26,19 +26,19 @@ export default function Productos() {
                     <div className="w-[full] h-auto flex flex-row justify-center items-center px-2 mb-4">
                         <p className="w-[70%] text-center text-base text-green-500">{`Inicio > `} <b>Productos</b></p>
                     </div>
-                    <div className="w-full h-auto">
-                        <h2 className="text-center text-2xl text-green-500">Productos</h2>
+                    <div className="w-full h-auto p-2 border-t border-green-500 pt-4">
+                        <h2 className="text-center text-3xl text-black font-semibold">Productos</h2>
                     </div>
                 </div>
 
                 <div className="w-full h-auto flex flex-row justify-between p-2">
-                    <button onClick={() => setCategoriesFilterState(true)} className="w-[45%] shadow-default bg-green-500 h-auto flex justify-center items-center p-3 rounded-lg border-2 border-green-500">
-                        <FontAwesomeIcon className="text-white w-[24px] h-[24px]" icon={faArrowDownWideShort} />
-                        <p className="ml-3 tracking-wide text-white">CATEGORIAS</p>
-                    </button>
                     <button type="text" className="w-[45%] h-auto flex shadow-default bg-green-500 justify-center items-center p-3 rounded-lg border-2 border-green-500">
                         <FontAwesomeIcon className="text-white w-[24px] h-[24px]" icon={faFilter} />
                         <p className="ml-3 tracking-wide text-white">ORDENAR</p>
+                    </button>
+                    <button onClick={() => setCategoriesFilterState(true)} className="w-[45%] shadow-default bg-green-500 h-auto flex justify-center items-center p-3 rounded-lg border-2 border-green-500">
+                        <FontAwesomeIcon className="text-white w-[24px] h-[24px]" icon={faArrowDownWideShort} />
+                        <p className="ml-3 tracking-wide text-white">CATEGORIAS</p>
                     </button>
                 </div>
 
