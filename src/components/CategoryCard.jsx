@@ -1,13 +1,14 @@
 import useIntersection from '@/CustomHooks/useIntersection';
+import Link from 'next/link';
 import { useRef } from 'react';
 import Image from 'next/image';
 
-export default function CategoryCard({ categorySrc, categoryName }) {
+export default function CategoryCard({ categorySrc, categoryName, categorySlug }) {
     const element = useRef(null);
     const screen = useIntersection(element);
 
     return (
-        <div className="w-full h-full">
+        <Link href={`/productos/${categorySlug}`} className="w-full h-full">
             <div ref={element} className="w-full h-[300px] bg-slate-600 relative">
                 {screen ?
                     <figure className='w-full h-full relative'>
@@ -22,6 +23,6 @@ export default function CategoryCard({ categorySrc, categoryName }) {
                     <></>
                 }
             </div>
-        </div>
+        </Link>
     )
 }
