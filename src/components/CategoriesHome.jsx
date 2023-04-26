@@ -1,39 +1,42 @@
 import useIntersection from '@/CustomHooks/useIntersection';
+import getCategories from "../utils/categories.json"
 import { useRef } from 'react';
 import CategoryCard from './CategoryCard';
 import Link from 'next/link';
 
 export default function CategoriesHome() {
+    const categories = getCategories.categories;
+
     const element = useRef(null);
     const screen = useIntersection(element);
 
-    const categories = [
-        {
-            id: 1,
-            name: "BEBIDAS",
-            src: "/bebidas.jpg",
-        },
-        {
-            id: 2,
-            name: "LÁCTEOS",
-            src: "/lacteos.jpg",
-        },
-        {
-            id: 3,
-            name: "MERMELADAS",
-            src: "/mermeladas.jpg",
-        },
-        {
-            id: 4,
-            name: "VEGGIE",
-            src: "/veggie.jpg",
-        },
-        {
-            id: 5,
-            name: "SIN TACC",
-            src: "/alfajores.png",
-        },
-    ]
+    // const categories = [
+    //     {
+    //         id: 1,
+    //         name: "BEBIDAS",
+    //         src: "/bebidas.jpg",
+    //     },
+    //     {
+    //         id: 2,
+    //         name: "LÁCTEOS",
+    //         src: "/lacteos.jpg",
+    //     },
+    //     {
+    //         id: 3,
+    //         name: "MERMELADAS",
+    //         src: "/mermeladas.jpg",
+    //     },
+    //     {
+    //         id: 4,
+    //         name: "VEGGIE",
+    //         src: "/veggie.jpg",
+    //     },
+    //     {
+    //         id: 5,
+    //         name: "SIN TACC",
+    //         src: "/alfajores.png",
+    //     },
+    // ]
 
     return (
         <section className="w-full h-auto min-h-screen">
@@ -60,11 +63,12 @@ export default function CategoriesHome() {
                                     key={category.id}
                                     categorySrc={category.src}
                                     categoryName={category.name}
+                                    categorySlug={category.slug}
                                 />
                             ))}
                         </ul>
 
-                        <Link className='w-full h-full flex justify-center items-center mb-40' href={"/categories"}>
+                        <Link className='w-full h-full flex justify-center items-center mb-40' href={`productos/`}>
                             <button className='w-[300px] h-auto p-4 bg-green-500 text-white rounded font-semibold shadow-default' type='text'>VER TODAS LAS CATEGORIAS</button>
                         </Link>
                     </>
