@@ -35,12 +35,12 @@ export default function Card({ productSrc, productName, productPrice, productSto
                         </Link>
 
                         <div className="w-full h-auto flex flex-col justify-center items-center p-2 rounded-sm">
-                            <Link className="mb-4" href={`/products/${productId}`}>
-                                <h4 className="text-green-700 text-base font-medium text-center h-[48px] w-full">{productName.length > 44 ? `${productName.slice(0, 44)}...` : productName}</h4>
+                            <Link className="mb-4 w-full" href={`/products/${productId}`}>
+                                <h4 className="text-green-700 text-lg font-medium text-left w-full h-[48px]">{productName.length > 44 ? `${productName.slice(0, 44)}...` : productName}</h4>
                             </Link>
 
-                            <div className="w-full h-auto flex justify-center items-center mb-2">
-                                <p className="text-green-700 text-xl font-bold tracking-wide mr-2">
+                            <div className="w-full h-auto flex justify-end items-center mb-2">
+                                <p className="text-green-700 text-2xl font-bold tracking-wide mr-2">
                                     {`$${discountPriceOffer}`}
                                 </p>
                                 {productOffer !== "2x1" ? <span className="line-through text-green-700 text-sm font-normal tracking-wide translate-y-[0.5px]">{`$${productPrice}`}</span> : <></>}
