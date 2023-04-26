@@ -1,13 +1,17 @@
 import { useRef } from "react";
 import getProducts from "../utils/products.json"
+import getCategories from "../utils/categories.json"
 import useIntersection from "@/CustomHooks/useIntersection";
 import FeaturedCard from "./FeaturedCard"
 import Link from "next/link";
 
 export default function FeaturedProduct() {
+    const products = getProducts.products;
+    const categories = getCategories.categories;
+
     const element = useRef(null);
     const screen = useIntersection(element);
-    const products = getProducts.products;
+    
 
 
     return (
