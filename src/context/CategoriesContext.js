@@ -13,7 +13,7 @@ export const useCategory = () => {
 }
 
 export function CategoryContextProvider({ children }) {
-    const [subCategoriesState, setSubCategoriesState] = useState(0);
+    const [subCategoriesState, setSubCategoriesState] = useState(false);
 
 
     return (
