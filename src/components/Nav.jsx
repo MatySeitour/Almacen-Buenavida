@@ -69,9 +69,11 @@ export default function Nav() {
                 </div>
 
                 <div className="w-[90%] h-auto flex py-2 flex-col items-center justify-center relative container-nav">
-                    <div className={searchResults && focus || !searchResults && focus  ? "h-full w-full p-2 rounded-tr-md rounded-tl-md bg-white flex items-center justify-center" : "h-full w-full p-2 rounded-md bg-white flex items-center justify-center"}>
+                    <div className={searchResults && focus || !searchResults && focus  ? "h-full w-[100%] p-2 rounded-lg bg-white flex items-center justify-center transition-all" : "h-full w-[90%] p-2 rounded-lg bg-white flex items-center justify-center transition-all"}>
                         <input onClick={() => setFocus(true)} onChange={handleChange} value={search} placeholder="¿Qué estás buscando?" type="text" className="input-search placeholder:text-green-500 pl-1 w-full h-full inline-block bg-white outline-none text-green-500 text-lg" />
-                        <FontAwesomeIcon icon={faSearch} className={" text-green-500 w-[30px] h-[30px]"} />
+                        <div className={searchResults && focus || !searchResults && focus ? "pl-2 border-l border-green-300" : "pl-2"}>
+                            <FontAwesomeIcon icon={faSearch} className={"text-green-500 w-[24px] h-[24px]"} />
+                        </div>
                     </div>
                     {searchResults != false && focus ?
                         <div className="w-[100%] p-2 absolute top-[54px] flex bg-white items-center search-container rounded-b overflow-y-scroll">
@@ -113,7 +115,7 @@ export default function Nav() {
                 </div>
 
                 <div className={navMobileState ? "fixed w-full h-full top-0 left-0 right-0 z-[200] bg-[#000a]" : ""}>
-                    <div className={navMobileState ? "pb-4 fixed w-[80%] h-full flex flex-col justify-between translate-x-0 transition-all bg-white top-0 left-0 z-[10000] overflow-y-scroll" : "fixed w-[80%] h-full -translate-x-[100%] transition-all top-0 left-0 z-[10000] overflow-y-scroll"}>
+                    <div className={navMobileState ? "pb-4 fixed w-[80%] h-full flex flex-col justify-between translate-x-0 transition-all bg-white top-0 left-0 z-[10000] overflow-y-scroll" : "fixed w-[80%] h-full -translate-x-[100%] transition-all top-0 left-0 z-[10000] overflow-y-scroll invisible"}>
                         <FontAwesomeIcon icon={faX} onClick={() => setNavMobileState(state => !state)} className="w-[24px] h-[24px] right-3 top-3 text-green-500 absolute z-[2000]" />
                         <div className="w-full h-auto relative pt-14 mb-4">
                             <ul className="w-full h-full flex flex-col">
@@ -133,7 +135,7 @@ export default function Nav() {
                                         </p>
                                         <div className={category.subLevels && subNavState === category.id ? "w-full h-auto transition-all" : "w-full min-h-[0px] h-[0px] transition-all"}>
                                             {category.subLevels && subNavState === category.id ?
-                                                <div className="w-full h-full flex flex-col pt-2 transition-all">
+                                                <div className="w-full h-full flex flex-col pt-2 transition-all pl-2">
                                                     <div className="p-2 text-green-600 flex flex-col w-full justify-center items-center relative">
                                                         <p className="text-lg tracking-wide font-semibold w-full text-left">Ver todo en {category.slug}</p>
                                                     </div>
@@ -146,7 +148,7 @@ export default function Nav() {
 
                                                 :
 
-                                                <div className="w-full h-[0px] transition-all"></div>
+                                                <div className="w-full h-[0px] transition-all pl-2"></div>
                                             }
                                         </div>
                                         {category.subLevels ?
