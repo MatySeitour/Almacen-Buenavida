@@ -18,7 +18,7 @@ export default function FeaturedCard({ productSrc, productName, productStock, pr
                     </figure>
                     <div className="w-full h-full flex justify-around items-center flex-col">
                         <div className="w-full h-[32px] text-left pl-2 mb-2"><h4 className="text-green-700 text-xs font-bold">{productName.length > 40 ? `${productName.slice(0, 40)}...` : productName}</h4></div>
-                        <div className="w-full text-left pl-2 mb-2"><p className="text-green-700 text-base font-bold tracking-wide mr-2">{`$${productPrice}`}</p></div>
+                        <div className="w-full pl-2 mb-2"><p className="text-green-700 text-lg font-bold tracking-wide mr-2 text-right">{`$${productPrice}`}</p></div>
                         <div className="w-full px-2 h-auto flex justify-start mb-2">
                             <button className="bg-green-400 text-white w-full rounded-md tracking-wider p-1 font-bold flex justify-center items-center" type="text"><FontAwesomeIcon className="w-[20px] h-[20px]" icon={faCartShopping} /></button>
                         </div>
