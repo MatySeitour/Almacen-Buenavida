@@ -5,7 +5,7 @@ import getProducts from "../utils/products.json"
 import getCategories from "../utils/categories.json"
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { useCart } from "@/context/CartContext";
 
 export default function Nav() {
@@ -13,6 +13,35 @@ export default function Nav() {
     const [searchResults, setSearchResults] = useState([]);
     const [search, setSearch] = useState("");
     const [subNavState, setSubNavState] = useState(0);
+
+    const lastScrollTop = useRef(0);
+
+    const [isNavbarVisible, setIsNavbarVisible] = useState(true);
+    const [isNavbarInTop, setIsNavbarInTop] = useState(true);
+  
+    useEffect(() => {
+      window.addEventListener(
+        "scroll",
+        () => {
+          let { pageYOffset } = window;
+          if (pageYOffset > lastScrollTop.current) {
+            setIsNavbarVisible(false);
+            setIsNavbarInTop(false);
+          } 
+          else if (pageYOffset < lastScrollTop.current) {
+            setIsNavbarVisible(true);
+            setIsNavbarInTop(false);
+          }
+          else if(pageYOffset == 0){
+            setIsNavbarInTop(true);
+          }
+          lastScrollTop.current = pageYOffset <= 0 ? 0 : pageYOffset;
+        },
+        { passive: true }
+      );
+    }, []);
+
+    console.log(isNavbarInTop)
 
     const products = getProducts.products;
     const categories = getCategories.categories;
@@ -49,10 +78,11 @@ export default function Nav() {
     }, [search])
 
 
+    // className={isNavbarVisible ? "bg-green-500 shadow-lg w-full h-[128px] p-2 fixed z-[100] translate-y-0 transition-all duration-300" : "bg-green-500 shadow-lg w-full h-[80px] p-2 fixed z-[100] -translate-y-[200px] transition-all duration-300"}
 
     return (
-        <header className="bg-green-500 shadow-lg w-full h-auto p-2 fixed z-[100]">
-            <nav className="relative navbar p-0 bg-green-500 justify-between flex-col">
+        <header className={`bg-green-500 shadow-lg w-full ${isNavbarInTop && "h-[128px] transition-all"} h-[80px] ${!isNavbarVisible && "-translate-y-[200px] transition-all"}  p-2 fixed z-[100] translate-y-0 transition-all duration-300`}>
+            <nav className="relative navbar p-0 justify-between flex-col">
                 <div className="w-full flex justify-between">
                     <div className="w-14 h-14 flex justify-center items-center relative">
                         <FontAwesomeIcon onClick={() => setNavMobileState(state => !state)} className={"text-white w-[30px] h-[30px]"} icon={faBars} />
@@ -68,7 +98,7 @@ export default function Nav() {
                     </div>
                 </div>
 
-                <div className="w-[90%] h-auto flex py-2 flex-col items-center justify-center relative container-nav">
+                <div className={isNavbarInTop ? "w-[90%] h-auto flex py-2 flex-col items-center justify-center relative container-nav scale-100 transition-all duration-300" : "w-[90%] h-auto flex py-2 flex-col items-center justify-center relative container-nav scale-0 transition-all duration-300"}>
                     <div className={searchResults && focus || !searchResults && focus  ? "h-full w-[100%] p-2 rounded-lg bg-white flex items-center justify-center transition-all" : "h-full w-[90%] p-2 rounded-lg bg-white flex items-center justify-center transition-all"}>
                         <input onClick={() => setFocus(true)} onChange={handleChange} value={search} placeholder="¿Qué estás buscando?" type="text" className="input-search placeholder:text-green-500 pl-1 w-full h-full inline-block bg-white outline-none text-green-500 text-lg" />
                         <div className={searchResults && focus || !searchResults && focus ? "pl-2 border-l border-green-300" : "pl-2"}>
