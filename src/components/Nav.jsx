@@ -24,24 +24,32 @@ export default function Nav() {
         "scroll",
         () => {
           let { pageYOffset } = window;
-          if (pageYOffset > lastScrollTop.current) {
-            setIsNavbarVisible(false);
-            setIsNavbarInTop(false);
-          } 
-          else if (pageYOffset < lastScrollTop.current) {
-            setIsNavbarVisible(true);
-            setIsNavbarInTop(false);
+          if(pageYOffset > 124){
+              if (pageYOffset > lastScrollTop.current) {
+                setIsNavbarVisible(false);
+                setIsNavbarInTop(false);
+                console.log("entra")
+              } 
+              else if (pageYOffset < lastScrollTop.current) {
+                console.log("entra al menor")
+                setIsNavbarVisible(true);
+                setIsNavbarInTop(false);
+              }
+              else if(pageYOffset == 0){
+                setIsNavbarInTop(true);
+              }
+              lastScrollTop.current = pageYOffset <= 0 ? 0 : pageYOffset;
           }
-          else if(pageYOffset == 0){
+          else{
+            console.log("entra al else")
+            setIsNavbarVisible(true);
             setIsNavbarInTop(true);
           }
-          lastScrollTop.current = pageYOffset <= 0 ? 0 : pageYOffset;
         },
         { passive: true }
       );
     }, []);
 
-    console.log(isNavbarInTop)
 
     const products = getProducts.products;
     const categories = getCategories.categories;
@@ -78,11 +86,11 @@ export default function Nav() {
     }, [search])
 
 
-    // className={isNavbarVisible ? "bg-green-500 shadow-lg w-full h-[128px] p-2 fixed z-[100] translate-y-0 transition-all duration-300" : "bg-green-500 shadow-lg w-full h-[80px] p-2 fixed z-[100] -translate-y-[200px] transition-all duration-300"}
+    // className={`bg-green-500 shadow-lg w-full ${isNavbarInTop ? "h-[128px] transition-all" : "h-[80px] transition-all fixed"} ${!isNavbarVisible ? "-translate-y-[200px] transition-all" : "translate-y-0 transition-all"} p-2 z-[100] duration-300`}
 
     return (
-        <header className={`bg-green-500 shadow-lg w-full ${isNavbarInTop && "h-[128px] transition-all"} h-[80px] ${!isNavbarVisible && "-translate-y-[200px] transition-all"}  p-2 fixed z-[100] translate-y-0 transition-all duration-300`}>
-            <nav className="relative navbar p-0 justify-between flex-col">
+        <header className="h-[128px] relative">
+            <nav className={`navbar p-2 justify-between flex-col bg-green-500 shadow-lg w-full ${isNavbarInTop ? "h-[128px] transition-all relative" : "h-[80px] transition-all fixed"} ${!isNavbarVisible ? "-translate-y-[200px] transition-all" : "translate-y-0 transition-all"} p-2 z-[100] duration-300`}>
                 <div className="w-full flex justify-between">
                     <div className="w-14 h-14 flex justify-center items-center relative">
                         <FontAwesomeIcon onClick={() => setNavMobileState(state => !state)} className={"text-white w-[30px] h-[30px]"} icon={faBars} />
@@ -106,7 +114,7 @@ export default function Nav() {
                         </div>
                     </div>
                     {searchResults != false && focus ?
-                        <div className="w-[100%] p-2 absolute top-[54px] flex bg-white items-center search-container rounded-b overflow-y-scroll">
+                        <div className="w-[100%] p-2 absolute top-[54px] flex bg-white items-center search-container rounded-b overflow-y-scroll z-[99999999]">
                             <ul className="w-full min-h-[140px] h-auto max-h-[400px] overflow-y-auto">
                                 {searchResults.map((item) => (
                                     <li className="w-full h-[80px] flex mb-4 border-b border-gray-300" key={item.id}>
@@ -144,7 +152,8 @@ export default function Nav() {
                     }
                 </div>
 
-                <div className={navMobileState ? "fixed w-full h-full top-0 left-0 right-0 z-[200] bg-[#000a]" : ""}>
+            </nav>
+            <div className={navMobileState ? "fixed w-full h-full top-0 left-0 right-0 z-[200] bg-[#000a]" : ""}>
                     <div className={navMobileState ? "pb-4 fixed w-[80%] h-full flex flex-col justify-between translate-x-0 transition-all bg-white top-0 left-0 z-[10000] overflow-y-scroll" : "fixed w-[80%] h-full -translate-x-[100%] transition-all top-0 left-0 z-[10000] overflow-y-scroll invisible"}>
                         <FontAwesomeIcon icon={faX} onClick={() => setNavMobileState(state => !state)} className="w-[24px] h-[24px] right-3 top-3 text-green-500 absolute z-[2000]" />
                         <div className="w-full h-auto relative pt-14 mb-4">
@@ -201,8 +210,7 @@ export default function Nav() {
                             <FontAwesomeIcon className="w-[30px] h-[30px] mr-2 ml-2 text-green-500" icon={faInstagram} />
                         </div>
                     </div>
-                </div>
-            </nav>
+            </div>
         </header>
     )
 }

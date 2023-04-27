@@ -9,7 +9,7 @@ export default function Home() {
     const { cartShow, navMobilState } = useCart();
 
     return (
-        <section className="w-full h-auto pt-[134px] bg-white">
+        <section className="w-full h-auto">
             <Logo />
             <Frase />
             <CartHome
