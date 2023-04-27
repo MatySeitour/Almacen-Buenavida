@@ -2,24 +2,26 @@ import Image from "next/legacy/image"
 import Link from "next/link";
 import useIntersection from '@/CustomHooks/useIntersection';
 import { useRef } from 'react';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartShopping, faEye } from "@fortawesome/free-solid-svg-icons";
 import { useCart } from "@/context/CartContext";
-import ButtonAddCart from "./ButtonAddCart";
+import ButtonQuantityCard from "./ButtonQuantityCard";
 
 export default function Card({ productSrc, productName, productPrice, productStock, productOffer, productId }) {
     const element = useRef(null);
     const screen = useIntersection(element);
+
+
     let discountPriceOffer = productOffer != "2x1" ? parseInt(productOffer) : 0;
     discountPriceOffer = (productPrice * discountPriceOffer) / 100;
     discountPriceOffer = productPrice - discountPriceOffer;
 
-    const { handleAddCart } = useCart();
+    const { handleAddCart, cartItems } = useCart();
+
+    const findProductInCart = cartItems.find((product) => product.id == productId)
 
 
     return (
 
-        <li ref={element} className="relative w-[250px] h-[400px] p-4 mr-8 rounded-lg flex flex-col justify-around items-center">
+        <li ref={element} className="relative w-[260px] h-[420px] p-4 mr-6 rounded-lg flex flex-col justify-around items-center">
             {
                 screen ?
                     <div className="animate-subtitleAppear w-full pb-4 h-full shadow-default bg-white rounded-lg flex flex-col justify-between items-center relative">
@@ -36,10 +38,10 @@ export default function Card({ productSrc, productName, productPrice, productSto
 
                         <div className="w-full h-auto flex flex-col justify-center items-center p-2 rounded-sm">
                             <Link className="mb-4 w-full" href={`/products/${productId}`}>
-                                <h4 className="text-green-700 text-lg font-medium text-left w-full h-[48px]">{productName.length > 44 ? `${productName.slice(0, 44)}...` : productName}</h4>
+                                <h4 className="text-green-700 text-lg font-medium text-center w-full h-[48px]">{productName.length > 44 ? `${productName.slice(0, 44)}...` : productName}</h4>
                             </Link>
 
-                            <div className="w-full h-auto flex justify-end items-center mb-2">
+                            <div className="w-full h-auto flex justify-center items-center mb-2">
                                 <p className="text-green-700 text-2xl font-bold tracking-wide mr-2">
                                     {`$${discountPriceOffer}`}
                                 </p>
@@ -47,22 +49,20 @@ export default function Card({ productSrc, productName, productPrice, productSto
                             </div>
 
                         </div>
-                        <div className="w-full h-auto flex justify-evenly mb-2 px-2">
+                        <div className="w-full h-auto min-h-[40px] flex justify-evenly mb-2 px-2">
                             {productStock ?
-                                <>
-                                    <button onClick={() => {
-                                        const newCartItem = {
-                                            name: productName,
-                                            price: productPrice,
-                                            offer: productOffer,
-                                            id: productId,
-                                            src: productSrc,
-                                            quantity: 1
-                                        }
-                                        handleAddCart(newCartItem)
-                                    }}
-                                        className="bg-green-400 text-white text-xl w-[60%] flex justify-center p-2 rounded-md tracking-wider font-bold" type="text"><FontAwesomeIcon className="w-[20px] h-[20px]" icon={faCartShopping} /></button>
-                                        <button className="bg-white border border-green-500 text-green-500 text-xs w-[30%] flex justify-center items-center p-1 rounded-md tracking-wider font-bold" type="text">VER</button>
+                                <>                                      
+                                    <ButtonQuantityCard 
+                                        productName={productName}
+                                        productPrice={productPrice}
+                                        productOffer={productOffer}
+                                        productId={productId}
+                                        productSrc={productSrc}
+                                        findProductInCart={findProductInCart}
+                                        handleAddCart={handleAddCart}
+                                        productStock={productStock}
+                                    />
+                                    <button className="bg-white border border-green-500 text-green-500 text-xs w-[30%] flex justify-center items-center p-1 rounded-md tracking-wider font-bold" type="text">VER</button>
                                 </>
 
                                 :
