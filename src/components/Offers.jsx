@@ -6,8 +6,9 @@ import getProductsOffers from "../utils/productsOffers.json"
 export default function Offers() {
     const element = useRef(null);
     const screen = useIntersection(element);
-    const products = getProductsOffers.products;
 
+
+    const products = getProductsOffers.products;
 
     return (
         <section className="w-full h-[500px] bg-white mb-40">
