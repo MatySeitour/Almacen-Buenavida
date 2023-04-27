@@ -9,6 +9,8 @@ import getCategories from "../../utils/categories.json"
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Layout from "@/components/Layout";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 export async function getServerSideProps(context){
     const {params} = context;
@@ -75,6 +77,14 @@ export default function Product({id}) {
     return (
         <Layout>
             <section onClick={() => setFocus(false)} className="w-full h-auto min-h-screen pt-[134px]">
+                <div className="w-full h-auto flex">
+                    <div>
+                        <FontAwesomeIcon className="w-[24px] h-[24px]" icon={faArrowLeft} />
+                    </div>
+                    <div>
+                        <p>{product[0].name}</p>
+                    </div>
+                </div>
                 <div className="w-full h-full">
                     <figure className="w-full h-[400px] relative">
                         <span className="absolute bg-green-500 top-4 left-4 w-[70px] h-[70px] rounded-full flex justify-center items-center text-xl text-white font-medium"><p className="text-center">{product[0].offer != "2x1" ? `${product[0].offer}% OFF` : `${product[0].offer}`}</p></span>
