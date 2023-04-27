@@ -28,8 +28,8 @@ export default function CarouselContainer(){
     };
 
     return(
-        <article className='w-full h-auto justify-center items-center'>
-            <Carousel arrows={false} dotListClass={"dotList"} autoPlaySpeed={3000} infinite={true} showDots={true} itemClass={"item-carousel__class"} autoPlay={true} responsive={responsive}>
+        <article className='w-[100%] h-auto justify-center items-center p-4 rounded-md'>
+            <Carousel className='rounded-md' arrows={false} dotListClass={"dotList"} autoPlaySpeed={3000} infinite={true} showDots={true} itemClass={"item-carousel__class"} autoPlay={true} responsive={responsive}>
                 {categories.map((image) => (
                     <ItemCarousel
                         key={image.id}
