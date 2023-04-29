@@ -157,6 +157,75 @@ body{
   }
 }
 
+.navItemClass-1{
+  animation: navItemsAppear .2s linear;
+}
+.navItemClass-2{
+  animation: navItemsAppear .3s linear;
+}
+.navItemClass-3{
+  animation: navItemsAppear .4s linear;
+}
+.navItemClass-4{
+  animation: navItemsAppear .5s linear;
+}
+.navItemClass-5{
+  animation: navItemsAppear .6s linear;
+}
+.navItemClass-6{
+  animation: navItemsAppear .7s linear;
+}
+.navItemClass-7{
+  animation: navItemsAppear .8s linear;
+}
+
+/* ARROW NAV ITEMS */
+
+.navArrowItemClass-1{
+  animation: navItemsArrowAppear .2s linear;
+}
+.navArrowItemClass-2{
+  animation: navItemsArrowAppear .3s linear;
+}
+.navArrowItemClass-3{
+  animation: navItemsArrowAppear .4s linear;
+}
+.navArrowItemClass-4{
+  animation: navItemsArrowAppear .5s linear;
+}
+.navArrowItemClass-5{
+  animation: navItemsArrowAppear .6s linear;
+}
+.navArrowItemClass-6{
+  animation: navItemsArrowAppear .7s linear;
+}
+.navArrowItemClass-7{
+  animation: navItemsArrowAppear .8s linear;
+}
+
+@keyframes navItemsAppear {
+  0% { 
+    opacity: 0; 
+    transform: translateX(-50px); 
+  }
+
+  100%{ 
+    opacity: 1; 
+    transform: translateX(0)
+  }
+}
+
+@keyframes navItemsArrowAppear {
+  0% { 
+    opacity: 0; 
+    transform: translate(50px); 
+  }
+
+  100%{ 
+    opacity: 1; 
+    transform: translateX(0)
+  }
+}
 
 @tailwind base;
 @tailwind components;
