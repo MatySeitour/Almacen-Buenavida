@@ -1,7 +1,7 @@
 import { useCart } from "@/context/CartContext";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping, faCartPlus } from "@fortawesome/free-solid-svg-icons";
 
 export default function ButtonQuantityCard({productName, productPrice, productOffer, productSrc, productId, findProductInCart}){
     const {handleAddCart, cartItems, handleRemoverCart} = useCart();
@@ -67,10 +67,7 @@ export default function ButtonQuantityCard({productName, productPrice, productOf
                         }}
                             className={"bg-green-400 text-white text-xs w-[100%] flex justify-center rounded-md tracking-wider font-bold"} type="text">
                             <div className="w-auto h-[40px] flex justify-center items-center relative">
-                                <FontAwesomeIcon className="w-[24px] h-[30px]" icon={faCartShopping} />
-                                <div className="absolute border- bg-green-700 text-black z-10 top-1 -right-2 rounded-full h-[12px] w-[12px] flex justify-center items-center text-center">
-                                    <span className="-translate-y-[2px] translate-x-[0.5px] text-white">+</span>
-                                </div>
+                                <FontAwesomeIcon className="w-[24px] h-[30px]" icon={faCartPlus} />
                             </div>
                     </button>
                 </div>
