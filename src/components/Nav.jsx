@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faSearch, faCartShopping, faAngleLeft, faBars, faX } from "@fortawesome/free-solid-svg-icons"
+import { faSearch, faCartShopping, faChevronDown, faBars, faX } from "@fortawesome/free-solid-svg-icons"
 import { faInstagram, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import getProducts from "../utils/products.json"
 import getCategories from "../utils/categories.json"
@@ -90,7 +90,7 @@ export default function Nav() {
 
     return (
         <header className="h-[128px] relative">
-            <nav className={`navbar p-2 justify-between flex-col bg-green-500 shadow-lg w-full ${isNavbarInTop ? "h-[128px] transition-all relative" : "h-[80px] transition-all fixed"} ${!isNavbarVisible ? "-translate-y-[200px] transition-all" : "translate-y-0 transition-all"} p-2 z-[100] duration-300`}>
+            <nav className={`navbar p-2 justify-between flex-col bg-green-500 shadow-lg w-full ${isNavbarInTop ? "h-[128px] transition-[transform] relative duration-300" : "h-[80px] transition-[transform] fixed duration-300"} ${!isNavbarVisible ? "-translate-y-[200px] transition-all" : "translate-y-0 transition-all"} p-2 z-[100] duration-300`}>
                 <div className="w-full flex justify-between">
                     <div className="w-14 h-14 flex justify-center items-center relative">
                         <FontAwesomeIcon onClick={() => setNavMobileState(state => !state)} className={"text-white w-[30px] h-[30px]"} icon={faBars} />
@@ -106,7 +106,7 @@ export default function Nav() {
                     </div>
                 </div>
 
-                <div className={isNavbarInTop ? "w-[90%] h-auto flex py-2 flex-col items-center justify-center relative container-nav scale-100 transition-all duration-300" : "w-[90%] h-auto flex py-2 flex-col items-center justify-center relative container-nav scale-0 transition-all duration-300"}>
+                <div className={isNavbarInTop ? "w-[90%] h-auto flex py-2 flex-col items-center justify-center relative container-nav scale-100 transition-all duration-300" : "w-[90%] h-auto flex py-2 flex-col items-center justify-center relative container-nav scale-0"}>
                     <div className={searchResults && focus || !searchResults && focus  ? "h-full w-[100%] p-2 rounded-lg bg-white flex items-center justify-center transition-all" : "h-full w-[90%] p-2 rounded-lg bg-white flex items-center justify-center transition-all"}>
                         <input onClick={() => setFocus(true)} onChange={handleChange} value={search} placeholder="¿Qué estás buscando?" type="text" className="input-search placeholder:text-green-500 pl-1 w-full h-full inline-block bg-white outline-none text-green-500 text-lg" />
                         <div className={searchResults && focus || !searchResults && focus ? "pl-2 border-l border-green-300" : "pl-2"}>
@@ -160,18 +160,32 @@ export default function Nav() {
                             <ul className="w-full h-full flex flex-col">
                                 {categories.map((category) => (
                                     <li className={category.subLevels && subNavState === category.id ? "pt-3 text-green-500 flex flex-col w-full justify-between items-start relative" : "py-3 text-green-500 flex flex-col w-full justify-between items-start relative"} key={category.id}>
-                                        <p
-                                            onClick={() => setSubNavState((prev) => {
-                                                if (prev === category.id) {
-                                                    return 0;
-                                                }
-                                                else {
-                                                    return category.id
-                                                }
-                                            })}
-                                            className="text-lg tracking-wide font-semibold w-full pl-2">
-                                            {category.slug.toUpperCase()}
-                                        </p>
+                                        <div className="w-full h-auto flex flex-row justify-between pr-2">
+                                            <p
+                                                onClick={() => setSubNavState((prev) => {
+                                                    if (prev === category.id) {
+                                                        return 0;
+                                                    }
+                                                    else {
+                                                        return category.id
+                                                    }
+                                                })}
+                                                className={navMobileState ? `text-lg tracking-wide font-semibold w-auto pl-2 navItemClass-${category.id}` : ``}>
+                                                    {category.slug.toUpperCase()}
+                                            </p>
+                                            {category.subLevels ?
+                                                <>
+                                                    {/* <FontAwesomeIcon className={category.subLevels && subNavState === category.id ? `transition-all absolute right-2 top-50% translate-y-[50%] w-[20px] h-[20px] rotate-[270deg]` : "transition-all absolute right-2 top-50% translate-y-[50%] w-[20px] h-[20px] rotate-[90deg]"} icon={faAngleLeft} /> */}
+                                                    <FontAwesomeIcon className={`${navMobileState && `navArrowItemClass-${category.id}`} transition-all w-[20px] h-[20px] ${category.subLevels && subNavState === category.id && `rotate-[90deg]`}`} icon={faChevronDown} />
+                                                </>
+
+                                                :
+
+                                                <>
+
+                                                </>
+                                            }
+                                        </div>
                                         <div className={category.subLevels && subNavState === category.id ? "w-full h-auto transition-all" : "w-full min-h-[0px] h-[0px] transition-all"}>
                                             {category.subLevels && subNavState === category.id ?
                                                 <div className="w-full h-full flex flex-col pt-2 transition-all pl-2">
@@ -190,17 +204,6 @@ export default function Nav() {
                                                 <div className="w-full h-[0px] transition-all pl-2"></div>
                                             }
                                         </div>
-                                        {category.subLevels ?
-                                            <>
-                                                <FontAwesomeIcon className={category.subLevels && subNavState === category.id ? "transition-all absolute right-2 top-50% translate-y-[50%] w-[20px] h-[20px] rotate-[270deg]" : "transition-all absolute right-2 top-50% translate-y-[50%] w-[20px] h-[20px] rotate-[90deg]"} icon={faAngleLeft} />
-                                            </>
-
-                                            :
-
-                                            <>
-
-                                            </>
-                                        }
                                     </li>
                                 ))}
                             </ul>
