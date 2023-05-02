@@ -14,7 +14,7 @@ export default function CartItem({ itemName, itemSrc, itemQuantity, itemPrice, i
             <div className="w-full h-auto flex flex-row p-4 mb-4 shadow-md rounded-md bg-white relative">
                 <div className="w-full h-auto flex flex-row">
                     <figure className="w-auto h-[auto] flex justify-start items-center mr-2 relative">
-                        {itemOffer !== "2x1" ? <span></span> : <span className="w-6 h-6 flex justify-center items-center absolute -top-0 -right-1 text-xs p-1 bg-green-500 text-white font-medium rounded-full">{itemOffer}</span>}
+                        {itemOffer == "2x1" ? <span className="w-8 h-8 flex justify-center items-center absolute -top-0 -left-1 text-xs bg-green-500 text-white font-medium rounded-full">{`${itemOffer}`}</span> : <span className="w-8 h-8 flex justify-center items-center absolute -top-0 -left-1 text-xs bg-green-500 text-white font-medium rounded-full">{`-${itemOffer}%`}</span>}
                         <Image className="object-cover" src={itemSrc} priority={true} width={100} height={100} alt={itemName} />
                     </figure>
                     <div className="w-auto h-auto flex flex-col items-start justify-center mb-2 pl-2">
@@ -33,7 +33,10 @@ export default function CartItem({ itemName, itemSrc, itemQuantity, itemPrice, i
                                 className="w-[18px] h-[18px] text-green-400" icon={faTrash} 
                             />
                         </div>
-                        <p className="text-black font-medium tracking-wider">{`$${itemQuantity * itemPrice}`}</p>
+                        <div className="flex flex-row">
+                            {itemOffer == "2x1" || itemOffer == null ? <p></p> : <p className="text-black font-medium tracking-wider mr-1">{`$${discountTotalCart}`}</p>}
+                            {itemOffer == "2x1" || itemOffer == null ? <p className="text-black font-medium tracking-wider">{`$${itemQuantity * itemPrice}`}</p> : <p className="text-black text-sm font-normal tracking-wider line-through">{`$${itemQuantity * itemPrice}`}</p>}
+                        </div>
                     </div>
                 </div>
                 <div className="w-auto h-auto flex justify-center items-center">
