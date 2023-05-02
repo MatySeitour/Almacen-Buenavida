@@ -28,10 +28,8 @@ export default function Nav() {
               if (pageYOffset > lastScrollTop.current) {
                 setIsNavbarVisible(false);
                 setIsNavbarInTop(false);
-                console.log("entra")
               } 
               else if (pageYOffset < lastScrollTop.current) {
-                console.log("entra al menor")
                 setIsNavbarVisible(true);
                 setIsNavbarInTop(false);
               }
@@ -41,7 +39,6 @@ export default function Nav() {
               lastScrollTop.current = pageYOffset <= 0 ? 0 : pageYOffset;
           }
           else{
-            console.log("entra al else")
             setIsNavbarVisible(true);
             setIsNavbarInTop(true);
           }
@@ -170,13 +167,13 @@ export default function Nav() {
                                                         return category.id
                                                     }
                                                 })}
-                                                className={navMobileState ? `text-lg tracking-wide font-semibold w-auto pl-2 navItemClass-${category.id}` : ``}>
+                                                className={navMobileState ? `text-lg tracking-wide font-semibold w-full pl-2 navItemClass-${category.id}` : ``}>
                                                     {category.slug.toUpperCase()}
                                             </p>
                                             {category.subLevels ?
                                                 <>
                                                     {/* <FontAwesomeIcon className={category.subLevels && subNavState === category.id ? `transition-all absolute right-2 top-50% translate-y-[50%] w-[20px] h-[20px] rotate-[270deg]` : "transition-all absolute right-2 top-50% translate-y-[50%] w-[20px] h-[20px] rotate-[90deg]"} icon={faAngleLeft} /> */}
-                                                    <FontAwesomeIcon className={`${navMobileState && `navArrowItemClass-${category.id}`} transition-all w-[20px] h-[20px] ${category.subLevels && subNavState === category.id && `rotate-[90deg]`}`} icon={faChevronDown} />
+                                                    <FontAwesomeIcon className={`${navMobileState && `navArrowItemClass-${category.id}`} transition-all w-[20px] h-[20px] ${category.subLevels && subNavState === category.id && `rotate-[180deg]`}`} icon={faChevronDown} />
                                                 </>
 
                                                 :
@@ -190,7 +187,7 @@ export default function Nav() {
                                             {category.subLevels && subNavState === category.id ?
                                                 <div className="w-full h-full flex flex-col pt-2 transition-all pl-2">
                                                     <div className="p-2 text-green-600 flex flex-col w-full justify-center items-center relative">
-                                                        <p className="text-lg tracking-wide font-semibold w-full text-left">Ver todo en {category.slug}</p>
+                                                        <Link href={`/productos/${category.slug}`} className="text-lg tracking-wide font-semibold w-full text-left">Ver todo en {category.slug}</Link>
                                                     </div>
                                                     {category.subLevels.map((itemSub) => (
                                                         <div key={itemSub.id} className="p-2 text-green-500 flex flex-col w-full justify-center items-center relative">
