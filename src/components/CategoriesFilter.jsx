@@ -24,16 +24,6 @@ export default function CategoriesFilter({ categoriesFilterState, setCategoriesF
                     {categories.map((category) => (
                         <li className="w-full h-[50px] mb-4 flex flex-row justify-between items-center" key={category.id}>
                             <Link onClick={() => setCategoriesFilterState(false)} href={`/productos/${category.slug}`} className="text-green-500 w-auto text-lg font-medium">{category.name}</Link>
-                            {/* <FontAwesomeIcon 
-                                onClick={() => setSubCategoriesState((prev) => {
-                                    if (prev === category.id) {
-                                        return 0;
-                                    }
-                                    else {
-                                        return category.id
-                                    }
-                                })} 
-                                className={category.subLevels ? "transition-all  w-[20px] h-[20px] rotate-[180deg] text-green-500" : "hidden"} icon={faAngleLeft} /> */}
                         </li>
                     ))}
                 </ul>
