@@ -36,12 +36,12 @@ export default function CartHome({ cartShow }) {
                         </ul>
 
                         <div className="w-full h-auto flex shadow-default py-4 px-2">
-                            <div className="w-full h-auto flex flex-col justify-around items-start">
-                                <p className="text-xl text-black font-bold">Total</p>
-                                <p className="text-lg text-green-500 font-medium">{`$${totalCart}`}</p>
+                            <div className="w-full h-auto flex flex-col justify-around items-start pl-2">
+                                <p className="text-lg text-black font-bold mb-2">Total</p>
+                                <p className="text-base text-green-500 font-medium">{`$${totalCart}`}</p>
                             </div>
                             <div className="w-full h-auto flex flex-col justify-center items-center">
-                                <button className="mb-2 p-2 w-[90%] bg-green-500 rounded-md text-white tracking-wide font-medium text-base" type="text">REVISAR COMPRA</button>
+                                <button className=" p-2 w-[90%] bg-green-500 rounded-md text-white tracking-wide font-medium text-base" type="text">COMPRAR</button>
                             </div>
                         </div>
                     </div>
