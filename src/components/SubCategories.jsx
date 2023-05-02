@@ -1,5 +1,4 @@
 export default function SubCategories({subCategoriesState, categories, handleSubLevelSelect }){
-    console.log(categories)
 
     return(
         <div className="w-[100%] flex absolute left-0 top-12 z-10 overflow-y-scroll">
