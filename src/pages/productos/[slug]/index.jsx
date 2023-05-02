@@ -3,7 +3,7 @@ import Link from "next/link";
 import getProducts from "../../../utils/products.json"
 import getCategories from "../../../utils/categories.json"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartShopping, faFilter, faArrowDownWideShort } from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping, faFilter, faArrowDownWideShort, faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import CartHome from "@/components/CartHome";
 import CategoriesFilter from "@/components/CategoriesFilter";
 import { useState } from "react";
@@ -29,7 +29,10 @@ export default function Slug({slug}){
     const {setSubCategoriesState, subCategoriesState} = useCategory();
 
     const [subLevelsState, setSubLevelsState] = useState(0);
-    const [orderFilterState, setOrderFilterState] = useState(false);
+    const [orderFilterState, setOrderFilterState] = useState({
+        active: false,
+        value: "A - Z"
+    });
 
     
     const categories = getCategories.categories;
@@ -47,7 +50,6 @@ export default function Slug({slug}){
             }
         }) 
     });
-    console.log(as);
 
     (() => {
         const productsCategoriesRelated = products.map((product) => {
@@ -72,13 +74,24 @@ export default function Slug({slug}){
         }
     }
 
+    const handleActiveOrder = () => {
+        setOrderFilterState((prev) => {
+            if(!prev.active){
+                return {active: true, value: prev.value}
+            }
+            return {active: false, value: prev.value}
+        })
 
+        console.log("estas apretando")
+    }
+
+    console.log("cambiaa", orderFilterState)
 
     const [categoriesFilterState, setCategoriesFilterState] = useState(false);
 
     return(
         <Layout>
-            <section className="w-full h-auto min-h-screen pt-36 bg-slate-100 px-4">
+            <section className="w-full h-auto min-h-screen pt-4 bg-slate-100 px-4">
                 <div className="w-full h-auto p-2 mb-4">
                     <div className="w-[full] h-auto flex flex-row justify-center items-center px-2 pb-2 mb-4 border-b border-green-500">
                         <p className="w-[70%] text-center text-base text-green-500">{`Inicio > `} Productos{` > `} <b>{categorySelected[0].name}</b></p>
@@ -90,13 +103,13 @@ export default function Slug({slug}){
 
                 <div className="w-full h-auto py-4">
                     <div className="w-full h-auto flex flex-row justify-between p-2 mb-10 relative">
-                        <div onClick={() => setOrderFilterState(state => !state)} type="text" className="w-[45%] shadow-default h-auto flex bg-green-500 justify-center items-center p-2 py-3 rounded-lg relative">
+                        {/* <div onClick={() => setOrderFilterState(state => !state)} type="text" className="w-[45%] shadow-default h-auto flex bg-green-500 justify-center items-center p-2 py-3 rounded-lg relative">
                             <FontAwesomeIcon className="text-white w-[24px] h-[24px]" icon={faFilter} />
                             <p className="ml-3 tracking-wide text-white font-medium">ORDENAR</p>
                             <OrderProducts 
                                 orderFilterState={orderFilterState}
                             />
-                        </div>
+                        </div> */}
 
                         <div onClick={() => setSubCategoriesState(state => !state)} className="w-[45%] shadow-default bg-green-500 h-auto flex justify-center items-center p-2 py-3 rounded-lg relative">
                             <FontAwesomeIcon className="text-white w-[24px] h-[24px]" icon={faArrowDownWideShort} />
@@ -113,7 +126,18 @@ export default function Slug({slug}){
 
                 <section className="w-full h-full">
                     <div className="w-full h-auto flex justify-end items-center">
-                        <p>Ordenar por:</p>
+                        <div className="w-auto flex flex-row items-center">
+                            <p className="text-black">Ordenar por:</p>
+                            <div
+                                className="w-auto flex flex-row items-center relative">
+                                <p onClick={handleActiveOrder} className="ml-2 text-black font-medium">{orderFilterState.value}</p>
+                                <FontAwesomeIcon onClick={handleActiveOrder} className="w-[16px] h-[16px] ml-2 text-green-500" icon={faAngleDown} />
+                                <OrderProducts 
+                                    orderFilterState={orderFilterState}
+                                    setOrderFilterState={setOrderFilterState}
+                                />
+                            </div>
+                        </div>
                     </div>
                     <ul className="w-full h-full flex justify-evenly flex-wrap py-4">
                         {subLevelsState == 0 ? productsCategoryRelated.map((product) => (
