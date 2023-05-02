@@ -111,21 +111,17 @@ export default function Slug({slug}){
                             />
                         </div> */}
 
-                        <div onClick={() => setSubCategoriesState(state => !state)} className="w-[45%] shadow-default bg-green-500 h-auto flex justify-center items-center p-2 py-3 rounded-lg relative">
+                        <div className="w-[45%] shadow-default bg-green-500 h-auto flex justify-center items-center p-2 py-3 rounded-lg relative">
                             <FontAwesomeIcon className="text-white w-[24px] h-[24px]" icon={faArrowDownWideShort} />
-                            <p className="ml-2 tracking-wide text-white font-medium">CATEGORIAS</p>
-                            <SubCategories 
-                                subCategoriesState={subCategoriesState}
-                                categories={categorySelected[0].subLevels}
-                                handleSubLevelSelect={handleSubLevelSelect}
-                            />
+                            <p onClick={() => setSubCategoriesState(state => !state)} className="ml-2 tracking-wide text-white font-medium">CATEGORIAS</p>
+                            
                         </div>
                     </div>
                     
                 </div>
 
                 <section className="w-full h-full">
-                    <div className="w-full h-auto flex justify-end items-center">
+                    <div className="w-full h-auto flex justify-between items-center">
                         <div className="w-auto flex flex-row items-center">
                             <p className="text-black">Ordenar por:</p>
                             <div
@@ -135,6 +131,19 @@ export default function Slug({slug}){
                                 <OrderProducts 
                                     orderFilterState={orderFilterState}
                                     setOrderFilterState={setOrderFilterState}
+                                />
+                            </div>
+                        </div>
+                        <div className="w-auto flex flex-row items-center">
+                            <div
+                                className="w-auto flex flex-row items-center relative bg-green-500 p-2 rounded-md">
+                                <p onClick={() => setSubCategoriesState(state => !state)} className="ml-2 text-white font-medium">Filtrar</p>
+                                <FontAwesomeIcon onClick={() => setSubCategoriesState(state => !state)} className="w-[16px] h-[16px] ml-2 text-white rotate-[270deg]" icon={faAngleDown} />
+                                <SubCategories 
+                                    subCategoriesState={subCategoriesState}
+                                    categories={categorySelected[0].subLevels}
+                                    handleSubLevelSelect={handleSubLevelSelect}
+                                    setSubCategoriesState={setSubCategoriesState}
                                 />
                             </div>
                         </div>
