@@ -227,6 +227,18 @@ body{
   }
 }
 
+/* ORDER PRODUCTS */
+
+.option-order__active::before{
+  content: "";
+  position: absolute;
+  width: 4px;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: #22c55e
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
