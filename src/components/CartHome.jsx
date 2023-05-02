@@ -21,7 +21,7 @@ export default function CartHome({ cartShow }) {
 
                 {cartItems.length !== 0 ?
                     <div className="w-full h-full flex flex-col justify-between items-center">
-                        <ul className="w-full h-full max-h-[500px] overflow-y-scroll">
+                        <ul className="w-full h-full max-h-[auto] overflow-y-scroll">
                             {cartItems.map((item) => (
                                 <CartItem
                                     key={item.id}
