@@ -187,7 +187,7 @@ export default function Nav() {
                                             {category.subLevels && subNavState === category.id ?
                                                 <div className="w-full h-full flex flex-col pt-2 transition-all pl-2">
                                                     <div className="p-2 text-green-600 flex flex-col w-full justify-center items-center relative">
-                                                        <Link href={`/productos/${category.slug}`} className="text-lg tracking-wide font-semibold w-full text-left">Ver todo en {category.slug}</Link>
+                                                        <Link href={`/productos/${category.slug}`} onClick={() => setNavMobileState(state => !state)} className="text-lg tracking-wide font-semibold w-full text-left">Ver todo en {category.slug}</Link>
                                                     </div>
                                                     {category.subLevels.map((itemSub) => (
                                                         <div key={itemSub.id} className="p-2 text-green-500 flex flex-col w-full justify-center items-center relative">
