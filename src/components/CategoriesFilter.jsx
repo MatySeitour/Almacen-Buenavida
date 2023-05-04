@@ -1,14 +1,9 @@
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import CategorySubLevel from "./CategorySubLevel";
-import { faX, faAngleLeft } from "@fortawesome/free-solid-svg-icons"
-import { useState } from "react";
+import { faX } from "@fortawesome/free-solid-svg-icons"
 import getCategories from "../utils/categories.json"
-import { useCategory } from "@/context/CategoriesContext";
 
 export default function CategoriesFilter({ categoriesFilterState, setCategoriesFilterState }) {
-    const {setSubCategoriesState, subCategoriesState} = useCategory();
-
     const categories = getCategories.categories;
 
 
