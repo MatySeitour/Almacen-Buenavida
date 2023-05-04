@@ -158,7 +158,7 @@ export default function Slug({slug}){
 
                             <ul>
                                 {filterSelected.map((item) => (
-                                    <li>{item}</li>
+                                    <li key={item}>{item}</li>
                                 ))}
                             </ul>
                         }
