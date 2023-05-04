@@ -13,11 +13,23 @@ export const useCategory = () => {
 }
 
 export function CategoryContextProvider({ children }) {
-    const [subCategoriesState, setSubCategoriesState] = useState(false);
+    const [filterProductState, setFilterProductState] = useState(false);
+    const [categoriesProductState, setCategoriesProductState] = useState(false);
 
+    const handleAccordion = (state, ref) => {
+        if (state) {
+            let la = ref.current?.scrollHeight.toString() + "px";
+            ref.current.style.height = la;
+            setCategoriesProductState(true)
+        }
+        else {
+            ref.current.style.height = "0";
+            setCategoriesProductState(false)
+        }
+    }
 
     return (
-        <CategoryContext.Provider value={{ subCategoriesState, setSubCategoriesState }}>
+        <CategoryContext.Provider value={{ filterProductState, setFilterProductState, categoriesProductState, setCategoriesProductState, handleAccordion }}>
             {children}
         </CategoryContext.Provider>
     )
