@@ -1,5 +1,6 @@
 import ContactSection from "@/components/ContactSection";
 import Nav from "@/components/Nav";
+import Head from "next/head";
 
 export default function ProductsLayout({children}){
     return(
