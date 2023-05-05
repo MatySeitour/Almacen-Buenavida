@@ -2,8 +2,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faAngleDown, faX } from "@fortawesome/free-solid-svg-icons"
 import { useCategory } from "@/context/CategoriesContext";
 import { useEffect, useRef, useState } from "react"
+import Link from "next/link";
 
-export default function Filter({filterProductState, categories, handleSubLevelSelect, setFilterProductState, subLevelsState, setFilterSelected }){
+export default function Filter({filterProductState, categories, handleSubLevelSelect, setFilterProductState, subLevelsState, setFilterSelected, slugCategory }){
     const {categoriesProductState, setCategoriesProductState} = useCategory();
     const element = useRef(null);
 
@@ -24,7 +25,7 @@ export default function Filter({filterProductState, categories, handleSubLevelSe
                 <div className="w-full h-auto flex justify-between items-center py-4 px-2 bg-green-600">
                         <FontAwesomeIcon onClick={() => {
                             setFilterProductState(state => !state)
-                            setCategoriesProductState(state => !state)
+                            setCategoriesProductState(false)
                             }} 
                             className="text-white w-[24px] h-[24px] flex justify-center items-center mr-4" icon={faX}></FontAwesomeIcon>
                         <h3 className="text-white text-xl font-semibold tracking-wide">Filtrar por</h3>
@@ -42,7 +43,7 @@ export default function Filter({filterProductState, categories, handleSubLevelSe
                                         })
                                     }} 
                                     className="w-full h-[auto] flex flex-row justify-between items-center" key={category.id}>
-                                    <p className={`text-green-500 w-auto text-sm p-2 font-normal ${subLevelsState == category.id && `font-semibold`}`}>{category.name}</p>
+                                    <Link href={`/productos/${slugCategory}/${category.slug}`} className={`text-green-500 w-auto text-sm p-2 font-normal ${subLevelsState == category.id && `font-semibold`}`}>{category.name}</Link>
                                 </li>
                             ))}
                         </ul>
