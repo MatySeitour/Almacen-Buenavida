@@ -1,16 +1,27 @@
+import getCategories from "../../../utils/categories.json"
+import ProductsLayout from "../layout";
+import ProductsIndex from "@/components/ProductsIndex";
+
 export async function getServerSideProps(context){
     const {params} = context;
-    const {sublevel} = params;
+    console.log(params);
+    const {sublevel, slug} = params;
     return{
         props:{
             sublevel,
+            slug,
         }
     }
 }
 
 
-export default function subLevel(){
+export default function subLevel({sublevel, slug}){
     return(
-        <div>holala</div>
+        <ProductsLayout>
+            <ProductsIndex 
+                sublevel={sublevel}
+                slug={slug}
+            />
+        </ProductsLayout>
     )
 }
