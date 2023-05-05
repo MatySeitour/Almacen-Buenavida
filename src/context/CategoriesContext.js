@@ -15,21 +15,23 @@ export const useCategory = () => {
 export function CategoryContextProvider({ children }) {
     const [filterProductState, setFilterProductState] = useState(false);
     const [categoriesProductState, setCategoriesProductState] = useState(false);
+    const [filterSelected, setFilterSelected] = useState([]);
+    const [orderFilterState, setOrderFilterState] = useState({
+        active: false,
+        value: "A - Z"
+    });
 
-    const handleAccordion = (state, ref) => {
-        if (state) {
-            let la = ref.current?.scrollHeight.toString() + "px";
-            ref.current.style.height = la;
-            setCategoriesProductState(true)
-        }
-        else {
-            ref.current.style.height = "0";
-            setCategoriesProductState(false)
-        }
+    const handleActiveOrder = () => {
+        setOrderFilterState((prev) => {
+            if (!prev.active) {
+                return { active: true, value: prev.value }
+            }
+            return { active: false, value: prev.value }
+        })
     }
 
     return (
-        <CategoryContext.Provider value={{ filterProductState, setFilterProductState, categoriesProductState, setCategoriesProductState, handleAccordion }}>
+        <CategoryContext.Provider value={{ filterProductState, setFilterProductState, categoriesProductState, setCategoriesProductState, filterSelected, setFilterSelected, orderFilterState, setOrderFilterState, handleActiveOrder }}>
             {children}
         </CategoryContext.Provider>
     )
