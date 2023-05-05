@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-export default function productsIndex({slug, sublevel}){
+export default function ProductsIndex({slug, sublevel}){
     const [routeState, setRouteState] = useState("");
 
     useEffect(() => {
