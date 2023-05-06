@@ -1,27 +1,25 @@
 import { useCart } from "@/context/CartContext";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartShopping, faCartPlus } from "@fortawesome/free-solid-svg-icons";
+import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
 
-export default function ButtonQuantityCard({productName, productPrice, productOffer, productSrc, productId, findProductInCart}){
+export default function ButtonQuantityCard({productName, productPrice, productOffer, productSrc, productId}){
     const {handleAddCart, cartItems, handleRemoverCart} = useCart();
 
     const[buttonQuantityHome ,setButtonQuantityHome] = useState(0);
 
+    const findProductInCart = cartItems.find((product) => product.id == productId);
 
-    let productInCart = cartItems.filter(productInCart => productInCart.id == productId);
-    let productInCartQuantity = productInCart?.quantity;
 
     useEffect(() => {
         let productInCart = cartItems.filter(productInCart => productInCart.id == productId);
         setButtonQuantityHome(productInCart[0]?.quantity)
     }, [cartItems])
 
-
     return(
-        <div className="w-[60%] flex flex-row items-start justify-between relative overflow-hidden">
+        <div className="w-[100%] flex flex-row items-start justify-between relative overflow-hidden">
             <>
-                <div className={findProductInCart ? "w-[100%] h-[40px] flex flex-row bg-green-500 border border-green-500 rounded-md justify-between items-center absolute translate-y-0 transition-all" : "w-[100%] h-[40px] flex flex-row bg-white border border-green-500 rounded-md justify-between items-center absolute translate-y-[100px] transition-all"}>
+                <div className={findProductInCart ? "w-[100%] h-[100%] flex flex-row bg-green-500 border border-green-500 rounded-md justify-between items-center absolute translate-y-0 transition-all" : "w-[100%] h-[100%] flex flex-row bg-white border border-green-500 rounded-md justify-between items-center absolute translate-y-[100px] transition-all"}>
                     <button 
                         onClick={() => {
                                 const newCartItem = {
@@ -52,7 +50,8 @@ export default function ButtonQuantityCard({productName, productPrice, productOf
                         +
                     </button>
                 </div>
-                <div className={!findProductInCart ? "w-[100%] h-[40px] absolute transition-all" : "w-[100%] h-[40px] absolute translate-y-[100px] transition-all"}>
+
+                <div className={!findProductInCart ? "w-[100%] h-[100%] absolute transition-all" : "w-[100%] h-[100%] absolute translate-y-[100px] transition-all"}>
                     <button 
                         onClick={() => {
                             const newCartItem = {
@@ -65,9 +64,9 @@ export default function ButtonQuantityCard({productName, productPrice, productOf
                             }
                             handleAddCart(newCartItem)
                         }}
-                            className={"bg-green-400 text-white text-xs w-[100%] flex justify-center rounded-md tracking-wider font-bold"} type="text">
-                            <div className="w-auto h-[40px] flex justify-center items-center relative">
-                                <FontAwesomeIcon className="w-[24px] h-[30px]" icon={faCartPlus} />
+                            className={"bg-green-400 text-white text-xs w-[100%] flex justify-center rounded-md tracking-wider font-bold h-full"} type="text">
+                            <div className="w-auto h-[100%] flex justify-center items-center relative">
+                                <FontAwesomeIcon className="w-[24px] h-[24px]" icon={faCartPlus} />
                             </div>
                     </button>
                 </div>
