@@ -1,13 +1,13 @@
 import Main from "@/components/Main"
-import Layout from "@/components/Layout"
+import MainLayout from "@/components/layouts/MainLayout"
 
 export default function home() {
 
-  return (
-    <Layout>
-      <main className="min-w-screen min-h-screen h-auto w-auto">
-        <Main />
-      </main>
-    </Layout>
-  )
+    return (
+        <MainLayout>
+            <main className="min-w-screen min-h-screen h-auto w-auto">
+                <Main />
+            </main>
+        </MainLayout>
+    )
 }
