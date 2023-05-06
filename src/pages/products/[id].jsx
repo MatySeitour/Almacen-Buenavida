@@ -8,9 +8,9 @@ import getProductsOffers from "../../utils/productsOffers.json"
 import getCategories from "../../utils/categories.json"
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import Layout from "@/components/Layout";
+import MainLayout from "@/components/layouts/MainLayout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 
 export async function getServerSideProps(context){
     const {params} = context;
@@ -75,19 +75,16 @@ export default function Product({id}) {
     ]
 
     return (
-        <Layout>
-            <section onClick={() => setFocus(false)} className="w-full h-auto min-h-screen pt-[134px]">
-                <div className="w-full h-auto flex">
-                    <div>
-                        <FontAwesomeIcon className="w-[24px] h-[24px]" icon={faArrowLeft} />
-                    </div>
-                    <div>
-                        <p>{product[0].name}</p>
+        <MainLayout>
+            <section onClick={() => setFocus(false)} className="w-full h-auto min-h-screen pt-4">
+                <div className="w-[40px] h-[60px] flex justify-center items-center ml-2 bg-white">
+                    <div className="w-[40px] h-[40px] shadow-1 rounded-md flex justify-center items-center bg-white">
+                        <FontAwesomeIcon className="w-7 h-7 text-green-500 text-lg" icon={faAngleLeft} />
                     </div>
                 </div>
                 <div className="w-full h-full">
                     <figure className="w-full h-[400px] relative">
-                        <span className="absolute bg-green-500 top-4 left-4 w-[70px] h-[70px] rounded-full flex justify-center items-center text-xl text-white font-medium"><p className="text-center">{product[0].offer != "2x1" ? `${product[0].offer}% OFF` : `${product[0].offer}`}</p></span>
+                        <span className="absolute bg-green-500 top-4 left-4 w-14 h-14 rounded-full flex justify-center items-center text-xl text-white font-medium"><p className="text-center tracking-wide">{product[0].offer != "2x1" ? `-${product[0].offer}%` : `${product[0].offer}`}</p></span>
                         <ul className="absolute right-2 top-2">
                             {categoriesLogo.map((category) => (
                                 <Image className="w-auto h-auto" key={category.id} height={40} width={40} alt={category.name} src={category.src} /> 
@@ -149,7 +146,7 @@ export default function Product({id}) {
                                         handleAddCart(newCartItem);
                                     }
                                 }
-                                className="p-2 bg-green-500 text-white rounded-md shadow-default" type="text">AÑADIR AL CARRO</button>
+                                className="p-2 bg-green-500 text-white rounded-md shadow-1 font-medium" type="text">AÑADIR AL CARRO</button>
                             </div>
                         </div>
 
@@ -166,7 +163,11 @@ export default function Product({id}) {
                             </div>
                             <ul className="w-full h-auto flex flex-row flex-wrap gap-2 p-2">
                                 {categoriesRelated.map((category) => (
-                                    <li key={category.id} className="bg-green-600 p-2 text-white rounded-md">{category.name}</li>
+                                    <li key={category.id} className="bg-green-600 p-2 text-white rounded-md">
+                                        <Link href={{pathname: `/productos/${category.slug}`}} className="">
+                                            {category.name}
+                                        </Link>
+                                    </li>
                                 ))}
                             </ul>
                         </div>
@@ -193,6 +194,6 @@ export default function Product({id}) {
                     cartShow={cartShow}
                 />
             </section>
-        </Layout>
+        </MainLayout>
     )
 }
