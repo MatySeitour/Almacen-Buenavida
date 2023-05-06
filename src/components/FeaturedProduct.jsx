@@ -32,6 +32,7 @@ export default function FeaturedProduct() {
                                     productStock={product.stock}
                                     productPrice={product.price}
                                     productId={product.id}
+                                    productOffer={product.offer}
                                 />
 
                             ))}
