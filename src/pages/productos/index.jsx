@@ -10,7 +10,7 @@ import { useState } from "react";
 import { useCart } from "@/context/CartContext";
 import { useCategory } from "@/context/CategoriesContext";
 import OrderProducts from "@/components/OrderProducts";
-import ProductsLayout from "./layout";
+import ProductsLayout from "@/components/layouts/ProductsLayout";
 import ProductsIndex from "@/components/ProductsIndex";
 
 
