@@ -6,17 +6,14 @@ import { useCart } from "@/context/CartContext";
 import ButtonQuantityCard from "./ButtonQuantityCard";
 
 export default function Card({ productSrc, productName, productPrice, productStock, productOffer, productId }) {
+    const { handleAddCart } = useCart();
+
     const element = useRef(null);
     const screen = useIntersection(element);
-
 
     let discountPriceOffer = productOffer != "2x1" ? parseInt(productOffer) : 0;
     discountPriceOffer = (productPrice * discountPriceOffer) / 100;
     discountPriceOffer = productPrice - discountPriceOffer;
-
-    const { handleAddCart, cartItems } = useCart();
-
-    const findProductInCart = cartItems.find((product) => product.id == productId)
 
 
     return (
@@ -58,11 +55,10 @@ export default function Card({ productSrc, productName, productPrice, productSto
                                         productOffer={productOffer}
                                         productId={productId}
                                         productSrc={productSrc}
-                                        findProductInCart={findProductInCart}
                                         handleAddCart={handleAddCart}
                                         productStock={productStock}
                                     />
-                                    <button className="bg-white border border-green-500 text-green-500 text-xs w-[30%] flex justify-center items-center p-1 rounded-md tracking-wider font-bold" type="text">VER</button>
+                                    {/* <button className="bg-white border border-green-500 text-green-500 text-xs w-[30%] flex justify-center items-center p-1 rounded-md tracking-wider font-bold" type="text">VER</button> */}
                                 </>
 
                                 :
@@ -82,16 +78,3 @@ export default function Card({ productSrc, productName, productPrice, productSto
         </li>
     )
 }
-
-
-{/* <>
-<ButtonAddCart 
-    icon={faCartShopping} 
-    productName={productName}
-    productId={productId}
-    productOffer={productOffer}
-    productPrice={productPrice}
-    productSrc={productSrc}
-    handleAddCart={handleAddCart}
-/>
-</> */}
