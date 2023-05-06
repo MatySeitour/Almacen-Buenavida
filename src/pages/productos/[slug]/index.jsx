@@ -3,40 +3,64 @@ import Link from "next/link";
 import getProducts from "../../../utils/products.json"
 import getCategories from "../../../utils/categories.json"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartShopping, faFilter, faArrowDownWideShort, faAngleDown } from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping, faAngleDown, faX } from "@fortawesome/free-solid-svg-icons";
 import CartHome from "@/components/CartHome";
 import CategoriesFilter from "@/components/CategoriesFilter";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useCart } from "@/context/CartContext";
-import ProductsLayout from "../layout";
+import ProductsLayout from "@/components/layouts/ProductsLayout";
 import { useCategory } from "@/context/CategoriesContext";
 import Filter from "@/components/Filter";
 import OrderProducts from "@/components/OrderProducts";
 import ProductsIndex from "@/components/ProductsIndex";
+import { useRouter } from "next/router";
 
 export async function getServerSideProps(context){
-    const {params} = context;
-    const {slug} = params;
+    const {query, params} = context;
     return{
         props:{
-            slug,
+            query,
+            params
         }
     }
 }
 
-export default function Slug({slug}){
+export default function Slug({query, params}){
+    const router = useRouter();
+    const categories = getCategories.categories;
+
+    console.log("este es params", params)
+
     const {cartShow} = useCart();
     const {orderFilterState, setOrderFilterState, handleActiveOrder, setFilterProductState, filterProductState, filterSelected ,setFilterSelected} = useCategory();
 
-    const [subLevelsState, setSubLevelsState] = useState(0);
-    // const [orderFilterState, setOrderFilterState] = useState({
-    //     active: false,
-    //     value: "A - Z"
-    // });
 
+    const [subLevelsState, setSubLevelsState] = useState(0);
+    const [subCategorySelected, setSubCategorySelected] = useState(0);
+    const [filterQueryParams, setFilterQueryParams] = useState({})
+    const [filterListItem, setFilterListItem] = useState([])
+    const [categoriesFilterState, setCategoriesFilterState] = useState(false);
+
+
+    useEffect(() => {
+        let outSlug = Object.entries(query).filter(item => item[0] != "slug");
+
+        setFilterQueryParams(Object.fromEntries(outSlug))
+        setFilterListItem(outSlug)
+    }, [query])
+
+
+    const handleDeleteFilter = (filter) => {
+        let la = filterListItem.filter(item => item[1] != filter);
+        setFilterQueryParams(Object.fromEntries(la))
+        router.push({pathname: `/productos/${query.slug}`, query: Object.fromEntries(la)})
+    }
+
+    console.log(filterQueryParams)
     
-    const categories = getCategories.categories;
-    const categorySelected = categories.filter(category => category.slug == slug);
+
+
+    const categorySelected = categories.filter(category => category.slug == query.slug);
 
     const products = getProducts.products;
     const productsByCategory = products.filter(product => product.categoryId == categorySelected[0].id);
@@ -74,24 +98,12 @@ export default function Slug({slug}){
         }
     }
 
-    // const handleActiveOrder = () => {
-    //     setOrderFilterState((prev) => {
-    //         if(!prev.active){
-    //             return {active: true, value: prev.value}
-    //         }
-    //         return {active: false, value: prev.value}
-    //     })
-    // }
-
-    console.log(filterSelected)
-
-    const [categoriesFilterState, setCategoriesFilterState] = useState(false);
 
     return(
         <ProductsLayout>
             <>
                 <ProductsIndex 
-                    slug={slug}
+                    slug={query.slug}
                 />
                 <section className="w-full h-full">
                     <div className="w-full h-auto flex justify-between items-center mb-10">
@@ -118,21 +130,29 @@ export default function Slug({slug}){
                                     subLevelsState={subLevelsState}
                                     setFilterProductState={setFilterProductState}
                                     setFilterSelected={setFilterSelected}
-                                    slugCategory={slug}
+                                    slugCategory={query.slug}
+                                    queryCategory={query.categoria}
+                                    setSubCategorySelected={setSubCategorySelected}
+                                    subCategorySelected={subCategorySelected}
                                 />
                             </div>
                         </div>
                     </div>
 
                     <article className="w-full h-full">
-                        {!filterSelected ? 
+                        {!filterQueryParams ? 
                             <></>
 
                             :
 
-                            <ul>
-                                {filterSelected.map((item) => (
-                                    <li key={item}>{item}</li>
+                            <ul className="w-full h-auto flex flex-wrap gap-2">
+                                {filterListItem?.map((filterItem) => (
+                                    <li className="bg-green-400 rounded-full w-auto p-2 flex justify-center items-center">
+                                        <Link href={{pathname: `/productos/${query.slug}`, query: filterQueryParams}}  className="text-white mr-2">{filterItem[1].replaceAll("-", " ")}</Link>
+                                        <div onClick={() => handleDeleteFilter(filterItem[1])} className="w-auto h-auto rounded-full bg-green-600 p-1">
+                                            <FontAwesomeIcon className="w-[12px] h-[12px] text-white flex justify-center items-center" icon={faX} />
+                                        </div>
+                                    </li>
                                 ))}
                             </ul>
                         }
