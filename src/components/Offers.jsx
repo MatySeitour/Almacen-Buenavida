@@ -1,14 +1,14 @@
 import useIntersection from '@/CustomHooks/useIntersection';
 import { useRef } from 'react';
 import Card from './Card';
-import getProductsOffers from "../utils/productsOffers.json"
+import getProducts from "../utils/products.json"
 
 export default function Offers() {
     const element = useRef(null);
     const screen = useIntersection(element);
 
 
-    const products = getProductsOffers.products;
+    const products = getProducts.products;
 
     return (
         <section className="w-full h-[500px] bg-white mb-40">
