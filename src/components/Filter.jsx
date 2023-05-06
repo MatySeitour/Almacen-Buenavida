@@ -4,9 +4,20 @@ import { useCategory } from "@/context/CategoriesContext";
 import { useEffect, useRef, useState } from "react"
 import Link from "next/link";
 
-export default function Filter({filterProductState, categories, handleSubLevelSelect, setFilterProductState, subLevelsState, setFilterSelected, slugCategory }){
+export default function Filter({filterProductState, categories, subCategorySelected, setSubCategorySelected, setFilterProductState, subLevelsState, setFilterSelected, slugCategory, queryCategory }){
     const {categoriesProductState, setCategoriesProductState} = useCategory();
     const element = useRef(null);
+
+    useEffect(() => {
+        if(queryCategory){
+            const subCategorySearch = categories.filter(category => category.slug == queryCategory);
+            setSubCategorySelected(subCategorySearch[0].id)
+        }
+        else{
+            setSubCategorySelected(0)
+        }
+    }, [queryCategory])
+
 
     useEffect(() => {
         if(categoriesProductState){
@@ -36,14 +47,14 @@ export default function Filter({filterProductState, categories, handleSubLevelSe
                         <ul ref={element} className={categoriesProductState ? `w-full flex flex-col items-center transition-all` : `overflow-hidden transition-all`}>
                             {categories.map((category) => (
                                 <li onClick={() => {
-                                        handleSubLevelSelect(category.id)
                                         setFilterProductState(state => !state)
                                         setFilterSelected(prev => {
                                             return [...prev, category.name]
                                         })
                                     }} 
+                                    // href={`/productos/${slugCategory}/${category.slug}`}
                                     className="w-full h-[auto] flex flex-row justify-between items-center" key={category.id}>
-                                    <Link href={`/productos/${slugCategory}/${category.slug}`} className={`text-green-500 w-auto text-sm p-2 font-normal ${subLevelsState == category.id && `font-semibold`}`}>{category.name}</Link>
+                                    <Link href={{pathname: `/productos/${slugCategory}`, query: {categoria: `${category.slug}`, desde: `1999`}}} className={`text-green-500 w-auto text-sm p-2 font-normal ${subCategorySelected == category.id && `font-semibold`}`}>{category.name}</Link>
                                 </li>
                             ))}
                         </ul>
