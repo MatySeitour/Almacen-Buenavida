@@ -9,23 +9,21 @@ export default function ProductsIndex({slug, sublevel}){
                 setRouteState(sublevel)
             }
             else{
-                console.log("entra")
-                console.log(sublevel)
                 setRouteState(slug)
             }
         }
         else{
             setRouteState("Productos")
         }
-    }, [])
+    }, [slug])
 
     return(
         <div className="w-full h-auto p-2 mb-4">
             <div className="w-[full] h-auto flex flex-row justify-center items-center px-2 pb-2 mb-4 border-b border-green-500">
                 <p className="w-[70%] text-center text-base text-green-500">
                     <span>Inicio{` > `}</span>
-                    <span>Productos{` > `}</span>
-                    {slug && <span>{slug}</span>}
+                    <span>Productos</span>
+                    {slug && <span>{` > `}{slug}</span>}
                     {sublevel && <span>{` > `}{sublevel}</span>}
                 </p>
             </div>
