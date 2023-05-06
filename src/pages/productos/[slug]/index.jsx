@@ -147,7 +147,7 @@ export default function Slug({query, params}){
 
                             <ul className="w-full h-auto flex flex-wrap gap-2">
                                 {filterListItem?.map((filterItem) => (
-                                    <li className="bg-green-400 rounded-full w-auto p-2 flex justify-center items-center">
+                                    <li key={filterItem[1]} className="bg-green-400 rounded-full w-auto p-2 flex justify-center items-center">
                                         <Link href={{pathname: `/productos/${query.slug}`, query: filterQueryParams}}  className="text-white mr-2">{filterItem[1].replaceAll("-", " ")}</Link>
                                         <div onClick={() => handleDeleteFilter(filterItem[1])} className="w-auto h-auto rounded-full bg-green-600 p-1">
                                             <FontAwesomeIcon className="w-[12px] h-[12px] text-white flex justify-center items-center" icon={faX} />
