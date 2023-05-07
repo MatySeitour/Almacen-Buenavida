@@ -7,16 +7,19 @@ import CarouselContainer from "@/components/CarouselContainer";
 import CardsInfoContainer from "@/components/CardsInfoContainer";
 
 export default function Main() {
-    const { setFocus } = useCart();
+  const { setFocus } = useCart();
 
-    return (
-        <div onClick={() => setFocus(false)} className="min-w-screen min-h-screen h-auto w-auto">
-            <Home />
-            <CarouselContainer />
-            <CardsInfoContainer />
-            <Offers />
-            <FeaturedProduct />
-            <CategoriesHome />
-        </div>
-    )
+  return (
+    <div
+      onClick={() => setFocus(false)}
+      className="min-w-screen min-h-screen h-auto w-auto"
+    >
+      <Home />
+      <CarouselContainer />
+      <CardsInfoContainer />
+      <Offers />
+      <FeaturedProduct />
+      <CategoriesHome />
+    </div>
+  );
 }
