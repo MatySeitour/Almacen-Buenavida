@@ -38,7 +38,7 @@ export default function CartItem({
             />
           </figure>
           <div className="w-auto h-auto flex flex-col items-start justify-center mb-2 pl-2">
-            <h5 className="text-base max-w-[180px] text-green-500 font-medium mb-2">
+            <h5 className="text-base max-w-[140px] text-green-500 font-medium mb-2">
               {itemName.length > 30 ? `${itemName.slice(0, 30)}...` : itemName}
             </h5>
             <div className="w-auto h-auto absolute right-4 top-2">
