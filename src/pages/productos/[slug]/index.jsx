@@ -33,8 +33,6 @@ export default function Slug({ query, params }) {
   const router = useRouter();
   const categories = getCategories.categories;
 
-  console.log("este es params", params);
-
   const { cartShow } = useCart();
   const {
     orderFilterState,
@@ -59,6 +57,8 @@ export default function Slug({ query, params }) {
     setFilterListItem(outSlug);
   }, [query]);
 
+  console.log(filterQueryParams);
+
   const handleDeleteFilter = (filter) => {
     let la = filterListItem.filter((item) => item[1] != filter);
     setFilterQueryParams(Object.fromEntries(la));
@@ -67,8 +67,6 @@ export default function Slug({ query, params }) {
       query: Object.fromEntries(la),
     });
   };
-
-  console.log(filterQueryParams);
 
   const categorySelected = categories.filter(
     (category) => category.slug == query.slug
@@ -113,7 +111,7 @@ export default function Slug({ query, params }) {
   return (
     <ProductsLayout>
       <>
-        <ProductsIndex slug={query.slug} />
+        <ProductsIndex categorySelected={categorySelected} slug={query.slug} />
         <section className="w-full h-full">
           <div className="w-full h-auto flex justify-between items-center mb-10">
             <div className="w-auto flex flex-row items-center relative">
@@ -160,6 +158,7 @@ export default function Slug({ query, params }) {
                   queryCategory={query.categoria}
                   setSubCategorySelected={setSubCategorySelected}
                   subCategorySelected={subCategorySelected}
+                  filterQueryParams={filterQueryParams}
                 />
               </div>
             </div>
