@@ -34,7 +34,7 @@ export default function OrderProducts({
         className={
           !orderFilterState.active
             ? "bg-white rounded-md shadow-md w-full opacity-0 overflow-scroll max-h-0"
-            : "bg-white rounded-md shadow-md w-full opacity-100 transition-all overflow-scroll max-h-[150px] max-w-[150px] py-2  border border-gray-200"
+            : "bg-white rounded-md shadow-md w-full opacity-100 transition-all overflow-scroll max-h-[150px] max-w-[150px] border border-gray-200"
         }
       >
         {order.map((option) => (
