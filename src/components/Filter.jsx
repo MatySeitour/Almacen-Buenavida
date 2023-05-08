@@ -20,6 +20,13 @@ export default function Filter({
   const element = useRef(null);
   const router = useRouter();
 
+  const [filterPriceFrom, setFilterPriceFrom] = useState(0);
+  const [filterPriceTo, setFilterPriceTo] = useState(0);
+  let queryPrev = Object.entries(filterQueryParams).map((item) =>
+    item.join("=")
+  );
+  console.log(queryPrev);
+
   useEffect(() => {
     if (queryCategory) {
       const subCategorySearch = categories.filter(
@@ -41,27 +48,29 @@ export default function Filter({
   }, [categoriesProductState]);
 
   const handleRouter = (key, value) => {
-    console.log(key);
-    let arrKey = Object.keys(filterQueryParams);
+    let urlBase = `/productos/${slugCategory}/`;
+    queryPrev.push(`${key}=${value}`);
+    let queryNew = queryPrev?.join("&");
 
+    let arrKey = Object.keys(filterQueryParams);
     let arrAll = Object.entries(filterQueryParams);
     let addRouteQuery = arrAll[0]?.join("=");
-    console.log(addRouteQuery);
+
+    console.log(filterQueryParams);
     let inRoute = arrKey.filter((query) => query == key);
-    // console.log(inRoute);
     if (arrKey == false) {
-      return router.push(`/productos/${slugCategory}?${key}=${value}`);
+      return router.push(`${urlBase}?${key}=${value}`);
     } else if (inRoute == false) {
-      return router.push(
-        `/productos/${slugCategory}?${addRouteQuery}&&${key}=${value}`
-      );
-    } else {
-      return router.push(
-        `/productos/${slugCategory}?${key}=${value}&&${addRouteQuery}`
-      );
+      return router.push(`${urlBase}?${queryNew}`);
     }
   };
 
+  const handleChangeFrom = (e) => {
+    setFilterPriceFrom(e.target.value);
+  };
+  const handleChangeTo = (e) => {
+    setFilterPriceTo(e.target.value);
+  };
   return (
     <div
       className={
@@ -175,18 +184,39 @@ export default function Filter({
               <p className="text-green-500 text-sm mr-2">Desde</p>
               <span className="mr-1 text-base text-green-700">$</span>
               <input
+                value={filterPriceFrom}
+                onChange={handleChangeFrom}
                 className="min-w-[50px] mr-2 p-1 text-sm bg-white outline-none rounded-sm border border-green-700 text-green-700"
                 type="number"
               />
               <p className="text-green-500 text-sm mr-2">Hasta</p>
               <span className="mr-1 text-base text-green-700">$</span>
               <input
+                value={filterPriceTo}
+                onChange={handleChangeTo}
                 className="min-w-[50px] mr-4 p-1 text-sm bg-white outline-none rounded-sm border border-green-700 text-green-700"
                 type="number"
               />
-              <div className="h-full bg-green-500 p-1 rounded-sm">
+              <button
+                onClick={() => {
+                  if (!filterPriceTo) {
+                    if (filterPriceFrom != 0) {
+                      handleRouter("minPrice", filterPriceFrom);
+                    }
+                  } else if (!filterPriceFrom) {
+                    handleRouter("maxPrice", filterPriceTo);
+                  } else {
+                    handleRouter(
+                      ["minPrice", "maxPrice"],
+                      [filterPriceFrom, filterPriceTo]
+                    );
+                  }
+                }}
+                type="text"
+                className="h-full bg-green-500 p-1 rounded-sm"
+              >
                 <p className="text-sm text-white tracking-wide">Aplicar</p>
-              </div>
+              </button>
             </div>
           </li>
         </ul>
