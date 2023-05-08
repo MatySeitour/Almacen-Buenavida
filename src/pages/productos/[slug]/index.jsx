@@ -57,8 +57,6 @@ export default function Slug({ query, params }) {
     setFilterListItem(outSlug);
   }, [query]);
 
-  console.log(filterQueryParams);
-
   const handleDeleteFilter = (filter) => {
     let la = filterListItem.filter((item) => item[1] != filter);
     setFilterQueryParams(Object.fromEntries(la));
