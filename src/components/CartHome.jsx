@@ -18,7 +18,7 @@ export default function CartHome({ cartShow }) {
         className={
           cartShow
             ? "fixed w-full h-full translate-x-0 transition-all bg-gray-100 top-0 right-0 z-[10000] pt-[70px] duration-200"
-            : "fixed w-full h-full translate-x-[500px] transition-all duration-200 bg-white top-0 right-0 z-[10000] overflow-y-scroll pt-[70px]"
+            : "fixed w-full h-full translate-x-[100%] transition-all duration-200 bg-white top-0 right-0 z-[10000] overflow-y-scroll pt-[70px]"
         }
       >
         <div className="fixed top-0 w-full h-auto min-h-[60px] flex justify-between items-center z-[10000000] px-4">
