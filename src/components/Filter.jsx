@@ -3,6 +3,7 @@ import { faAngleDown, faX } from "@fortawesome/free-solid-svg-icons";
 import { useCategory } from "@/context/CategoriesContext";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function Filter({
   filterProductState,
@@ -10,13 +11,14 @@ export default function Filter({
   subCategorySelected,
   setSubCategorySelected,
   setFilterProductState,
-  subLevelsState,
   setFilterSelected,
   slugCategory,
   queryCategory,
+  filterQueryParams,
 }) {
   const { categoriesProductState, setCategoriesProductState } = useCategory();
   const element = useRef(null);
+  const router = useRouter();
 
   useEffect(() => {
     if (queryCategory) {
@@ -37,6 +39,28 @@ export default function Filter({
       element.current.style.height = "0";
     }
   }, [categoriesProductState]);
+
+  const handleRouter = (key, value) => {
+    console.log(key);
+    let arrKey = Object.keys(filterQueryParams);
+
+    let arrAll = Object.entries(filterQueryParams);
+    let addRouteQuery = arrAll[0]?.join("=");
+    console.log(addRouteQuery);
+    let inRoute = arrKey.filter((query) => query == key);
+    // console.log(inRoute);
+    if (arrKey == false) {
+      return router.push(`/productos/${slugCategory}?${key}=${value}`);
+    } else if (inRoute == false) {
+      return router.push(
+        `/productos/${slugCategory}?${addRouteQuery}&&${key}=${value}`
+      );
+    } else {
+      return router.push(
+        `/productos/${slugCategory}?${key}=${value}&&${addRouteQuery}`
+      );
+    }
+  };
 
   return (
     <div
@@ -94,17 +118,30 @@ export default function Filter({
                   className="w-full h-[auto] flex flex-row justify-between items-center"
                   key={category.id}
                 >
-                  <Link
-                    href={{
-                      pathname: `/productos/${slugCategory}`,
-                      query: { categoria: `${category.slug}`, desde: `1999` },
+                  <button
+                    onClick={() => {
+                      handleRouter("categoria", category.slug);
+                      // router.push(
+                      //   `/productos/${slugCategory}?${
+                      //     filterQueryParams != {}
+                      //       ? `categoria=${category.slug}&&${filterQueryParams}`
+                      //       : ``
+                      //   }`
+                      // );
                     }}
+                    // href={{
+                    //   pathname: `/productos/${slugCategory}`,
+                    //   query: {
+                    //     categoria: `${category.slug}`,
+                    //     filterQueryKeys: Object.values(filterQueryParams),
+                    //   },
+                    // }}
                     className={`text-green-500 w-auto text-sm p-2 font-normal ${
                       subCategorySelected == category.id && `font-semibold`
                     }`}
                   >
                     {category.name}
-                  </Link>
+                  </button>
                 </li>
               ))}
             </ul>
@@ -115,15 +152,42 @@ export default function Filter({
               icon={faAngleDown}
             />
           </li>
-          <li className="w-full p-2 flex flex-row justify-between items-center border-b border-gray-200">
+          <li className="w-full p-2 flex flex-col justify-start items-start border-b border-gray-200 h-auto relative">
             <p className="text-green-500 w-auto text-base tracking-wider font-semibold">
               OFERTAS
             </p>
+            <div className="w-full p-2 flex flex-col justify-start items-start h-auto relative">
+              <button
+                onClick={() => {
+                  handleRouter("ofertas", "true");
+                }}
+                className="text-green-500 w-auto text-sm font-normal "
+              >
+                Ofertas
+              </button>
+            </div>
           </li>
-          <li className="w-full p-2 flex flex-row justify-between items-center border-b border-gray-200">
+          <li className="w-full p-2 flex flex-col justify-start items-start border-b border-gray-200 h-auto relative">
             <p className="text-green-500 w-auto text-base tracking-wider font-semibold">
-              MARCAS
+              PRECIO
             </p>
+            <div className="w-full flex flex-row justify-start p-2 pr-0 items-center h-auto relative">
+              <p className="text-green-500 text-sm mr-2">Desde</p>
+              <span className="mr-1 text-base text-green-700">$</span>
+              <input
+                className="min-w-[50px] mr-2 p-1 text-sm bg-white outline-none rounded-sm border border-green-700 text-green-700"
+                type="number"
+              />
+              <p className="text-green-500 text-sm mr-2">Hasta</p>
+              <span className="mr-1 text-base text-green-700">$</span>
+              <input
+                className="min-w-[50px] mr-4 p-1 text-sm bg-white outline-none rounded-sm border border-green-700 text-green-700"
+                type="number"
+              />
+              <div className="h-full bg-green-500 p-1 rounded-sm">
+                <p className="text-sm text-white tracking-wide">Aplicar</p>
+              </div>
+            </div>
           </li>
         </ul>
       </aside>
