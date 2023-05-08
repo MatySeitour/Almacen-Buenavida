@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function ProductsIndex({ slug, sublevel }) {
+export default function ProductsIndex({ slug, sublevel, categorySelected }) {
   const [routeState, setRouteState] = useState("");
 
   useEffect(() => {
@@ -24,7 +24,7 @@ export default function ProductsIndex({ slug, sublevel }) {
           {slug && (
             <span>
               {` > `}
-              {slug}
+              {categorySelected ? categorySelected[0]?.name : ""}
             </span>
           )}
           {sublevel && (
@@ -37,7 +37,7 @@ export default function ProductsIndex({ slug, sublevel }) {
       </div>
       <div className="w-full h-auto p-2">
         <h2 className="text-center text-3xl text-green-500">
-          <b>{routeState}</b>
+          <b>{categorySelected ? categorySelected[0]?.name : "Productos"}</b>
         </h2>
       </div>
     </div>
