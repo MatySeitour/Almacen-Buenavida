@@ -45,7 +45,10 @@ export default function Slug({ query, params }) {
   } = useCategory();
 
   const [subLevelsState, setSubLevelsState] = useState(0);
-  const [subCategorySelected, setSubCategorySelected] = useState(0);
+  const [subCategorySelected, setSubCategorySelected] = useState({
+    categories: 0,
+    ofertas: false,
+  });
   const [filterQueryParams, setFilterQueryParams] = useState({});
   const [filterListItem, setFilterListItem] = useState([]);
   const [categoriesFilterState, setCategoriesFilterState] = useState(false);
@@ -154,6 +157,7 @@ export default function Slug({ query, params }) {
                   setFilterSelected={setFilterSelected}
                   slugCategory={query.slug}
                   queryCategory={query.categoria}
+                  queryOfertas={query.ofertas}
                   setSubCategorySelected={setSubCategorySelected}
                   subCategorySelected={subCategorySelected}
                   filterQueryParams={filterQueryParams}
@@ -179,7 +183,10 @@ export default function Slug({ query, params }) {
                       }}
                       className="text-white mr-2"
                     >
-                      {filterItem[1].replaceAll("-", " ")}
+                      {}
+                      {filterItem[0] != "ofertas"
+                        ? filterItem[1].replaceAll("-", " ")
+                        : "ofertas"}
                     </Link>
                     <div
                       onClick={() => handleDeleteFilter(filterItem[1])}

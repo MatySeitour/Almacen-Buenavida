@@ -15,6 +15,7 @@ export default function Filter({
   slugCategory,
   queryCategory,
   filterQueryParams,
+  queryOfertas,
 }) {
   const { categoriesProductState, setCategoriesProductState } = useCategory();
   const element = useRef(null);
@@ -22,21 +23,36 @@ export default function Filter({
 
   const [filterPriceFrom, setFilterPriceFrom] = useState(0);
   const [filterPriceTo, setFilterPriceTo] = useState(0);
-  let queryPrev = Object.entries(filterQueryParams).map((item) =>
-    item.join("=")
-  );
-  console.log(queryPrev);
 
   useEffect(() => {
-    if (queryCategory) {
+    if (queryCategory && queryOfertas) {
       const subCategorySearch = categories.filter(
         (category) => category.slug == queryCategory
       );
-      setSubCategorySelected(subCategorySearch[0].id);
+      setSubCategorySelected({
+        categories: subCategorySearch[0].id,
+        ofertas: true,
+      });
+    } else if (queryCategory && !queryOfertas) {
+      const subCategorySearch = categories.filter(
+        (category) => category.slug == queryCategory
+      );
+      setSubCategorySelected({
+        categories: subCategorySearch[0].id,
+        ofertas: false,
+      });
+    } else if (!queryCategory && queryOfertas) {
+      setSubCategorySelected({
+        categories: 0,
+        ofertas: true,
+      });
     } else {
-      setSubCategorySelected(0);
+      setSubCategorySelected({
+        categories: 0,
+        ofertas: false,
+      });
     }
-  }, [queryCategory]);
+  }, [queryCategory, queryOfertas]);
 
   useEffect(() => {
     if (categoriesProductState) {
@@ -48,20 +64,43 @@ export default function Filter({
   }, [categoriesProductState]);
 
   const handleRouter = (key, value) => {
+    let queryPrev = Object.entries(filterQueryParams).map((item) =>
+      item.join("=")
+    );
+    console.log(queryPrev);
+
+    let info = Object.entries(filterQueryParams).map((item) => {
+      if (item[0] == key) {
+        console.log(item[1], value);
+        item[1] = value;
+      }
+      return item;
+    });
+
+    let info2 = info.map((item) => item.join("="));
+
+    console.log(info2);
+
     let urlBase = `/productos/${slugCategory}/`;
-    queryPrev.push(`${key}=${value}`);
-    let queryNew = queryPrev?.join("&");
 
     let arrKey = Object.keys(filterQueryParams);
-    let arrAll = Object.entries(filterQueryParams);
-    let addRouteQuery = arrAll[0]?.join("=");
 
-    console.log(filterQueryParams);
-    let inRoute = arrKey.filter((query) => query == key);
+    let inRoute = arrKey.includes(key);
+    console.log(inRoute === true);
+    console.log(inRoute);
     if (arrKey == false) {
       return router.push(`${urlBase}?${key}=${value}`);
-    } else if (inRoute == false) {
-      return router.push(`${urlBase}?${queryNew}`);
+    } else {
+      if (inRoute == true) {
+        console.log("entra aca");
+        let infor3 = info2?.join("&");
+        return router.push(`${urlBase}?${infor3}`);
+      } else {
+        console.log("entra aca2");
+        queryPrev.push(`${key}=${value}`);
+        let queryNew = queryPrev?.join("&");
+        return router.push(`${urlBase}?${queryNew}`);
+      }
     }
   };
 
@@ -130,23 +169,9 @@ export default function Filter({
                   <button
                     onClick={() => {
                       handleRouter("categoria", category.slug);
-                      // router.push(
-                      //   `/productos/${slugCategory}?${
-                      //     filterQueryParams != {}
-                      //       ? `categoria=${category.slug}&&${filterQueryParams}`
-                      //       : ``
-                      //   }`
-                      // );
                     }}
-                    // href={{
-                    //   pathname: `/productos/${slugCategory}`,
-                    //   query: {
-                    //     categoria: `${category.slug}`,
-                    //     filterQueryKeys: Object.values(filterQueryParams),
-                    //   },
-                    // }}
                     className={`text-green-500 w-auto text-sm p-2 font-normal ${
-                      subCategorySelected == category.id && `font-semibold`
+                      subCategorySelected.categories == category.id && `hidden`
                     }`}
                   >
                     {category.name}
@@ -161,7 +186,13 @@ export default function Filter({
               icon={faAngleDown}
             />
           </li>
-          <li className="w-full p-2 flex flex-col justify-start items-start border-b border-gray-200 h-auto relative">
+          <li
+            className={
+              !subCategorySelected.ofertas
+                ? "w-full p-2 flex flex-col justify-start items-start border-b border-gray-200 h-auto relative"
+                : "hidden"
+            }
+          >
             <p className="text-green-500 w-auto text-base tracking-wider font-semibold">
               OFERTAS
             </p>
@@ -169,6 +200,7 @@ export default function Filter({
               <button
                 onClick={() => {
                   handleRouter("ofertas", "true");
+                  setFilterProductState((state) => !state);
                 }}
                 className="text-green-500 w-auto text-sm font-normal "
               >
