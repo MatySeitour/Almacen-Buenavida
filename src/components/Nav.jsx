@@ -26,6 +26,7 @@ export default function Nav() {
     setFocus,
     animateCartState,
   } = useCart();
+
   const [searchResults, setSearchResults] = useState([]);
   const [search, setSearch] = useState("");
   const [subNavState, setSubNavState] = useState(0);
@@ -97,7 +98,7 @@ export default function Nav() {
   return (
     <header className="h-[128px] relative">
       <nav
-        className={`navbar p-2 justify-between flex-col bg-green-500 shadow-lg w-full ${
+        className={`navbar p-2 justify-between flex-col bg-emerald-500 shadow-lg w-full ${
           isNavbarInTop
             ? "h-[128px] transition-[transform] relative duration-300"
             : "h-[80px] transition-[transform] fixed duration-300"

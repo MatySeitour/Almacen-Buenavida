@@ -3,6 +3,7 @@ import Link from "next/link";
 import { faX, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { faWhatsapp, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { useRef, useEffect } from "react";
+import { useNav } from "@/context/NavContext";
 
 export default function NavMobile({
   navMobileState,
@@ -11,16 +12,44 @@ export default function NavMobile({
   subNavState,
   setSubNavState,
 }) {
-  const element = useRef(null);
+  const navItemContainer = useRef(null);
+  const subCategoryContainer = useRef(null);
+  const { navItemsState, setNavItemsState } = useNav();
 
   useEffect(() => {
-    if (subNavState != 0) {
-      let la = element.current?.scrollHeight.toString() + "px";
-      element.current.style.height = la;
+    if (navItemsState[2].active == true) {
+      let la = navItemContainer.current?.scrollHeight.toString() + "px";
+      navItemContainer.current.style.height = la;
     } else {
-      element.current.style.height = "0";
+      navItemContainer.current.style.height = "0";
+    }
+  }, [navItemsState, subNavState]);
+
+  useEffect(() => {
+    if (subCategoryContainer.current != null) {
+      if (subNavState != 0) {
+        let la = subCategoryContainer.current?.scrollHeight.toString() + "px";
+        subCategoryContainer.current.style.height = la;
+      } else {
+        console.log("entra ca");
+        subCategoryContainer.current.style.height = "0";
+      }
     }
   }, [subNavState]);
+
+  const handleCategoriesActive = (id) => {
+    const activeCategoryItem = navItemsState.map((item) => {
+      if (item.id == 3) {
+        if (item.active == false) {
+          item.active = true;
+        } else {
+          item.active = false;
+        }
+      }
+      return item;
+    });
+    setNavItemsState(activeCategoryItem);
+  };
 
   return (
     <div
@@ -44,12 +73,80 @@ export default function NavMobile({
         />
         <div className="w-full h-auto relative pt-14 mb-4">
           <ul className="w-full h-full flex flex-col">
+            {navItemsState.map(({ id, navItem, active, icon }) => (
+              <li
+                className="py-3 px-2 text-green-500 flex flex-col w-full justify-between items-start relative border-b border-gray-200"
+                key={id}
+              >
+                <div className="w-full h-auto flex flex-row justify-between items-center pr-2">
+                  <FontAwesomeIcon icon={icon} className="w-[20px] h-[20px]" />
+                  <p
+                    onClick={() => id == 3 && handleCategoriesActive(id)}
+                    className={
+                      navMobileState
+                        ? `text-lg tracking-wide font-normal w-full pl-2`
+                        : ``
+                    }
+                  >
+                    {navItem}
+                  </p>
+                  {id == 3 && (
+                    <FontAwesomeIcon
+                      className={`${
+                        navMobileState && `navArrowItemClass-${id}`
+                      } transition-all w-[20px] h-[20px] ${
+                        active && `rotate-[180deg] transition-all`
+                      }`}
+                      icon={faChevronDown}
+                    />
+                  )}
+                </div>
+                {id == 3 && (
+                  <ul
+                    ref={navItemContainer}
+                    className={
+                      active
+                        ? `w-full flex flex-col items-center transition-[height] duration-150 justify-start`
+                        : `overflow-hidden transition-[height] w-full duration-150 flex flex-col items-center`
+                    }
+                  >
+                    {categories.map((category) => (
+                      <li
+                        className="pt-3 pl-4 pr-2 text-green-500 flex flex-col w-full justify-between items-center font-medium relative"
+                        key={category.id}
+                      >
+                        <div className="w-full flex flex-row pr-1">
+                          <p
+                            onClick={() =>
+                              setSubNavState((prev) => {
+                                if (prev === category.id) {
+                                  return 0;
+                                } else {
+                                  return category.id;
+                                }
+                              })
+                            }
+                            className={`${
+                              active && `w-full navItemClass-${id}`
+                            }`}
+                          >
+                            {category.name}
+                          </p>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ul>
+          {/* <ul className="w-full h-full flex flex-col">
             {categories.map((category) => (
               <li
                 className={
                   category.subLevels && subNavState === category.id
-                    ? "pt-3 text-green-500 flex flex-col w-full justify-between items-start relative"
-                    : "py-3 text-green-500 flex flex-col w-full justify-between items-start relative"
+                    ? "pt-3 text-green-500 flex flex-col w-full justify-between items-start relative "
+                    : "py-3 text-green-500 flex flex-col w-full justify-between items-start relative border-b border-gray-200"
                 }
                 key={category.id}
               >
@@ -74,7 +171,6 @@ export default function NavMobile({
                   </p>
                   {category.subLevels ? (
                     <>
-                      {/* <FontAwesomeIcon className={category.subLevels && subNavState === category.id ? `transition-all absolute right-2 top-50% translate-y-[50%] w-[20px] h-[20px] rotate-[270deg]` : "transition-all absolute right-2 top-50% translate-y-[50%] w-[20px] h-[20px] rotate-[90deg]"} icon={faAngleLeft} /> */}
                       <FontAwesomeIcon
                         className={`${
                           navMobileState && `navArrowItemClass-${category.id}`
@@ -91,7 +187,7 @@ export default function NavMobile({
                   )}
                 </div>
                 <div
-                  ref={element}
+                  ref={navItemContainer}
                   className={
                     category.subLevels && subNavState === category.id
                       ? "w-full h-auto transition-[height]"
@@ -129,7 +225,7 @@ export default function NavMobile({
                 </div>
               </li>
             ))}
-          </ul>
+          </ul> */}
         </div>
         <div className="w-full h-auto flex justify-end items-center">
           <FontAwesomeIcon
