@@ -62,7 +62,7 @@ export default function NavMobile({
       <div
         className={
           navMobileState
-            ? "pb-4 fixed w-[80%] h-full flex flex-col justify-between translate-x-0 transition-all bg-white top-0 left-0 z-[10000] overflow-y-scroll"
+            ? "pb-0 fixed w-[80%] h-full flex flex-col justify-between translate-x-0 transition-all bg-white top-0 left-0 z-[10000] overflow-y-scroll"
             : "fixed w-[80%] h-full -translate-x-[100%] transition-all top-0 left-0 z-[10000] overflow-y-scroll invisible"
         }
       >
@@ -73,15 +73,29 @@ export default function NavMobile({
         />
         <div className="w-full h-auto relative pt-14 mb-4">
           <ul className="w-full h-full flex flex-col">
-            {navItemsState.map(({ id, navItem, active, icon }) => (
+            {navItemsState.map(({ id, navItem, active, icon, link }) => (
               <li
                 className="py-3 px-2 text-green-500 flex flex-col w-full justify-between items-start relative border-b border-gray-200"
                 key={id}
               >
-                <div className="w-full h-auto flex flex-row justify-between items-center pr-2">
+                <div
+                  className={
+                    navMobileState
+                      ? `w-full h-auto flex flex-row justify-between items-center pr-2 navItemClass-${id}`
+                      : ``
+                  }
+                >
                   <FontAwesomeIcon icon={icon} className="w-[20px] h-[20px]" />
-                  <p
-                    onClick={() => id == 3 && handleCategoriesActive(id)}
+                  <Link
+                    href={`${link}`}
+                    onClick={() => {
+                      if (id == 3) {
+                        handleCategoriesActive(id);
+                        setNavMobileState(true);
+                      } else {
+                        setNavMobileState(false);
+                      }
+                    }}
                     className={
                       navMobileState
                         ? `text-lg tracking-wide font-normal w-full pl-2`
@@ -89,7 +103,7 @@ export default function NavMobile({
                     }
                   >
                     {navItem}
-                  </p>
+                  </Link>
                   {id == 3 && (
                     <FontAwesomeIcon
                       className={`${
@@ -227,15 +241,33 @@ export default function NavMobile({
             ))}
           </ul> */}
         </div>
-        <div className="w-full h-auto flex justify-end items-center">
-          <FontAwesomeIcon
-            className="w-[30px] h-[30px] text-green-500"
-            icon={faWhatsapp}
-          />
-          <FontAwesomeIcon
-            className="w-[30px] h-[30px] mr-2 ml-2 text-green-500"
-            icon={faInstagram}
-          />
+        <div className="w-full h-auto flex flex-col justify-start items-start pl-2">
+          <div className="mb-2 flex flex-row items-center">
+            <FontAwesomeIcon
+              className="w-[30px] h-[30px] text-green-500 mr-1"
+              icon={faWhatsapp}
+            />
+            <Link
+              className="text-green-700 font-medium"
+              target="_blank"
+              href={`https://www.instagram.com/almacen_buenavida/`}
+            >
+              1100000000
+            </Link>
+          </div>
+          <div className="mb-2 flex flex-row items-center">
+            <FontAwesomeIcon
+              className="w-[30px] h-[30px] text-green-500 mr-1"
+              icon={faInstagram}
+            />
+            <Link
+              className="text-green-700 font-medium"
+              target="_blank"
+              href={`https://www.instagram.com/almacen_buenavida/`}
+            >
+              @almacen_buenavida
+            </Link>
+          </div>
         </div>
       </div>
     </div>
