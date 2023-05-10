@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState, useEffect } from "react";
-import { faStore, faPlateWheat, faListUl, faUsers, faBagShopping } from "@fortawesome/free-solid-svg-icons";
+import { faStore, faPlateWheat, faListUl, faUsers, faBagShopping, faMoneyBill, faCar } from "@fortawesome/free-solid-svg-icons";
 
 const NavContext = createContext({});
 
@@ -19,28 +19,45 @@ export function NavContextProvider({ children }) {
             id: 1,
             navItem: "Home",
             icon: faStore,
+            link: `/`
         },
         {
             id: 2,
             navItem: "Productos",
-            icon: faPlateWheat
+            icon: faPlateWheat,
+            link: `/productos`
         },
         {
             id: 3,
             navItem: "Categorias",
             active: false,
-            icon: faListUl
+            icon: faListUl,
+            link: `/`
         },
         {
             id: 4,
             navItem: "Sobre Nosotros",
-            icon: faUsers
+            icon: faUsers,
+            link: `/sobre-nosotros`
         },
         {
             id: 5,
             navItem: "Como Comprar",
-            icon: faBagShopping
-        }
+            icon: faBagShopping,
+            link: `/como-comprar`
+        },
+        {
+            id: 6,
+            navItem: "Formas de pago",
+            icon: faMoneyBill,
+            link: `/formas-de-pago`
+        },
+        {
+            id: 7,
+            navItem: "Envíos",
+            icon: faCar,
+            link: `/`
+        },
     ])
 
     return (
