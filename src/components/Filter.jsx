@@ -67,7 +67,6 @@ export default function Filter({
     let queryPrev = Object.entries(filterQueryParams).map((item) =>
       item.join("=")
     );
-    console.log(queryPrev);
 
     let info = Object.entries(filterQueryParams).map((item) => {
       if (item[0] == key) {
@@ -79,24 +78,18 @@ export default function Filter({
 
     let info2 = info.map((item) => item.join("="));
 
-    console.log(info2);
-
     let urlBase = `/productos/${slugCategory}/`;
 
     let arrKey = Object.keys(filterQueryParams);
 
     let inRoute = arrKey.includes(key);
-    console.log(inRoute === true);
-    console.log(inRoute);
     if (arrKey == false) {
       return router.push(`${urlBase}?${key}=${value}`);
     } else {
       if (inRoute == true) {
-        console.log("entra aca");
         let infor3 = info2?.join("&");
         return router.push(`${urlBase}?${infor3}`);
       } else {
-        console.log("entra aca2");
         queryPrev.push(`${key}=${value}`);
         let queryNew = queryPrev?.join("&");
         return router.push(`${urlBase}?${queryNew}`);
