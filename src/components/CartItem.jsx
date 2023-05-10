@@ -22,14 +22,14 @@ export default function CartItem({
     <li className="w-full h-[auto] min-h-[100px] flex flex-col justify-between items-center p-2 mb-4">
       <div className="w-full h-auto flex flex-row p-4 mb-4 shadow-md rounded-md bg-white relative">
         <div className="w-full h-auto flex flex-row">
-          <figure className="w-auto h-[auto] flex justify-start items-center mr-2 relative">
+          <figure className="w-auto h-[100%] flex justify-start items-center mr-2 relative max-h-[100px]">
             {itemOffer == "2x1" ? (
               <span className="w-8 h-8 flex justify-center items-center absolute -top-0 -left-1 text-xs bg-green-500 text-white font-medium rounded-full">{`${itemOffer}`}</span>
             ) : (
               <span className="w-8 h-8 flex justify-center items-center absolute -top-0 -left-1 text-xs bg-green-500 text-white font-medium rounded-full">{`-${itemOffer}%`}</span>
             )}
             <Image
-              className="object-cover"
+              className="object-cover h-full w-full rounded-md"
               src={itemSrc}
               priority={true}
               width={100}
