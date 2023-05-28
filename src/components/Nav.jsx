@@ -93,8 +93,6 @@ export default function Nav() {
     searchFilter(search);
   }, [search]);
 
-  // className={`bg-green-500 shadow-lg w-full ${isNavbarInTop ? "h-[128px] transition-all" : "h-[80px] transition-all fixed"} ${!isNavbarVisible ? "-translate-y-[200px] transition-all" : "translate-y-0 transition-all"} p-2 z-[100] duration-300`}
-
   return (
     <header className="h-[128px] relative">
       <nav
