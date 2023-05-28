@@ -60,33 +60,100 @@ export default function Slug({ query, params }) {
     setFilterListItem(outSlug);
   }, [query]);
 
-  const handleDeleteFilter = (filter) => {
-    let la = filterListItem.filter((item) => item[1] != filter);
-    setFilterQueryParams(Object.fromEntries(la));
-    router.push({
-      pathname: `/productos/${query.slug}`,
-      query: Object.fromEntries(la),
+  console.log(router);
+
+  function addQuery(param) {
+    /* Funcion de verificar parametros */
+    const isTwoValue = verifyQuery(param);
+    if (isTwoValue == 1) {
+      /* Crea una variable que copia los query de la ruta*/
+      let firstValueIsEmpty = router.query;
+      /* Busca el valor del primer parametro y lo elimina*/
+      delete firstValueIsEmpty[param.key];
+      /* Asigna el valor del segundo parametro en el objeto*/
+      Object.assign(firstValueIsEmpty, { [param.key2]: [param.value2] });
+      /* Se le pasa como query el objeto firstValueIsEmpty modificado */
+      return router.push({
+        pathname: `${router.route}`,
+        query: firstValueIsEmpty,
+      });
+    } else if (isTwoValue == 2)
+      /* Manda en el query los 2 valores de los parametros */
+      return router.push({
+        pathname: `${router.route}`,
+        query: {
+          ...router.query,
+          [param.key]: [param.value],
+          [param.key2]: [param.value2],
+        },
+      });
+    else if (isTwoValue == 3) {
+      return router.push({
+        pathname: `${router.route}`,
+        query: { ...router.query, [param.key]: [param.value] },
+      });
+    } else if (isTwoValue == 4) {
+      /* Crea una variable que copia los query de la ruta*/
+      let secondValueIsEmpty = router.query;
+      /* Busca el valor del segundo parametro y lo elimina*/
+      delete secondValueIsEmpty[param.key2];
+      /* Asigna el valor del primer parametro en el objeto*/
+      Object.assign(secondValueIsEmpty, { [param.key]: [param.value] });
+      /* Se le pasa como query el objeto firstValueIsEmpty modificado */
+      return router.push({
+        pathname: `${router.route}`,
+        query: secondValueIsEmpty,
+      });
+    } else {
+      /* Si se le manda como parametros "", crea un variable que copia los query de la ruta actual y elimina las propiedades que tengan el mismo nombre que las key de los parametros */
+      let inputsEmpty = router.query;
+      delete inputsEmpty[param.key];
+      delete inputsEmpty[param?.key2];
+      return router.push({
+        pathname: `${router.route}`,
+        query: inputsEmpty,
+      });
+    }
+  }
+
+  function verifyQuery(paramVerify) {
+    const { value, value2 } = paramVerify;
+    if (value == "" && value2) {
+      /* Si el primer parametro es vacio y el segundo es un valor true, quiere decir que se envio 2 queries pero el primer valor (en este caso minPrice) es vacio y el maxPrice no */
+      return 1;
+    } else if (value && value2) {
+      console.log("entra en 2");
+      /* Si los 2 valores son true, quiere decir que se enviaron los 2 queries con valores */
+      return 2;
+    } else if (value != "") {
+      console.log("entra en 4");
+      return 4;
+    } else if (value && value2 == "") {
+      /* Si el primer valor es true y el segundo es un string vacio, lo que hace es eliminar el query del segundo valor y mantener el primero */
+      console.log("entra en 5");
+      return 5;
+    } else {
+      console.log("entra en 6");
+      return 6;
+    }
+  }
+
+  function removeQuery(param) {
+    let newRoute = router.query;
+    delete newRoute[param.key];
+    return router.push({
+      pathname: `${router.route}`,
+      query: newRoute,
     });
-  };
+  }
 
   const categorySelected = categories.filter(
     (category) => category.slug == query.slug
   );
 
   const products = getProducts.products;
-  const productsByCategory = products.filter(
-    (product) => product.categoryId == categorySelected[0].id
-  );
   const productsCategoryRelated = [];
   const productsFilterByCategory = [];
-  const productsSubLevelByCategory = products.filter((product) => {
-    product.subCategoriesId.map((subLevel) => {
-      if (subLevel == subLevelsState) {
-        productsFilterByCategory.push(product);
-        return product;
-      }
-    });
-  });
 
   (() => {
     const productsCategoriesRelated = products.map((product) => {
@@ -161,6 +228,8 @@ export default function Slug({ query, params }) {
                   setSubCategorySelected={setSubCategorySelected}
                   subCategorySelected={subCategorySelected}
                   filterQueryParams={filterQueryParams}
+                  addQuery={addQuery}
+                  removeQuery={removeQuery}
                 />
               </div>
             </div>
@@ -176,20 +245,20 @@ export default function Slug({ query, params }) {
                     key={filterItem[1]}
                     className="bg-green-400 rounded-full w-auto p-2 flex justify-center items-center"
                   >
-                    <Link
-                      href={{
-                        pathname: `/productos/${query.slug}`,
-                        query: filterQueryParams,
-                      }}
-                      className="text-white mr-2"
-                    >
-                      {}
-                      {filterItem[0] != "ofertas"
-                        ? filterItem[1].replaceAll("-", " ")
-                        : "ofertas"}
-                    </Link>
+                    <p className="text-white mr-2">
+                      {filterItem[0] == "ofertas" && "ofertas"}
+                      {filterItem[0] == "minPrice" && `Desde $${filterItem[1]}`}
+                      {filterItem[0] == "maxPrice" && `Hasta $${filterItem[1]}`}
+                      {filterItem[0] == "categoria" &&
+                        filterItem[1].replaceAll("-", " ")}
+                    </p>
                     <div
-                      onClick={() => handleDeleteFilter(filterItem[1])}
+                      onClick={() =>
+                        removeQuery({
+                          key: filterItem[0],
+                          value: filterItem[1],
+                        })
+                      }
                       className="w-auto h-auto rounded-full bg-green-600 p-1"
                     >
                       <FontAwesomeIcon
