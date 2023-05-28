@@ -86,24 +86,45 @@ export default function NavMobile({
                   }
                 >
                   <FontAwesomeIcon icon={icon} className="w-[20px] h-[20px]" />
-                  <Link
-                    href={`${link}`}
-                    onClick={() => {
-                      if (id == 3) {
-                        handleCategoriesActive(id);
-                        setNavMobileState(true);
-                      } else {
-                        setNavMobileState(false);
+                  {id != 3 ? (
+                    <Link
+                      href={`${link}`}
+                      onClick={() => {
+                        if (id == 3) {
+                          handleCategoriesActive(id);
+                          setNavMobileState(true);
+                        } else {
+                          setNavMobileState(false);
+                        }
+                      }}
+                      className={
+                        navMobileState
+                          ? `text-lg tracking-wide font-normal w-full pl-2`
+                          : ``
                       }
-                    }}
-                    className={
-                      navMobileState
-                        ? `text-lg tracking-wide font-normal w-full pl-2`
-                        : ``
-                    }
-                  >
-                    {navItem}
-                  </Link>
+                    >
+                      {navItem}
+                    </Link>
+                  ) : (
+                    <p
+                      onClick={() => {
+                        if (id == 3) {
+                          handleCategoriesActive(id);
+                          setNavMobileState(true);
+                        } else {
+                          setNavMobileState(false);
+                        }
+                      }}
+                      className={
+                        navMobileState
+                          ? `text-lg tracking-wide font-normal w-full pl-2`
+                          : ``
+                      }
+                    >
+                      {navItem}
+                    </p>
+                  )}
+
                   {id == 3 && (
                     <FontAwesomeIcon
                       className={`${
@@ -130,12 +151,15 @@ export default function NavMobile({
                         key={category.id}
                       >
                         <div className="w-full flex flex-row pr-1">
-                          <p
+                          <Link
+                            href={`/productos/${category.slug}`}
                             onClick={() =>
                               setSubNavState((prev) => {
                                 if (prev === category.id) {
+                                  setNavMobileState(false);
                                   return 0;
                                 } else {
+                                  setNavMobileState(false);
                                   return category.id;
                                 }
                               })
@@ -145,7 +169,7 @@ export default function NavMobile({
                             }`}
                           >
                             {category.name}
-                          </p>
+                          </Link>
                         </div>
                       </li>
                     ))}
@@ -154,94 +178,8 @@ export default function NavMobile({
               </li>
             ))}
           </ul>
-          {/* <ul className="w-full h-full flex flex-col">
-            {categories.map((category) => (
-              <li
-                className={
-                  category.subLevels && subNavState === category.id
-                    ? "pt-3 text-green-500 flex flex-col w-full justify-between items-start relative "
-                    : "py-3 text-green-500 flex flex-col w-full justify-between items-start relative border-b border-gray-200"
-                }
-                key={category.id}
-              >
-                <div className="w-full h-auto flex flex-row justify-between pr-2">
-                  <p
-                    onClick={() =>
-                      setSubNavState((prev) => {
-                        if (prev === category.id) {
-                          return 0;
-                        } else {
-                          return category.id;
-                        }
-                      })
-                    }
-                    className={
-                      navMobileState
-                        ? `text-lg tracking-wide font-semibold w-full pl-2 navItemClass-${category.id}`
-                        : ``
-                    }
-                  >
-                    {category.slug.toUpperCase()}
-                  </p>
-                  {category.subLevels ? (
-                    <>
-                      <FontAwesomeIcon
-                        className={`${
-                          navMobileState && `navArrowItemClass-${category.id}`
-                        } transition-all w-[20px] h-[20px] ${
-                          category.subLevels &&
-                          subNavState === category.id &&
-                          `rotate-[180deg]`
-                        }`}
-                        icon={faChevronDown}
-                      />
-                    </>
-                  ) : (
-                    <></>
-                  )}
-                </div>
-                <div
-                  ref={navItemContainer}
-                  className={
-                    category.subLevels && subNavState === category.id
-                      ? "w-full h-auto transition-[height]"
-                      : "overflow-hidden transition-[height]"
-                  }
-                >
-                  {category.subLevels && subNavState === category.id ? (
-                    <div className="w-full h-full flex flex-col pt-2 transition-all pl-2">
-                      <div className="p-2 text-green-600 flex flex-col w-full justify-center items-center relative">
-                        <Link
-                          href={`/productos/${category.slug}`}
-                          onClick={() => setNavMobileState((state) => !state)}
-                          className="text-lg tracking-wide font-semibold w-full text-left"
-                        >
-                          Ver todo en {category.slug}
-                        </Link>
-                      </div>
-                      {category.subLevels.map((itemSub) => (
-                        <div
-                          key={itemSub.id}
-                          className="p-2 text-green-500 flex flex-col w-full justify-center items-center relative"
-                        >
-                          <p
-                            className="text-base tracking-wide font-semibold w-full text-left"
-                            key={itemSub.id}
-                          >
-                            {itemSub.name}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
-                  ) : (
-                    <div className="w-full h-[0px] transition-all pl-2"></div>
-                  )}
-                </div>
-              </li>
-            ))}
-          </ul> */}
         </div>
-        <div className="w-full h-auto flex flex-col justify-start items-start pl-2">
+        <div className="w-full h-auto flex flex-col justify-start items-start pl-2 pb-2">
           <div className="mb-2 flex flex-row items-center">
             <FontAwesomeIcon
               className="w-[30px] h-[30px] text-green-500 mr-1"
