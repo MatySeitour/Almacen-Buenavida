@@ -14,15 +14,16 @@ export default function Filter({
   setFilterSelected,
   slugCategory,
   queryCategory,
-  filterQueryParams,
+  addQuery,
+  removeQuery,
   queryOfertas,
 }) {
   const { categoriesProductState, setCategoriesProductState } = useCategory();
   const element = useRef(null);
   const router = useRouter();
 
-  const [filterPriceFrom, setFilterPriceFrom] = useState(0);
-  const [filterPriceTo, setFilterPriceTo] = useState(0);
+  const [filterPriceFrom, setFilterPriceFrom] = useState("");
+  const [filterPriceTo, setFilterPriceTo] = useState("");
 
   useEffect(() => {
     if (queryCategory && queryOfertas) {
@@ -63,39 +64,13 @@ export default function Filter({
     }
   }, [categoriesProductState]);
 
-  const handleRouter = (key, value) => {
-    let queryPrev = Object.entries(filterQueryParams).map((item) =>
-      item.join("=")
-    );
-
-    let info = Object.entries(filterQueryParams).map((item) => {
-      if (item[0] == key) {
-        console.log(item[1], value);
-        item[1] = value;
-      }
-      return item;
-    });
-
-    let info2 = info.map((item) => item.join("="));
-
-    let urlBase = `/productos/${slugCategory}/`;
-
-    let arrKey = Object.keys(filterQueryParams);
-
-    let inRoute = arrKey.includes(key);
-    if (arrKey == false) {
-      return router.push(`${urlBase}?${key}=${value}`);
-    } else {
-      if (inRoute == true) {
-        let infor3 = info2?.join("&");
-        return router.push(`${urlBase}?${infor3}`);
-      } else {
-        queryPrev.push(`${key}=${value}`);
-        let queryNew = queryPrev?.join("&");
-        return router.push(`${urlBase}?${queryNew}`);
-      }
-    }
-  };
+  // const handleRouter = (key, value) => {
+  //   console.log(router);
+  //   router.push({
+  //     pathname: `/productos/${slugCategory}`,
+  //     query: { ...router.query, [key]: `${value}` },
+  //   });
+  // };
 
   const handleChangeFrom = (e) => {
     setFilterPriceFrom(e.target.value);
@@ -161,7 +136,8 @@ export default function Filter({
                 >
                   <button
                     onClick={() => {
-                      handleRouter("categoria", category.slug);
+                      addQuery({ key: "categoria", value: category.slug });
+                      setCategoriesProductState(false);
                     }}
                     className={`text-green-500 w-auto text-sm p-2 font-normal ${
                       subCategorySelected.categories == category.id && `hidden`
@@ -192,7 +168,8 @@ export default function Filter({
             <div className="w-full p-2 flex flex-col justify-start items-start h-auto relative">
               <button
                 onClick={() => {
-                  handleRouter("ofertas", "true");
+                  addQuery({ key: "ofertas", value: true });
+                  setCategoriesProductState(false);
                   setFilterProductState((state) => !state);
                 }}
                 className="text-green-500 w-auto text-sm font-normal "
@@ -224,18 +201,12 @@ export default function Filter({
               />
               <button
                 onClick={() => {
-                  if (!filterPriceTo) {
-                    if (filterPriceFrom != 0) {
-                      handleRouter("minPrice", filterPriceFrom);
-                    }
-                  } else if (!filterPriceFrom) {
-                    handleRouter("maxPrice", filterPriceTo);
-                  } else {
-                    handleRouter(
-                      ["minPrice", "maxPrice"],
-                      [filterPriceFrom, filterPriceTo]
-                    );
-                  }
+                  addQuery({
+                    key: "minPrice",
+                    value: filterPriceFrom,
+                    key2: "maxPrice",
+                    value2: filterPriceTo,
+                  });
                 }}
                 type="text"
                 className="h-full bg-green-500 p-1 rounded-sm"
